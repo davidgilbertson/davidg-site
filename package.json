@@ -5,8 +5,9 @@
   "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack -d",
-    "start": "node server"
+    "build": "webpack",
+    "start": "node server",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"
   },
   "repository": {
     "type": "git",

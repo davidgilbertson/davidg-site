@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./_home.scss');
+require('./_header.scss');
 
 class Home extends Component {
     constructor(props) {
@@ -9,9 +9,8 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="home">
-                <h1>Hello, I am HOME now</h1>
-                <div>V2</div>
+            <div className="header">
+                <h1>Davidg</h1>
             </div>
         );
     }

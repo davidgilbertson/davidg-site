@@ -10,7 +10,7 @@ var port = 80;
 app.get('/', function(req, res) {
     //var html = React.renderToString(Home);
     //res.send('Server is running, sweet.');
-    res.sendFile(path.resolve(__dirname, 'dist/index.html'));
+    res.sendFile(path.resolve(__dirname, 'build/index.html'));
 });
 
 app.listen(port, function() {
