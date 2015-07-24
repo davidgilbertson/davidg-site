@@ -1,0 +1,22 @@
+@import '../utils';
+
+.header-1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-2 {
+    color: $color-primary;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.header-3 {
+    color: $color-primary;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.link {
+    border-bottom: 1px dotted $color-primary;
+}

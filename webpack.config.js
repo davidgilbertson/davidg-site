@@ -10,7 +10,6 @@ module.exports = {
     resolve: {
         alias: {
             'react': pathToReact
-            //react: path.resolve(__dirname, 'node_modules/react/dist/react.min.js')
         }
     },
     output: {
@@ -26,6 +25,10 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: 'style-loader!css-loader!sass-loader'
+            },
+            {
+                test: /\.woff$/,
+                loader: 'url?limit=100000'
             }
         ],
         noParse: /react\.min\.js$/

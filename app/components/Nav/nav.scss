@@ -1,0 +1,11 @@
+@import '../../styles/_utils';
+
+.nav {
+    background: $color-grey-3;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $sidebar-width;
+}

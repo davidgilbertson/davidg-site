@@ -1,0 +1,7 @@
+@import '../../styles/_utils';
+
+.header {
+    background: $color-primary;
+    height: 4em;
+    z-index: $z-index-header;
+}

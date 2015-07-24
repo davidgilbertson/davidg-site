@@ -1,0 +1,6 @@
+// This file can be imported by component SCSS files to get access to variables, mixins etc.
+// Nothing in any of these files should actually apply styles (i.e. no selectors)
+
+@import 'utils/variables';
+@import 'utils/mixins';
+@import 'utils/placeholders';

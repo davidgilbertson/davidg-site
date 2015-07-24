@@ -1,0 +1,29 @@
+@import '../utils';
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    color: $color-grey-1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+}
