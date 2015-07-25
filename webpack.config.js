@@ -1,30 +1,34 @@
 var path = require('path');
-var nodeModules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(nodeModules, 'react/dist/react.min.js');
+var node_modules = path.resolve(__dirname, 'node_modules');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 
 module.exports = {
     entry: [
         'webpack/hot/dev-server',
-        path.resolve(__dirname, './app/main.jsx')
+        path.resolve(__dirname, './app/main.js')
     ],
+    output: {
+        //path: path.resolve(__dirname, 'build'),
+        path: './build',
+        filename: 'bundle.js'
+    },
     resolve: {
         alias: {
+            'react/lib': path.resolve(node_modules, 'react/lib'),
             'react': pathToReact
-        }
-    },
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: 'bundle.js'
+        },
+        extensions: ['', '.js', '.jsx', '.scss']
     },
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader'
+                exclude: [node_modules],
+                loaders: ['react-hot', 'babel']
             },
             {
                 test: /\.scss$/,
-                loader: 'style-loader!css-loader!sass-loader'
+                loader: 'style!css!sass'
             },
             {
                 test: /\.woff$/,
