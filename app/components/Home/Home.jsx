@@ -20,10 +20,18 @@ class Home extends Component {
     render() {
         return (
             <div className="home">
-                <p className="header-1">.heading-1</p>
-                <p className="header-2">.heading-2</p>
-                <p className="header-3">.heading-3</p>
-                <p className="body-text">body Hello, I am HOME now</p>
+                <p className="header-1">The Great Gatsby (.heading-1)</p>
+
+                <p className="header-2">A tale of things (.heading-2)</p>
+
+                <p className="header-3">was great (.heading-3)</p>
+
+                <p className="body-text">
+                    .body-text: In hac habitasse platea dictumst. In hac habitasse platea dictumst. Vestibulum facilisis, purus nec
+                    lacerat accumsan. Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis
+                    venenatis ante odio sit amet eros.
+                </p>
+
                 <a className="link">a link</a>
 
                 <hr />
@@ -31,7 +39,6 @@ class Home extends Component {
                 <input
                     defaultValue={this.state.value}
                     onChange={this.update} />
-                <hr />
             </div>
         );
     }

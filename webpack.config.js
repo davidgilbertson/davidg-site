@@ -7,17 +7,17 @@ module.exports = {
         'webpack/hot/dev-server',
         path.resolve(__dirname, './app/main.js')
     ],
-    output: {
-        //path: path.resolve(__dirname, 'build'),
-        path: './build',
-        filename: 'bundle.js'
-    },
     resolve: {
         alias: {
             'react/lib': path.resolve(node_modules, 'react/lib'),
             'react': pathToReact
         },
         extensions: ['', '.js', '.jsx', '.scss']
+    },
+    output: {
+        //path: path.resolve(__dirname, 'build'),
+        path: './build',
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
