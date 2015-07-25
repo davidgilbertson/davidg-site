@@ -1,9 +1,35 @@
 'use strict';
 import React from 'react';
+import Router from 'react-router';
+const Route = Router.Route;
+const DefaultRoute = Router.DefaultRoute;
+const NotFoundRoute = Router.NotFoundRoute;
 
-const App = require('./components/App/App.jsx');
+var App = require('./components/App/App.jsx');
+var Home = require('./components/Home/Home.jsx');
+var Fireball = require('./components/Fireball/Fireball.jsx');
+var AllThePrimes = require('./components/AllThePrimes/AllThePrimes.jsx');
 
-const rootInstance = React.render(<App />, document.getElementById('app'));
+const routes = (
+    <Route handler={App}>
+        <DefaultRoute handler={Home} />
+
+        <Route name="home" handler={Home} />
+        <Route name="fireball" handler={Fireball} />
+        <Route name="all-the-primes" handler={AllThePrimes} />
+        <Route name="color-swatches" handler={AllThePrimes} />
+
+        <NotFoundRoute handler={Home} />
+    </Route>
+);
+
+let rootInstance = null;
+Router.run(routes, Router.HashLocation, (Root) => {
+//Router.run(routes, Router.HistoryLocation, (Root) => {
+    rootInstance = React.render(<Root />, document.getElementById('app'));
+});
+
+//const rootInstance = React.render(<App />, document.getElementById('app'));
 
 if (module.hot) {
     require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({

@@ -30,4 +30,11 @@ body {
 .link {
     border-bottom: 1px dotted $color-primary;
     color: $color-primary;
+    text-decoration: none;
+
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+    }
 }

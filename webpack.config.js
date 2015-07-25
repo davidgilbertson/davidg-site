@@ -9,6 +9,7 @@ module.exports = {
     ],
     resolve: {
         alias: {
+            'react-router': path.resolve(node_modules, 'react-router'),
             'react/lib': path.resolve(node_modules, 'react/lib'),
             'react': pathToReact
         },

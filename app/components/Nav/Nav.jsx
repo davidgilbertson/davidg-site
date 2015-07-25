@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./nav.scss');
+require('./Nav.scss');
+import Router from 'react-router';
+const Link = Router.Link;
 
 class Home extends Component {
     constructor(props) {
@@ -10,12 +12,11 @@ class Home extends Component {
     render() {
         return (
             <div className="nav">
-                <h1>Davidg</h1>
                 <ul>
-                    <li><a href="#someLink">Some Link</a></li>
-                    <li><a href="#someLink1">Some Other Link</a></li>
-                    <li><a href="#someLink2">Fireball</a></li>
-                    <li><a href="#someLink3">Color Swatch Picker</a></li>
+                    <li><Link className="nav__link" to="home">Home</Link></li>
+                    <li><Link className="nav__link" to="fireball">Fireball</Link></li>
+                    <li><Link className="nav__link" to="all-the-primes">All the primes</Link></li>
+                    <li><Link className="nav__link" to="color-swatches">Color Swatch Picker</Link></li>
                 </ul>
             </div>
         );

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./header.scss');
+require('./Header.scss');
 
 class Home extends Component {
     constructor(props) {
