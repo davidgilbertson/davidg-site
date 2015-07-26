@@ -1,17 +1,14 @@
 @import '../../styles/utils';
 
 .app {
-    min-height: 100%;
-    position: relative;
+    //min-height: 100%;
+    //position: relative;
 
     &__wrapper {
         min-height: 100%;
-        //transform: translateX($sidebar-width);
     }
 
     &__container {
-        //background: coral;
-        //padding: $header-height + $content-padding $content-padding $content-padding $content-padding + $sidebar-width;
         padding-left: 0;
         position: relative;
         transition: $animation-duration;

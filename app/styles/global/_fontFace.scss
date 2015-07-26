@@ -1,30 +1,31 @@
+// TODO (davidg): can I have just one woff file for all the 300, 400 etc?
 @font-face {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Light'), local('Roboto-Light'), url('../assets/fonts/roboto.woff') format('woff');
 }
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto'), local('Roboto-Regular'), url('../assets/fonts/roboto.woff') format('woff');
-}
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Bold'), local('Roboto-Bold'), url('../assets/fonts/roboto.woff') format('woff');
-}
-@font-face {
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 300;
-    src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url('../assets/fonts/roboto.woff') format('woff');
-}
-@font-face {
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Roboto Italic'), local('Roboto-Italic'), url('../assets/fonts/roboto.woff') format('woff');
-}
+//@font-face {
+//    font-family: 'Roboto';
+//    font-style: normal;
+//    font-weight: 400;
+//    src: local('Roboto'), local('Roboto-Regular'), url('../assets/fonts/roboto.woff') format('woff');
+//}
+//@font-face {
+//    font-family: 'Roboto';
+//    font-style: normal;
+//    font-weight: 700;
+//    src: local('Roboto Bold'), local('Roboto-Bold'), url('../assets/fonts/roboto.woff') format('woff');
+//}
+//@font-face {
+//    font-family: 'Roboto';
+//    font-style: italic;
+//    font-weight: 300;
+//    src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url('../assets/fonts/roboto.woff') format('woff');
+//}
+//@font-face {
+//    font-family: 'Roboto';
+//    font-style: italic;
+//    font-weight: 400;
+//    src: local('Roboto Italic'), local('Roboto-Italic'), url('../assets/fonts/roboto.woff') format('woff');
+//}

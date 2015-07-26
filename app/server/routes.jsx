@@ -10,11 +10,11 @@ var Fireball = require('../components/Fireball/Fireball.jsx');
 var AllThePrimes = require('../components/AllThePrimes/AllThePrimes.jsx');
 
 const routes = (
-    <Route handler={App}>
+    <Route path="/" handler={App}>
         <DefaultRoute handler={Home} />
 
         <Route name="home" handler={Home} />
-        <Route name="fireball" path="/fireball" handler={Fireball} />
+        <Route name="fireball" handler={Fireball} />
         <Route name="all-the-primes" handler={AllThePrimes} />
         <Route name="color-swatches" handler={AllThePrimes} />
 
