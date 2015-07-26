@@ -2,12 +2,15 @@ $z-index-menu: 10;
 $z-index-header: 20;
 $z-index-modal: 100;
 
+$white: #fff;
 $color-primary: #a11;
-
 $color-grey-1: #333;
 $color-grey-2: #888;
 $color-grey-3: #eee;
-$white: #fff;
+$color-nav: #35363c;
 
 $header-height: 3em;
-$sidebar-width: 15em;
+$sidebar-width: 11em;
+$content-padding: 2em;
+
+$animation-duration: 150ms;

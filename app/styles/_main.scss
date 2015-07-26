@@ -1,4 +1,11 @@
 @import 'global/resets';
 @import 'global/fontFace';
 @import 'global/typography';
-@import 'global/layout';
+
+@import '../components/AllThePrimes/allThePrimes';
+@import '../components/App/app';
+@import '../components/Fireball/fireball';
+@import '../components/Hamburger/hamburger';
+@import '../components/Header/header';
+@import '../components/Home/home';
+@import '../components/Nav/nav';

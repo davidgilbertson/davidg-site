@@ -1,23 +1,50 @@
-'use strict';
 import React from 'react';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
+import classnames from 'classnames';
 
-import MainCss from '../../styles/_main.scss';
+if (typeof window !== 'undefined') {
+    require('../../styles/_main.scss');
+    require('./_app.scss');
+}
 
-var Nav = require('../Nav/Nav.jsx');
-import Header from '../Header/Header';
+import Nav from '../Nav/Nav.jsx';
+import Header from '../Header/Header.jsx';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onToggleNav = this.onToggleNav.bind(this);
+
+        this.state = {
+            showNav: true
+        };
+    }
+
+    onToggleNav() {
+        const prevShowNav = this.state.showNav;
+
+        this.setState({showNav: !prevShowNav});
+    }
+
     render() {
+        const appWrapperClasses = classnames(
+            'app__wrapper',
+            {'app__wrapper--nav-visible': this.state.showNav}
+        );
+
         return (
-            <div className="app">
-                <Header />
+            <div className={appWrapperClasses}>
                 <Nav />
 
                 <section className="app__container">
+                    <Header onToggleNav={this.onToggleNav} />
+
                     <RouteHandler />
                 </section>
+                {/*
+                */}
             </div>
         );
     }

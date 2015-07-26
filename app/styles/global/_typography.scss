@@ -5,6 +5,8 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
+    letter-spacing: .2px;
+    line-height: 1.6em;
 }
 
 .header-1 {
@@ -30,6 +32,7 @@ body {
 .link {
     border-bottom: 1px dotted $color-primary;
     color: $color-primary;
+    cursor: pointer;
     text-decoration: none;
 
     &:focus,

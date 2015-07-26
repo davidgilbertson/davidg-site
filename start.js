@@ -1,18 +1,23 @@
-var express = require('express');
-var React = require('react');
-var path = require('path');
+//var express = require('express');
+//var React = require('react');
+//var path = require('path');
 //var Home = require('./app/components/Home.jsx');
 
-var app = express();
+require('babel/register');
 
-var port = 80;
+var server = require('./app/server/server.js');
 
-app.get('/', function(req, res) {
-    //var html = React.renderToString(Home);
-    //res.send('Server is running, sweet.');
-    res.sendFile(path.resolve(__dirname, 'build/index.html'));
-});
+server.start(80);
 
-app.listen(port, function() {
-    console.log('  --  >  start.js:14 > server running on port:', port);
-});
+//var app = express();
+//
+//
+//app.get('/', function(req, res) {
+//    //var html = React.renderToString(Home);
+//    //res.send('Server is running, sweet.');
+//    res.sendFile(path.resolve(__dirname, 'build/index.html'));
+//});
+//
+//app.listen(port, function() {
+//    console.log('  --  >  start.js:14 > server running on port:', port);
+//});

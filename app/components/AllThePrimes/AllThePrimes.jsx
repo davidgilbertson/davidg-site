@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./AllThePrimes.scss');
+if (typeof window !== 'undefined') {
+    require('./_allThePrimes.scss');
+}
 
 class Home extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="all-the-primes">
+            <div className="app__content all-the-primes">
                 <h1>All the primes!!</h1>
                 <ul>
                     <li>123</li>

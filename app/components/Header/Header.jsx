@@ -1,8 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./Header.scss');
+import Hamburger from '../Hamburger/Hamburger.jsx';
 
-class Home extends Component {
+if (typeof window !== 'undefined') {
+    require('./_header.scss');
+}
+
+class Header extends Component {
     constructor(props) {
         super(props)
     }
@@ -10,10 +14,16 @@ class Home extends Component {
     render() {
         return (
             <div className="header">
-                <h1>Davidg</h1>
+                <Hamburger onToggleNav={this.props.onToggleNav} className="header__hamburger" />
+
+                <div className="header__title">Davidg</div>
             </div>
         );
     }
 }
 
-export default Home;
+Header.propTypes = {
+    onToggleNav: PropTypes.func.isRequired
+};
+
+export default Header;

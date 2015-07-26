@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./Fireball.scss');
+if (typeof window !== 'undefined') {
+    require('./_fireball.scss');
+}
 
 class Home extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="fireball">
+            <div className="app__content fireball">
                 <h1>I am fireball!!!</h1>
             </div>
         );

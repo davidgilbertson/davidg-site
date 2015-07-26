@@ -1,8 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 
-require('./Nav.scss');
 import Router from 'react-router';
 const Link = Router.Link;
+
+if (typeof window !== 'undefined') {
+    require('./_nav.scss');
+}
 
 class Home extends Component {
     constructor(props) {
@@ -12,7 +15,7 @@ class Home extends Component {
     render() {
         return (
             <div className="nav">
-                <ul>
+                <ul className="nav__list">
                     <li><Link className="nav__link" to="home">Home</Link></li>
                     <li><Link className="nav__link" to="fireball">Fireball</Link></li>
                     <li><Link className="nav__link" to="all-the-primes">All the primes</Link></li>
