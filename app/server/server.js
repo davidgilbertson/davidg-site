@@ -3,42 +3,29 @@ import path from 'path';
 import fs from 'fs';
 import Router from 'react-router';
 import express from 'express';
+import HtmlComponent from '../components/Html/Html.jsx';
 
 import routes from './routes.jsx';
 const server = express();
-var port = process.env.PORT || 80;
+const port = process.env.PORT || 80;
 
-import HtmlComponent from '../components/Html/Html.jsx';
 
-function getAsset(assetType) {
-    const assets = require('../../webpack-build-stats.json');
-    const mainAssets = assets.assetsByChunkName.main;
+const assets = require('../../webpack-build-stats.json');
+const mainAssets = assets.assetsByChunkName.main;
 
-    if (assetType === 'cssString') {
-        const cssFile = mainAssets.find(item => /css$/.test(item));
-        return fs.readFileSync(path.resolve(__dirname, '../../dist/', cssFile), {encoding: 'utf8'});
-    }
-
-    if (assetType === 'scriptFileName') {
-        return mainAssets.find(item => /js$/.test(item));
-    }
-
-    return false;
-}
+const cssFile = mainAssets.find(item => /css$/.test(item));
+const cssString = fs.readFileSync(path.resolve(__dirname, '../../dist/', cssFile), {encoding: 'utf8'});
+const scriptFileName = mainAssets.find(item => /js$/.test(item));
 
 server.use(express.static(path.resolve(__dirname, '../../dist')));
 
 server.get('*', (req, res) => {
-    Router.run(routes, req.path, function (Root) {
-        // TODO (davidg): get the title here? How to keep that up to date with page moves?
-        const title = 'David Gilbertson';
+    Router.run(routes, req.path, (Root) => {
+        const title = 'David Gilbertson'; // TODO (davidg): How to keep that up to date with page name
 
-        const cssString = getAsset('cssString');
-        const scriptFileName = getAsset('scriptFileName');
+        const innerContent = React.renderToString(<Root />);
 
-        var innerContent = React.renderToString(<Root />);
-
-        var html = React.renderToStaticMarkup(
+        const html = React.renderToStaticMarkup(
             <HtmlComponent
                 cssString={cssString}
                 scriptFileName={scriptFileName}
@@ -51,12 +38,8 @@ server.get('*', (req, res) => {
     });
 });
 
-function start() {
-    server.listen(port, function() {
+export default function() {
+    server.listen(port, () => {
         console.log('Server listening on port', port);
     });
 }
-
-module.exports = {
-    start: start
-};
