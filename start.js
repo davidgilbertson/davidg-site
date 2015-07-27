@@ -4,4 +4,4 @@
 
 require('babel/register')
 
-require('./app/server/server.js').start();
+require('./app/server/server.js')();
