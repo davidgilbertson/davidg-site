@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import {isWebPack} from '../../utils';
 
-if (typeof window !== 'undefined') {
+if (isWebPack) {
     require('./_allThePrimes.scss');
 }
 
@@ -22,9 +23,9 @@ class Home extends Component {
     render() {
         return (
             <div className="app__content all-the-primes">
-                <h1>All the primes!!</h1>
+                <h1>All the primes!</h1>
                 <ul>
-                    <li>123</li>
+                    <li>1</li>
                     <li>123</li>
                     <li>123</li>
                     <li>123</li>

@@ -10,16 +10,18 @@ class Html extends Component {
             <html lang="en">
                 <head>
                     <meta charSet="UTF-8" />
-                    <title>The Title</title>
+                    <title>{this.props.title || 'David Gilbertson'}</title>
+                    <style>{this.props.cssString}</style>
                 </head>
 
                 <body>
-                    <div id="app" className="app">
-                        {this.props.children}
-                    </div>
+                    <div
+                        id="app"
+                        className="app"
+                        dangerouslySetInnerHTML={{__html: this.props.innerContent}}
+                        />
 
-                    <script src="http://localhost:8080/webpack-dev-server.js"></script>
-                    <script src="bundle.js"></script>
+                    <script src={this.props.scriptFileName}></script>
                 </body>
             </html>
         );
@@ -27,7 +29,10 @@ class Html extends Component {
 }
 
 Html.propTypes = {
-    children: PropTypes.object
+    cssString: PropTypes.string.isRequired,
+    innerContent: PropTypes.string.isRequired,
+    scriptFileName: PropTypes.string.isRequired,
+    title: PropTypes.string
 };
 
 export default Html;

@@ -1,6 +1,16 @@
 var path = require('path');
+var fs = require('fs');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var pathToStats = path.join(__dirname, 'webpack-build-stats.json');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+function spitOutStats() {
+    this.plugin('done', function(stats) {
+        fs.writeFileSync(
+            pathToStats,
+            JSON.stringify(stats.toJson({modules: false, children: false})));
+    });
+}
 
 module.exports = {
     entry: [
@@ -8,7 +18,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'scripts.[hash].js'
     },
     module: {
         loaders: [
@@ -32,6 +42,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("main.css")
+        new ExtractTextPlugin('styles.[hash].css'),
+        spitOutStats
     ]
 };

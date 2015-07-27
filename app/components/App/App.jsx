@@ -2,8 +2,9 @@ import React from 'react';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
 import classnames from 'classnames';
+import {isWebPack} from '../../utils';
 
-if (typeof window !== 'undefined') {
+if (isWebPack) {
     require('../../styles/_main.scss');
     require('./_app.scss');
 }

@@ -1,23 +1,11 @@
-//var express = require('express');
-//var React = require('react');
-//var path = require('path');
-//var Home = require('./app/components/Home.jsx');
-
-require('babel/register');
+require('babel/register')({
+    extensions: [".jsx", ".js"]
+});
 
 var server = require('./app/server/server.js');
+var port = process.env.PORT || 80;
 
-server.start(80);
+global.__BROWSER__ = typeof window !== 'undefined';
+global.__SERVER__ = !__BROWSER__;
 
-//var app = express();
-//
-//
-//app.get('/', function(req, res) {
-//    //var html = React.renderToString(Home);
-//    //res.send('Server is running, sweet.');
-//    res.sendFile(path.resolve(__dirname, 'build/index.html'));
-//});
-//
-//app.listen(port, function() {
-//    console.log('  --  >  start.js:14 > server running on port:', port);
-//});
+server.start(port);

@@ -22,9 +22,9 @@ class Home extends Component {
     render() {
         return (
             <div className="app__content home">
-                <p className="header-1">I am, David Gilbertson</p>
+                <p className="header-1">David Gilbertson</p>
 
-                <p className="header-2">I am, web developer</p>
+                <p className="header-2">I am, web developer 1</p>
 
                 <p className="header-3">Here are some things that I have done...</p>
 

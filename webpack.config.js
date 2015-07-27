@@ -1,11 +1,18 @@
 var path = require('path');
+var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devServer: {
-        historyApiFallback: true
+        colors: true,
+        contentBase: './build',
+        devtool: 'eval',
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        port: 80
     },
     entry: [
         'webpack/hot/dev-server',
@@ -20,9 +27,8 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.scss']
     },
     output: {
-        //path: path.resolve(__dirname, 'build'),
         path: './build',
-        filename: 'bundle.js'
+        filename: 'dev-bundle.js'
     },
     module: {
         loaders: [
@@ -35,10 +41,6 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             },
-            //{
-            //    test: /\.scss$/,
-            //    loader: 'style!css!sass'
-            //},
             {
                 test: /\.woff$/,
                 loader: 'url?limit=100000'
@@ -47,6 +49,7 @@ module.exports = {
         noParse: /react\.min\.js$/
     },
     plugins: [
-        new ExtractTextPlugin("main.css")
+        new ExtractTextPlugin("main.css"),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };

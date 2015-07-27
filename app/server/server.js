@@ -1,45 +1,58 @@
-var React = require('react');
-var path = require('path');
-var Router = require('react-router');
-var express = require('express');
+import React from 'react';
+import path from 'path';
+import fs from 'fs';
+import Router from 'react-router';
+import express from 'express';
 
-var routes = require('./routes.jsx');
-var server = express();
+import routes from './routes.jsx';
+const server = express();
 
-var HtmlComponent = require('../components/Html/Html.jsx');
+import HtmlComponent from '../components/Html/Html.jsx';
+
+function getAsset(assetType) {
+    const assets = require('../../webpack-build-stats.json');
+    const mainAssets = assets.assetsByChunkName.main;
+
+    if (assetType === 'cssString') {
+        const cssFile = mainAssets.find(item => /css$/.test(item));
+        return fs.readFileSync(path.resolve(__dirname, '../../dist/', cssFile), {encoding: 'utf8'});
+    }
+
+    if (assetType === 'scriptFileName') {
+        return mainAssets.find(item => /js$/.test(item));
+    }
+
+    return false;
+}
 
 server.use(express.static(path.resolve(__dirname, '../../dist')));
 
 server.get('*', (req, res) => {
     Router.run(routes, req.path, function (Root) {
-        //var html = React.renderToString(<HtmlComponent><Root /></HtmlComponent>);
+        // TODO (davidg): get the title here? How to keep that up to date with page moves?
+        const title = 'David Gilbertson';
 
-        //res.send(`<!DOCTYPE html>${html}`);
+        const cssString = getAsset('cssString');
+        const scriptFileName = getAsset('scriptFileName');
 
-        var html = React.renderToString(<Root />);
-        let output = (
-            `<!doctype html>
-            <html lang="en-us">
-                <head>
-                    <meta charset="utf-8">
-                    <title>Some title</title>
-                    <link href="main.css" rel="stylesheet">
-                </head>
-                <body>
-                    <div id="app" class="app">${html}</div>
+        var innerContent = React.renderToString(<Root />);
 
-                    <script src="bundle.js"></script>
-                </body>
-            </html>`
+        var html = React.renderToStaticMarkup(
+            <HtmlComponent
+                cssString={cssString}
+                scriptFileName={scriptFileName}
+                innerContent={innerContent}
+                title={title}
+                />
         );
 
-        res.send(output);
+        res.send('<!DOCTYPE html>' + html);
     });
 });
 
 function start(port) {
     server.listen(port, function() {
-        console.log('  --  >  start.js:14 > server running on port:', port);
+        console.log('Server listening on port', port);
     });
 }
 
