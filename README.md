@@ -44,3 +44,16 @@ not loading on every request (it's not cached if it's inlined).
 
 My JS is 210kb (most of which is fat React) but that's not so bad because the page is rendered server-side it
 looks finished without the JS.
+
+##TODO
+* It's an awful mix of ES5 and ES2015 in places. Sort that out.
+
+* On each new build I should be clearing out the `dist` directory.
+
+* Clean up of the `node_modules` folder (e.g. `node-jsx` can go).
+
+* `server/routes.jsx` is an odd file. I'd prefer a config file separate the the JSX.
+
+* Alias `react-router` in the dev config for faster builds.
+
+* Get the title working across routes
