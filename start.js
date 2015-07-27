@@ -1,11 +1,7 @@
-require('babel/register')({
-    extensions: [".jsx", ".js"]
-});
+//require('babel/register')({
+//    extensions: [".jsx", ".js"]
+//});
 
-var server = require('./app/server/server.js');
-var port = process.env.PORT || 80;
+require('babel/register')
 
-global.__BROWSER__ = typeof window !== 'undefined';
-global.__SERVER__ = !__BROWSER__;
-
-server.start(port);
+require('./app/server/server.js').start();

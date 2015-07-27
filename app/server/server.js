@@ -6,6 +6,7 @@ import express from 'express';
 
 import routes from './routes.jsx';
 const server = express();
+var port = process.env.PORT || 80;
 
 import HtmlComponent from '../components/Html/Html.jsx';
 
@@ -50,7 +51,7 @@ server.get('*', (req, res) => {
     });
 });
 
-function start(port) {
+function start() {
     server.listen(port, function() {
         console.log('Server listening on port', port);
     });
