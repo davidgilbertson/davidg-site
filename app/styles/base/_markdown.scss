@@ -4,5 +4,7 @@
     h1 {@extend %heading-1;}
     h2 {@extend %heading-2;}
     h3 {@extend %heading-3;}
-    pre {@extend %code;}
+    p {@extend %body-copy;}
+    pre {@extend %pre;}
+    code {@extend %code;}
 }

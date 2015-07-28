@@ -2,20 +2,21 @@
     color: $color-primary;
     font-size: 2em;
     font-weight: 700;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
 
 %heading-2 {
     color: $color-primary;
     font-size: 1.5em;
     font-weight: 400;
-    margin-bottom: .5em;
+    margin: 1em 0 .5em;
 }
 
 %heading-3 {
+    color: $color-primary;
     font-size: 1.2em;
     font-weight: 400;
-    margin-bottom: .4em;
+    margin: 1em 0 .4em;
 }
 
 %link {
@@ -32,10 +33,21 @@
 }
 
 %code {
+    background: $color-grey-3;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+%pre {
     background-color: $color-grey-3;
     border-radius: 3px;
     font-size: 85%;
     line-height: 1.45;
     overflow: auto;
-    padding: 16px;
+    padding: 1em;
+}
+
+%body-copy {
+    padding: 1em 0;
 }
