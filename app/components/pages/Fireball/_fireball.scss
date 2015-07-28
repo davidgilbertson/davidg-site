@@ -1,0 +1,6 @@
+@import '../../../styles/utils';
+
+.fireball__title {
+    @extend %heading-1;
+    color: firebrick;
+}

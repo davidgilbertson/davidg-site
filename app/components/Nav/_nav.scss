@@ -21,20 +21,15 @@ $vertical-height-overflow: 1em;
     }
 
     &__list {
+        padding: 0;
         width: $sidebar-width;
     }
 
     &__link {
-        //background: $color-primary;
-        //border-bottom: 1px solid $white;
         color: $white;
         display: block;
         padding: 15px;
         text-decoration: none;
-
-        //&:hover {
-        //    background: $color-grey-2;
-        //}
 
         &.active {
             background: $white;

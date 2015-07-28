@@ -1,7 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+//var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+var pathToReact = path.resolve(node_modules, 'react/dist/react-with-addons.min.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -46,7 +47,10 @@ module.exports = {
                 loader: 'url?limit=100000'
             }
         ],
-        noParse: /react\.min\.js$/
+        noParse: [
+            /react\.min\.js$/,
+            /react-with-addons\.min\.js$/
+        ]
     },
     plugins: [
         new ExtractTextPlugin("main.css"),

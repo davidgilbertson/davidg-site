@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {cloneElement} from 'react';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
 import classnames from 'classnames';
-import {isWebPack} from '../../utils';
+import {isWebPack, saveLocal, loadLocal} from '../../utils';
+
+const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 if (isWebPack) {
     require('../../styles/_main.scss');
@@ -19,17 +21,21 @@ class App extends React.Component {
         this.onToggleNav = this.onToggleNav.bind(this);
 
         this.state = {
-            showNav: true
+            showNav: loadLocal('showNav')
         };
     }
 
     onToggleNav() {
-        const prevShowNav = this.state.showNav;
+        const newNavVisibility = !this.state.showNav;
 
-        this.setState({showNav: !prevShowNav});
+        saveLocal('showNav', newNavVisibility);
+
+        this.setState({showNav: newNavVisibility});
     }
 
     render() {
+        var key = this.context.router.getCurrentPath();
+
         const appWrapperClasses = classnames(
             'app__wrapper',
             {'app__wrapper--nav-visible': this.state.showNav}
@@ -42,13 +48,17 @@ class App extends React.Component {
                 <section className="app__container">
                     <Header onToggleNav={this.onToggleNav} />
 
-                    <RouteHandler />
+                    <CSSTransitionGroup component="div" transitionName="app__content">
+                        <RouteHandler key={key} />
+                    </CSSTransitionGroup>
                 </section>
-                {/*
-                */}
             </div>
         );
     }
 }
+
+App.contextTypes = {
+    router: React.PropTypes.func.isRequired
+};
 
 export default App;

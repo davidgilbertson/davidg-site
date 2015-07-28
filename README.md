@@ -57,3 +57,5 @@ looks finished without the JS.
 * Alias `react-router` in the dev config for faster builds.
 
 * Get the title working across routes
+
+* `import { Router, Route, Link } from 'react-router';` style

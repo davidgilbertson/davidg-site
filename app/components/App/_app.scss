@@ -1,24 +1,47 @@
 @import '../../styles/utils';
 
-.app {
-    //min-height: 100%;
-    //position: relative;
+.app__wrapper {
+    min-height: 100%;
+}
 
-    &__wrapper {
-        min-height: 100%;
+.app__container {
+    padding-left: 0;
+    position: relative;
+    transition: padding-left $animation-duration;
+
+    .app__wrapper--nav-visible & {
+        padding-left: $sidebar-width;
     }
+}
 
-    &__container {
-        padding-left: 0;
-        position: relative;
-        transition: $animation-duration;
+.app__content {
+    padding: $content-padding;
+    position: absolute;
+    transition: opacity 150ms;
+    //width: 100%;
 
-        .app__wrapper--nav-visible & {
-            padding-left: $sidebar-width;
+    &-enter {
+        opacity: .01;
+        //position: absolute;
+        //transform: translateX(-100%);
+
+        &.app__content-enter-active {
+            opacity: 1;
+            //transform: translateX(0%);
+            //transition: $animation-duration;
         }
     }
 
-    &__content {
-        padding: $content-padding;
+    &-leave {
+        opacity: 1;
+        //position: absolute;
+        //transform: translateX(0%);
+        //transition: $animation-duration;
+
+        &.app__content-leave-active {
+            opacity: 0;
+            //transform: translateX(100%);
+        }
     }
 }
+

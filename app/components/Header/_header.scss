@@ -4,17 +4,17 @@
     background: $color-primary;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
     height: $header-height;
+}
 
-    &__hamburger {
-        float: left;
-    }
+.header__hamburger {
+    float: left;
+}
 
-    &__title {
-        color: $white;
-        font-weight: 400;
-        letter-spacing: 1px;
-        line-height: $header-height;
-        text-align: center;
-        text-transform: uppercase;
-    }
+.header__title {
+    color: $white;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: $header-height;
+    text-align: center;
+    text-transform: uppercase;
 }

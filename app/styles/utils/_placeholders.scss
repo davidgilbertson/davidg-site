@@ -1,0 +1,43 @@
+@import '../utils';
+
+%heading-1 {
+    color: $color-primary;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+%heading-2 {
+    color: $color-primary;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: .5em;
+}
+
+%heading-3 {
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-bottom: .4em;
+}
+
+%link {
+    border-bottom: 1px dotted $color-primary;
+    color: $color-primary;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+%code {
+    background-color: $color-grey-3;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
