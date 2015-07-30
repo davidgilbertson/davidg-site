@@ -5,7 +5,6 @@
 //  > import saveLocal from '../../utils/saveLocal';
 
 export default {
-    DGComponent: require('./DGComponent.js'),
     isOnClient: require('./isOnClient.js'),
     isOnServer: require('./isOnServer.js'),
     isWebPack: require('./isWebPack.js'),

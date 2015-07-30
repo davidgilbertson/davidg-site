@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var pathToStats = path.join(__dirname, 'webpack-build-stats.json');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -31,10 +32,6 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             },
-            //{
-            //    test: /\.scss$/,
-            //    loader: 'style!css!sass'
-            //},
             {
                 test: /\.woff$/,
                 loader: 'url?limit=100000'

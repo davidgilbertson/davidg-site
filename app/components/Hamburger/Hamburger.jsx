@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
+import isOnClient from '../../utils/isOnClient.js';
 
-if (typeof window !== 'undefined') {
+if (isOnClient) {
     require('./_hamburger.scss');
 }
 

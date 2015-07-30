@@ -3,14 +3,17 @@
 .hamburger {
     cursor: pointer;
     display: inline-block;
-    padding: 7px;
-    width: 40px;
+    margin-left: 1rem;
+    //position: relative;
+    //top: 11px;
+    vertical-align: middle;
+    width: $hamburger-width;
 
     &__bar {
         background: $white;
         display: block;
         height: 3px;
-        margin: 6px 0;
+        margin-bottom: 9px;
         width: 100%;
     }
 }

@@ -1,12 +1,12 @@
-import React, {cloneElement} from 'react';
+import React, {cloneElement, Component} from 'react/addons';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
 import classnames from 'classnames';
-import {DGComponent, isWebPack, saveLocal, loadLocal} from '../../utils';
+import {isOnClient, isWebPack, saveLocal, loadLocal} from '../../utils';
 
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-if (isWebPack) {
+if (isOnClient) {
     require('../../styles/_main.scss');
     require('./_app.scss');
 }
@@ -14,7 +14,7 @@ if (isWebPack) {
 import Nav from '../Nav/Nav.jsx';
 import Header from '../Header/Header.jsx';
 
-class App extends DGComponent {
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -28,12 +28,9 @@ class App extends DGComponent {
     onToggleNav() {
         const newNavVisibility = !this.state.showNav;
 
-        this.setAppState({typeOfAnimal: 'cats'});
-
         saveLocal('showNav', newNavVisibility);
 
         this.setState({showNav: newNavVisibility});
-        console.log('App state:', this.appState);
     }
 
     render() {

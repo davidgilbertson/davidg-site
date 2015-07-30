@@ -1,9 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
+
 var node_modules = path.resolve(__dirname, 'node_modules');
-//var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var pathToReact = path.resolve(node_modules, 'react/dist/react-with-addons.min.js');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devServer: {
@@ -23,6 +22,7 @@ module.exports = {
         alias: {
             'react-router': path.resolve(node_modules, 'react-router'),
             'react/lib': path.resolve(node_modules, 'react/lib'),
+            'react/addons': pathToReact,
             'react': pathToReact
         },
         extensions: ['', '.js', '.jsx', '.scss']
@@ -40,7 +40,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css!sass')
+                loader: 'style!css!sass'
             },
             {
                 test: /\.woff$/,
@@ -53,7 +53,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("main.css"),
         new webpack.HotModuleReplacementPlugin()
     ]
 };

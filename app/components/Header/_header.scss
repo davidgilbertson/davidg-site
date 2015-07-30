@@ -6,15 +6,14 @@
     height: $header-height;
 }
 
-.header__hamburger {
-    float: left;
-}
-
 .header__title {
     color: $white;
+    display: inline-block;
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 1px;
     line-height: $header-height;
     text-align: center;
     text-transform: uppercase;
+    width: calc(100% - #{$hamburger-width * 2});
 }

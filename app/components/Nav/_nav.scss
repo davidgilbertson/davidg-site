@@ -1,6 +1,6 @@
 @import '../../styles/utils';
 $shadow-color: rgba(0, 0, 0, .4);
-$vertical-height-overflow: 1em;
+$vertical-height-overflow: 1rem;
 
 .nav {
     background: $color-nav;
@@ -28,6 +28,7 @@ $vertical-height-overflow: 1em;
     &__link {
         color: $white;
         display: block;
+        font-size: 120%;
         padding: 15px;
         text-decoration: none;
 

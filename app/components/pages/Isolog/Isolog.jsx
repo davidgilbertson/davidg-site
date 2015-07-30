@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import isWebPack from '../../../utils/isWebPack.js';
-import DGComponent from '../../../utils/DGComponent.js';
 
 import MarkDown from '../../MarkDown/MarkDown.jsx';
 
@@ -8,7 +7,7 @@ if (isWebPack) {
     require('./_isolog.scss');
 }
 
-class Isolog extends DGComponent {
+class Isolog extends Component {
     constructor(props) {
         super(props);
     }

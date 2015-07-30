@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-
+import isOnClient from '../../utils/isOnClient.js';
 import {Router, Link} from 'react-router';
 
-if (typeof window !== 'undefined') {
+if (isOnClient) {
     require('./_nav.scss');
 }
 

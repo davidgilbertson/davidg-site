@@ -12,6 +12,9 @@ This will pick options from `webpack.config.js`
 In this mode, the webpack dev server serves up the code, `build/index.html` is 
 the entry point and is only there for development work.
 
+Webpack will import CSS where it is required from within the components. **All** CSS must be imported into a component
+hence `App.jsx` references `main.scss`. Production treats CSS differently.
+
 ##Production
 To build for deployment run `npm run prod`.
 
@@ -21,18 +24,17 @@ other than to test that environment flags work as they should.
 
 But really, that's what production boxes are for, right?
 
+During the build for production, all references to `scss` files from within components are gathered and processed
+into a single `main.css` file which is hashed and then loaded into `index.html`.
+
 ##Server
 The entry point for the server is `start.js` which does nothing more than require `babel/register` and call `server.js`.
 
 ##Webpack Magic
-SCSS files are imported into the component where they're used. One of the webpack loaders strips all these out and compiles them
-into a single styles.[hash].css file. One day these may be brought into each component individually if I chunk up the bundles. 
-For now, there's no difference between doing this and having a separate `_main.scss` that imports everything.
-
 I've got a little plugin in `webpack.production.config.js` that dumps the stats out to `webpack-build-stats.json`
 when `npm run prod` is run.
 
-In production, `server.js` looks at this file to get the hash that it needs to reference the files.
+In production, `server.js` looks at this file to get the hash that it needs to reference the JS and CSS files.
 
 When `server.js` first responds, it gets a reference to the correct JS file and sends that to the HTML template. 
 It also gets the compiled CSS and inlines it in a `<style>` tag.
@@ -54,8 +56,6 @@ looks finished without the JS.
 
 * `server/routes.jsx` is an odd file. I'd prefer a config file separate the the JSX.
 
-* Alias `react-router` in the dev config for faster builds.
+* Get the `<title>` working across routes
 
-* Get the title working across routes
-
-* `import { Router, Route, Link } from 'react-router';` style
+* Why is React 210kb? On another machine I've noticed it's only 119KB. A version thing?

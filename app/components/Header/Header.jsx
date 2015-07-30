@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
+import isOnClient from '../../utils/isOnClient.js';
 
 import Hamburger from '../Hamburger/Hamburger.jsx';
 
-if (typeof window !== 'undefined') {
+if (isOnClient) {
     require('./_header.scss');
 }
 
@@ -16,7 +17,7 @@ class Header extends Component {
             <div className="header">
                 <Hamburger onToggleNav={this.props.onToggleNav} className="header__hamburger" />
 
-                <div className="header__title">Davidg</div>
+                <span className="header__title">Davidg</span>
             </div>
         );
     }
