@@ -1,50 +1,22 @@
 import React, {Component, PropTypes} from 'react';
-import {isOnClient} from '../../../utils';
-import marked from 'marked';
-import {isWebPack} from '../../../utils';
+import isWebPack from '../../../utils/isWebPack.js';
+import DGComponent from '../../../utils/DGComponent.js';
+
+import MarkDown from '../../MarkDown/MarkDown.jsx';
 
 if (isWebPack) {
     require('./_isolog.scss');
 }
 
-function goGet(url) {
-    let xhr = new XMLHttpRequest();
-
-    return new Promise((resolve) => {
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState != 4 || xhr.status != 200) return;
-            return resolve(xhr.responseText);
-        };
-
-        xhr.send();
-    });
-}
-
-class Isolog extends Component {
+class Isolog extends DGComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            readme: 'loading...'
-        };
-    }
-
-    componentDidMount() {
-        if (isOnClient) {
-            let readmeUrl = 'https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md';
-
-            goGet(readmeUrl).then(readme => this.setState({readme}));
-        }
     }
 
     render() {
         return (
             <section className="app__content">
-                <div
-                    className="markdown"
-                    dangerouslySetInnerHTML={{__html: marked(this.state.readme)}}
-                    />
+                <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
             </section>
         );
     }

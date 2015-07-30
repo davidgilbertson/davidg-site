@@ -1,5 +1,6 @@
 import React from 'react';
 import Router from 'react-router';
+// TODO (davidg): shorthand import all these
 const Route = Router.Route;
 const DefaultRoute = Router.DefaultRoute;
 const NotFoundRoute = Router.NotFoundRoute;

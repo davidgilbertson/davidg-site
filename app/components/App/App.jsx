@@ -2,7 +2,7 @@ import React, {cloneElement} from 'react';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
 import classnames from 'classnames';
-import {isWebPack, saveLocal, loadLocal} from '../../utils';
+import {DGComponent, isWebPack, saveLocal, loadLocal} from '../../utils';
 
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -14,7 +14,7 @@ if (isWebPack) {
 import Nav from '../Nav/Nav.jsx';
 import Header from '../Header/Header.jsx';
 
-class App extends React.Component {
+class App extends DGComponent {
     constructor(props) {
         super(props);
 
@@ -28,9 +28,12 @@ class App extends React.Component {
     onToggleNav() {
         const newNavVisibility = !this.state.showNav;
 
+        this.setAppState({typeOfAnimal: 'cats'});
+
         saveLocal('showNav', newNavVisibility);
 
         this.setState({showNav: newNavVisibility});
+        console.log('App state:', this.appState);
     }
 
     render() {
