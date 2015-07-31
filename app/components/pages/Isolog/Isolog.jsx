@@ -4,7 +4,7 @@ import isWebPack from '../../../utils/isWebPack.js';
 import MarkDown from '../../MarkDown/MarkDown.jsx';
 
 if (isWebPack) {
-    require('./_isolog.scss');
+    require('./isolog.scss');
 }
 
 class Isolog extends Component {
@@ -15,6 +15,12 @@ class Isolog extends Component {
     render() {
         return (
             <section className="app__content">
+                <div className="isolog__demo">
+                    <button className="button">Log something</button>
+                    <button className="button">Cause an error</button>
+                    <button className="button">Information</button>
+                </div>
+
                 <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
             </section>
         );

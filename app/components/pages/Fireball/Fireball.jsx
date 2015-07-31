@@ -3,7 +3,7 @@ import classnames from 'classnames';
 //import {isWebPack} from '../../../utils';
 
 //if (isWebPack) {
-//    require('./_fireball.scss');
+//    require('./fireball.scss');
 //}
 
 class Home extends Component {

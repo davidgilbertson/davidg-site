@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import isOnClient from '../../utils/isOnClient.js';
 
 if (isOnClient) {
-    require('./_hamburger.scss');
+    require('./hamburger.scss');
 }
 
 class Hamburger extends Component {

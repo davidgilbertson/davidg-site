@@ -3,7 +3,7 @@ import {isOnClient, isWebPack, xhr} from '../../utils';
 import marked from 'marked';
 
 if (isOnClient) {
-    require('./_markdown.scss');
+    require('./markdown.scss');
 }
 
 class MarkDown extends Component {

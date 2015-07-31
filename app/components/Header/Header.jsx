@@ -4,7 +4,7 @@ import isOnClient from '../../utils/isOnClient.js';
 import Hamburger from '../Hamburger/Hamburger.jsx';
 
 if (isOnClient) {
-    require('./_header.scss');
+    require('./header.scss');
 }
 
 class Header extends Component {

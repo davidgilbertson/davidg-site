@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import isOnClient from '../../../utils/isOnClient.js';
 
 if (isOnClient) {
-    require('./_home.scss');
+    require('./home.scss');
 }
 
 class Home extends Component {

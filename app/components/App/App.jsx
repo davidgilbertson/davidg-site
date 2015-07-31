@@ -7,8 +7,12 @@ import {isOnClient, isWebPack, saveLocal, loadLocal} from '../../utils';
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 if (isOnClient) {
-    require('../../styles/_main.scss');
-    require('./_app.scss');
+    // TODO (davidg): what order guarantee is there here?
+    // Will the magic render this component's CSS first, or start at the lowest component?
+    require('./app.scss');
+    require('./fontFace.scss');
+    require('./resets.scss');
+    require('./typography.scss');
 }
 
 import Nav from '../Nav/Nav.jsx';

@@ -1,4 +1,4 @@
-@import '../../styles/utils';
+@import '../../utils/styles';
 
 .app__wrapper {
     min-height: 100%;
@@ -15,32 +15,24 @@
 }
 
 .app__content {
+    @include container(80em);
     padding: $content-padding;
     position: absolute;
     transition: opacity 150ms;
-    //width: 100%;
 
     &-enter {
         opacity: .01;
-        //position: absolute;
-        //transform: translateX(-100%);
 
         &.app__content-enter-active {
             opacity: 1;
-            //transform: translateX(0%);
-            //transition: $animation-duration;
         }
     }
 
     &-leave {
         opacity: 1;
-        //position: absolute;
-        //transform: translateX(0%);
-        //transition: $animation-duration;
 
         &.app__content-leave-active {
             opacity: 0;
-            //transform: translateX(100%);
         }
     }
 }

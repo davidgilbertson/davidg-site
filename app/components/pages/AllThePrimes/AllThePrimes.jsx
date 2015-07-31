@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 //import {isWebPack} from '../../../utils';
 
 //if (isWebPack) {
-//    require('./_allThePrimes.scss');
+//    require('./allThePrimes.scss');
 //}
 
 class Home extends Component {
