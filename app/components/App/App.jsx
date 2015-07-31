@@ -34,7 +34,7 @@ class App extends Component {
     }
 
     render() {
-        var key = this.context.router.getCurrentPath();
+        const key = this.context.router.getCurrentPath();
 
         const appWrapperClasses = classnames(
             'app__wrapper',
