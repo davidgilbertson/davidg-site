@@ -1,5 +1,5 @@
 import React from 'react';
-import Router, {Route, DefaultRoute, NotFoundRoute} from 'react-router';
+import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 
 import App from '../components/App/App.jsx';
 import Home from '../components/pages/Home/Home.jsx';

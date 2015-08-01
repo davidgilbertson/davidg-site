@@ -1,14 +1,14 @@
 import React, {cloneElement, Component} from 'react/addons';
-import Router, {RouteHandler} from 'react-router';
+import {RouteHandler} from 'react-router';
 import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
 import {isProd, isOnClient, saveLocal, loadLocal} from '../../utils';
 
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-const MED_LARGE_BREAKPOINT = 880;
-// TODO (davidg): somehow share breakpoints.
+// TODO (davidg): somehow share breakpoints between JS/CSS
 // This one should match $med-large-breakpoint = 55em * 16 = 880
+const MED_LARGE_BREAKPOINT = 880;
 
 if (!isProd) {
     require('./app.scss');
