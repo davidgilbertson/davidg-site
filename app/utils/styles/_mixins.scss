@@ -1,0 +1,3 @@
+@mixin shade($x: 2, $y: 2, $blur: 5, $alpha: .4) {
+    box-shadow: #{$x}px #{$y}px #{$blur}px 0 rgba(0, 0, 0, $alpha);
+}

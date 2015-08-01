@@ -18,7 +18,6 @@ class Home extends Component {
                     <li><Link className="nav__link" to="/">Home</Link></li>
                     <li><Link className="nav__link" to="fireball">Fireball</Link></li>
                     <li><Link className="nav__link" to="all-the-primes">All the primes</Link></li>
-                    <li><Link className="nav__link" to="color-swatches">Color Swatch Picker</Link></li>
                     <li><Link className="nav__link" to="isolog">Isolog</Link></li>
                 </ul>
             </nav>

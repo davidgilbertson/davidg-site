@@ -1,0 +1,19 @@
+// site-specific styling for things like buttons, inputs, etc.
+// So, really, just buttons.
+
+@import '../../utils/styles';
+
+.button {
+    background: $color-primary;
+    border: 0;
+    color: $white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    outline: 0;
+    padding: 1em 2em;
+    transition: opacity $animation-duration;
+
+    &:hover {
+        opacity: .9;
+    }
+}

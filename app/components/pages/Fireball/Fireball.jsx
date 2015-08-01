@@ -6,6 +6,8 @@ import classnames from 'classnames';
 //    require('./fireball.scss');
 //}
 
+import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -13,9 +15,9 @@ class Home extends Component {
 
     render() {
         return (
-            <section className="app__content">
+            <PageWrapper className="fireball">
                 <h1 className="fireball__title">I am fireball!!!</h1>
-            </section>
+            </PageWrapper>
         );
     }
 }

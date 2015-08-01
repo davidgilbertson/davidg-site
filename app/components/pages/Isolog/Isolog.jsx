@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import isWebPack from '../../../utils/isWebPack.js';
+import isOnClient from '../../../utils/isOnClient.js';
 
 import MarkDown from '../../MarkDown/MarkDown.jsx';
+import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (isWebPack) {
+if (isOnClient) {
     require('./isolog.scss');
 }
 
@@ -14,15 +15,31 @@ class Isolog extends Component {
 
     render() {
         return (
-            <section className="app__content">
-                <div className="isolog__demo">
-                    <button className="button">Log something</button>
-                    <button className="button">Cause an error</button>
-                    <button className="button">Information</button>
-                </div>
+            <PageWrapper className="isolog">
+                <section className="isolog__demo">
+                    <h1 className="heading-1">Isolog demo</h1>
 
-                <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
-            </section>
+                    <div className="isolog__column">
+                        <button className="button">Log something</button>
+                    </div>
+
+                    <div className="isolog__column">
+                        <button className="button">Cause an error</button>
+                    </div>
+
+                    <div className="isolog__column">
+                        <button className="button">Information</button>
+                    </div>
+                </section>
+
+                <hr />
+
+                <section>
+                    <h1 className="heading-2">Read some words about it</h1>
+
+                    <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
+                </section>
+            </PageWrapper>
         );
     }
 }

@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import isOnClient from '../../../utils/isOnClient.js';
 
-if (isOnClient) {
-    require('./home.scss');
-}
+import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+
+if (isOnClient) require('./home.scss');
 
 class Home extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class Home extends Component {
 
     render() {
         return (
-            <section className="app__content home">
+            <PageWrapper className="home">
                 <p className="heading-1">David Gilbertson</p>
 
                 <p className="heading-2">I am, web developer</p>
@@ -37,9 +37,7 @@ class Home extends Component {
                     node.js console logs to the browser</Link> and
                     also <Link className="link" to="color-swatches">a color swatch builder using named colors</Link>. That last one for no known reason.
                 </p>
-
-
-            </section>
+            </PageWrapper>
         );
     }
 }

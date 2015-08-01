@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 //import {isWebPack} from '../../../utils';
 
+import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+
 //if (isWebPack) {
 //    require('./allThePrimes.scss');
 //}
@@ -22,7 +24,7 @@ class Home extends Component {
 
     render() {
         return (
-            <section className="app__content all-the-primes">
+            <PageWrapper className="all-the-primes">
                 <h1>All the primes!</h1>
                 <ul>
                     <li>1</li>
@@ -87,7 +89,7 @@ class Home extends Component {
                     <li>123</li>
                     <li>123</li>
                 </ul>
-            </section>
+            </PageWrapper>
         );
     }
 }

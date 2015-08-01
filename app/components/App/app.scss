@@ -15,15 +15,19 @@
 }
 
 .app__content {
-    @include container(80em);
+    @include container(50em);
     padding: $content-padding;
+}
+
+.app__transition-wrapper {
     position: absolute;
     transition: opacity 150ms;
+    width: calc(100% - #{$sidebar-width});
 
     &-enter {
         opacity: .01;
 
-        &.app__content-enter-active {
+        &.app__transition-wrapper-enter-active {
             opacity: 1;
         }
     }
@@ -31,9 +35,8 @@
     &-leave {
         opacity: 1;
 
-        &.app__content-leave-active {
+        &.app__transition-wrapper-leave-active {
             opacity: 0;
         }
     }
 }
-

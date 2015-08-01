@@ -8,15 +8,18 @@ const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 if (isOnClient) {
     // TODO (davidg): what order guarantee is there here?
-    // Will the magic render this component's CSS first, or start at the lowest component?
+    // Will the magic render this component's CSS first, or start at the lowest component (nav)?
     require('./app.scss');
     require('./fontFace.scss');
     require('./resets.scss');
+    require('./theme.scss');
     require('./typography.scss');
 }
 
-import Nav from '../Nav/Nav.jsx';
-import Header from '../Header/Header.jsx';
+//import Nav from '../Nav/Nav.jsx';
+//import Header from '../Header/Header.jsx';
+
+import {Header, Nav} from '../../components/index.js';
 
 class App extends Component {
     constructor(props) {
@@ -52,7 +55,7 @@ class App extends Component {
                 <section className="app__container">
                     <Header onToggleNav={this.onToggleNav} />
 
-                    <CSSTransitionGroup component="div" transitionName="app__content">
+                    <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
                         <RouteHandler key={key} />
                     </CSSTransitionGroup>
                 </section>

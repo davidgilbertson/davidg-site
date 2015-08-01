@@ -15,3 +15,15 @@ $content-padding: 2rem;
 $hamburger-width: 3rem;
 
 $animation-duration: 300ms;
+
+$susy: (
+    global-box-sizing: border-box,
+    gutter-position: split,
+    columns: 12,
+    debug: (
+            image: show,
+            color: rgba(200, 0, 0, 0.2),
+            output: overlay,
+            toggle: top right,
+    )
+);
