@@ -6,11 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server",
-    "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
-    "XXXdev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
-    "XXXstart": "node server",
-    "XXXwebpack-server": "webpack -d --config webpack.server.config.js",
-    "XXXdeploy": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js"
+    "build": "webpack -p --config webpack.production.config.js",
+    "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon"
   },
   "repository": {
     "type": "git",
