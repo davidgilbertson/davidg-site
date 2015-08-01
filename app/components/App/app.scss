@@ -10,10 +10,11 @@
     right: 0;
     transition: $animation-duration;
 
-    @media (max-width: #{$small-med-breakpoint}) {
+    @media (max-width: #{$med-large-breakpoint}) {
         width: 100%
     }
-    @media (min-width: #{$small-med-breakpoint}) {
+
+    @media (min-width: #{$med-large-breakpoint}) {
         right: 0;
     }
 

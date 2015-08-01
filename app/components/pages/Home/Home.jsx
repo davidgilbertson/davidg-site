@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import isOnClient from '../../../utils/isOnClient.js';
+import isProd from '../../../utils/isProd.js';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (isOnClient) require('./home.scss');
+if (!isProd) require('./home.scss');
 
 class Home extends Component {
     constructor(props) {

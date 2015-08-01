@@ -1,25 +1,13 @@
 import React, {Component, PropTypes} from 'react';
-//import {isWebPack} from '../../../utils';
+import isProd from '../../../utils/isProd.js';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-//if (isWebPack) {
-//    require('./allThePrimes.scss');
-//}
+if (!isProd) require('./allThePrimes.scss');
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.update = this.update.bind(this);
-
-        this.state = {value: 22};
-    }
-
-    update(e) {
-        let value = e.target.value;
-        console.log(value);
-
-        this.setState({value});
     }
 
     render() {
@@ -28,11 +16,11 @@ class Home extends Component {
                 <h1>All the primes!</h1>
                 <ul>
                     <li>1</li>
-                    <li>123</li>
-                    <li>123</li>
-                    <li>123</li>
-                    <li>123</li>
-                    <li>123</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>5</li>
+                    <li>7</li>
+                    <li>11</li>
                     <li>123</li>
                     <li>123</li>
                     <li>123</li>

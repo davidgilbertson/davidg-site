@@ -7,6 +7,7 @@
 export default {
     isOnClient: require('./isOnClient.js'),
     isOnServer: require('./isOnServer.js'),
+    isProd: require('./isProd.js'),
     isWebPack: require('./isWebPack.js'),
     loadLocal: require('./loadLocal.js'),
     saveLocal: require('./saveLocal.js'),

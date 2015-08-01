@@ -1,12 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import isOnClient from '../../../utils/isOnClient.js';
+import isProd from '../../../utils/isProd.js';
 
 import MarkDown from '../../MarkDown/MarkDown.jsx';
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (isOnClient) {
-    require('./isolog.scss');
-}
+if (!isProd) require('./isolog.scss');
 
 class Isolog extends Component {
     constructor(props) {

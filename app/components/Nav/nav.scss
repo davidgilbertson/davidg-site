@@ -21,22 +21,40 @@ $vertical-height-overflow: 1rem;
         width: $sidebar-width;
     }
 
-    &__list {
-        padding: 0;
-        width: $sidebar-width;
+}
+
+.nav__list {
+    padding: 0;
+    width: $sidebar-width;
+}
+
+.nav__link {
+    color: $white;
+    display: block;
+    font-size: 120%;
+    padding: 15px;
+    text-decoration: none;
+
+    &.active {
+        background: $white;
+        box-shadow: 0 0 10px 5px $shadow-color;
+        color: $color-grey-1;
     }
+}
 
-    &__link {
-        color: $white;
-        display: block;
-        font-size: 120%;
-        padding: 15px;
-        text-decoration: none;
+.nav__mask {
+    @media (max-width: #{$med-large-breakpoint}) {
+        background: rgba($white, .4);
+        height: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transition: left $animation-duration;
 
-        &.active {
-            background: $white;
-            box-shadow: 0 0 10px 5px $shadow-color;
-            color: $color-grey-1
+        .app__wrapper--nav-visible & {
+            height: 100%;
+            left: $sidebar-width;
         }
     }
 }

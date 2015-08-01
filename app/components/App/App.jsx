@@ -1,14 +1,16 @@
 import React, {cloneElement, Component} from 'react/addons';
-import Router from 'react-router';
-const RouteHandler = Router.RouteHandler;
+import Router, {RouteHandler} from 'react-router';
 import classnames from 'classnames';
-import {isOnClient, isWebPack, saveLocal, loadLocal} from '../../utils';
+import debounce from 'lodash/function/debounce';
+import {isProd, isOnClient, saveLocal, loadLocal} from '../../utils';
 
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-if (isOnClient) {
-    // TODO (davidg): what order guarantee is there here?
-    // Will the magic render this component's CSS first, or start at the lowest component (nav)?
+const MED_LARGE_BREAKPOINT = 880;
+// TODO (davidg): somehow share breakpoints.
+// This one should match $med-large-breakpoint = 55em * 16 = 880
+
+if (!isProd) {
     require('./app.scss');
     require('./fontFace.scss');
     require('./resets.scss');
@@ -16,28 +18,54 @@ if (isOnClient) {
     require('./typography.scss');
 }
 
-//import Nav from '../Nav/Nav.jsx';
-//import Header from '../Header/Header.jsx';
-
-import {Header, Nav} from '../../components/index.js';
+import Nav from '../Nav/Nav.jsx';
+import Header from '../Header/Header.jsx';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.onToggleNav = this.onToggleNav.bind(this);
+        this.hideNav = this.hideNav.bind(this);
+        this.toggleNav = this.toggleNav.bind(this);
+        this.onResize = debounce(this.onResize.bind(this), 500);
+        this.hideNavIfSmall = this.hideNavIfSmall.bind(this);
 
-        this.state = {
-            showNav: loadLocal('showNav')
-        };
+        this.state = {showNav: false};
     }
 
-    onToggleNav() {
+    onResize() {
+        this.hideNavIfSmall();
+    }
+
+    toggleNav() {
         const newNavVisibility = !this.state.showNav;
 
         saveLocal('showNav', newNavVisibility);
 
         this.setState({showNav: newNavVisibility});
+    }
+
+    hideNav() {
+        this.setState({showNav: false});
+    }
+
+    hideNavIfSmall() {
+        if (this.state.showNav && window.innerWidth < MED_LARGE_BREAKPOINT) {
+            this.setState({showNav: false});
+        }
+    }
+
+    componentDidMount() {
+        //const localNavSetting = loadLocal('showNav'); // might be unset, might be true or false
+        if (isOnClient && loadLocal('showNav') !== false && window.innerWidth > MED_LARGE_BREAKPOINT) {
+            this.toggleNav();
+        }
+
+        window.addEventListener('resize', this.onResize, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize, false);
     }
 
     render() {
@@ -50,10 +78,10 @@ class App extends Component {
 
         return (
             <div className={appWrapperClasses}>
-                <Nav />
+                <Nav hideNav={this.hideNav} hideNavIfSmall={this.hideNavIfSmall}/>
 
                 <section className="app__container">
-                    <Header onToggleNav={this.onToggleNav} />
+                    <Header onToggleNav={this.toggleNav} />
 
                     <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
                         <RouteHandler key={key} />

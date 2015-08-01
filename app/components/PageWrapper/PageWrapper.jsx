@@ -17,7 +17,7 @@ class PageWrapper extends Component {
 }
 
 PageWrapper.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
     className: PropTypes.string
 };
 

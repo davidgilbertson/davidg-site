@@ -4,16 +4,22 @@
     cursor: pointer;
     display: inline-block;
     margin-left: 1rem;
-    //position: relative;
-    //top: 11px;
     vertical-align: middle;
     width: $hamburger-width;
 
-    &__bar {
-        background: $white;
-        display: block;
-        height: 3px;
-        margin-bottom: 9px;
-        width: 100%;
-    }
+    //&:hover {
+    //    .hamburger__bar {
+    //        opacity: 1;
+    //    }
+    //}
+}
+
+.hamburger__bar {
+    background: $white;
+    display: block;
+    height: 3px;
+    margin-bottom: 9px;
+    opacity: .5;
+    //transition: $animation-duration;
+    width: 100%;
 }

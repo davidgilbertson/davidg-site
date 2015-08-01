@@ -1,10 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-//import {isWebPack} from '../../../utils';
+import {isProd} from '../../../utils';
 
-//if (isWebPack) {
-//    require('./fireball.scss');
-//}
+if (!isProd) require('./fireball.scss');
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
