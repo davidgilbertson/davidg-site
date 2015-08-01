@@ -5,12 +5,20 @@
 }
 
 .app__container {
-    padding-left: 0;
-    position: relative;
-    transition: padding-left $animation-duration;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transition: $animation-duration;
+
+    @media (max-width: $small-med-breakpoint}) {
+        width: 100%
+    }
+    @media (min-width: $small-med-breakpoint) {
+        right: 0;
+    }
 
     .app__wrapper--nav-visible & {
-        padding-left: $sidebar-width;
+        left: $sidebar-width;
     }
 }
 
@@ -22,7 +30,7 @@
 .app__transition-wrapper {
     position: absolute;
     transition: opacity 150ms;
-    width: calc(100% - #{$sidebar-width});
+    width: 100%;
 
     &-enter {
         opacity: .01;

@@ -2,6 +2,10 @@ $z-index-menu: 10;
 $z-index-header: 20;
 $z-index-modal: 100;
 
+$small-med-breakpoint: 30em;
+$med-large-breakpoint: 55em;
+$large-jumbo-breakpoint: 70em;
+
 $white: #fff;
 $color-primary: #a11;
 $color-grey-1: #333;
@@ -22,7 +26,7 @@ $susy: (
     columns: 12,
     debug: (
             image: show,
-            color: rgba(200, 0, 0, 0.2),
+            color: rgba(200, 0, 0, .2),
             output: overlay,
             toggle: top right,
     )
