@@ -6,19 +6,24 @@ $vertical-height-overflow: 1rem;
 .nav {
     background: $color-nav;
     bottom: -$vertical-height-overflow;
-    box-shadow: inset -5px 0 10px $shadow-color;
     left: 0;
     overflow-x: hidden;
     padding-top: $header-height + $vertical-height-overflow;
     position: fixed;
     top: -$vertical-height-overflow;
 
-    transition: $animation-duration;
-    width: 0;
+    transition: $animation-duration, box-shadow ($animation-duration * 3) $animation-duration;
+    width: $sidebar-width;
     z-index: $z-index-menu;
+    transform: translateX(-$sidebar-width * 1.1);
+    //@include shade(4, 0, 10);
 
     .app__wrapper--nav-visible & {
-        width: $sidebar-width;
+        transform: translateX(0);
+
+        //@media (min-width: #{$med-large-breakpoint}) {
+        //    box-shadow: none;
+        //}
     }
 
 }
@@ -29,32 +34,37 @@ $vertical-height-overflow: 1rem;
 }
 
 .nav__link {
+    @include noTapHighlight();
     color: $white;
     display: block;
     font-size: 120%;
     padding: 15px;
     text-decoration: none;
+    transition: $animation-duration;
 
     &.active {
         background: $white;
-        box-shadow: 0 0 10px 5px $shadow-color;
+        //box-shadow: 0 0 10px 5px $shadow-color;
         color: $color-grey-1;
     }
 }
 
 .nav__mask {
     @media (max-width: #{$med-large-breakpoint}) {
-        background: rgba($white, .4);
-        height: 0;
+        background: rgba($black, .0);
+        bottom: 0;
         left: 0;
         position: fixed;
         right: 0;
         top: 0;
-        transition: left $animation-duration;
+        //opacity: 0.01;
+        transition: $animation-duration;
+        z-index: 0;
 
         .app__wrapper--nav-visible & {
-            height: 100%;
-            left: $sidebar-width;
+            //opacity: 1;
+            background: rgba($black, .4);
+            z-index: $z-index-menu - 1;
         }
     }
 }

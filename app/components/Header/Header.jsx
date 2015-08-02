@@ -1,11 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import isOnClient from '../../utils/isOnClient.js';
+import isProd from '../../utils/isProd.js';
 
-import Hamburger from '../Hamburger/Hamburger.jsx';
 
-if (isOnClient) {
-    require('./header.scss');
-}
+if (!isProd) require('./header.scss');
 
 class Header extends Component {
     constructor(props) {
@@ -15,9 +12,8 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <Hamburger onToggleNav={this.props.onToggleNav} className="header__hamburger" />
 
-                <span className="header__title">Davidg</span>
+                <span className="header__title">DG | 707</span>
             </div>
         );
     }

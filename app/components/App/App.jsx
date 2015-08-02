@@ -4,7 +4,8 @@ import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
 import {isProd, isOnClient, saveLocal, loadLocal} from '../../utils';
 
-const CSSTransitionGroup = React.addons.CSSTransitionGroup;
+const CSSTransitionGroup = React.addons.CSSTransitionGroup; // TODO (davidg): inport with react on line 1?
+import Hamburger from '../Hamburger/Hamburger.jsx';
 
 // TODO (davidg): somehow share breakpoints between JS/CSS
 // This one should match $med-large-breakpoint = 55em * 16 = 880
@@ -43,10 +44,13 @@ class App extends Component {
         saveLocal('showNav', newNavVisibility);
 
         this.setState({showNav: newNavVisibility});
+
+        //document.querySelector('.app__wrapper').classList.toggle('app__wrapper--nav-visible');
     }
 
     hideNav() {
         this.setState({showNav: false});
+        //document.querySelector('.app__wrapper').classList.toggle('app__wrapper--nav-visible');
     }
 
     hideNavIfSmall() {
@@ -78,15 +82,22 @@ class App extends Component {
 
         return (
             <div className={appWrapperClasses}>
+                <Hamburger onToggleNav={this.toggleNav} className="header__hamburger" />
+
+                <div className="nav__mask" onClick={this.hideNav}></div>
+
                 <Nav hideNav={this.hideNav} hideNavIfSmall={this.hideNavIfSmall}/>
 
-                <section className="app__container">
-                    <Header onToggleNav={this.toggleNav} />
+                <Header />
 
-                    <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
-                        <RouteHandler key={key} />
-                    </CSSTransitionGroup>
-                </section>
+
+                {/*<section className="app__container">*/}
+
+                <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
+                    <RouteHandler key={key} />
+                </CSSTransitionGroup>
+
+                {/*</section>*/}
             </div>
         );
     }

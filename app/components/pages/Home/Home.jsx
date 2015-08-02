@@ -24,19 +24,21 @@ class Home extends Component {
     render() {
         return (
             <PageWrapper className="home">
-                <p className="heading-1">David Gilbertson</p>
+                <div className="justify-small">
+                    <p className="heading-1">David Gilbertson</p>
 
-                <p className="heading-2">I am, web developer</p>
+                    <p className="heading-2">I am, web developer</p>
 
-                <p className="heading-3">Here are some things that I have done...</p>
+                    <p className="heading-3">Here are some things that I have done...</p>
 
-                <p className="body-text">
-                    I have made <Link className="link" to="/">a list of all the prime numbers</Link> and
-                    created <Link className="link" to="fireball">Fireball,
-                    a thing</Link> and wrote <Link className="link" to="isolog">isolog, for sending
-                    node.js console logs to the browser</Link> and
-                    also <Link className="link" to="color-swatches">a color swatch builder using named colors</Link>. That last one for no known reason.
-                </p>
+                    <p className="body-text">
+                        I have made <Link className="link" to="/">a list of all the prime numbers</Link> and
+                        created <Link className="link" to="fireball">Fireball,
+                        a thing</Link> and wrote <Link className="link" to="isolog">isolog, for sending
+                        node.js console logs to the browser</Link> and
+                        also <Link className="link" to="color-swatches">a color swatch builder using named colors</Link>. That last one for no known reason.
+                    </p>
+                </div>
             </PageWrapper>
         );
     }

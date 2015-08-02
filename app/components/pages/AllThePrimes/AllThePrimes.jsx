@@ -13,7 +13,7 @@ class Home extends Component {
     render() {
         return (
             <PageWrapper className="all-the-primes">
-                <h1>All the primes!</h1>
+                <h1 className="heading-1">All the primes!</h1>
                 <ul>
                     <li>1</li>
                     <li>2</li>

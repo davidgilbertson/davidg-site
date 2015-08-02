@@ -14,3 +14,9 @@ body {
 .heading-2 { @extend %heading-2; }
 .heading-3 { @extend %heading-3; }
 .link { @extend %link; }
+
+.justify-small {
+    @media (max-width: #{$small-med-breakpoint}) {
+        text-align: justify;
+    }
+}

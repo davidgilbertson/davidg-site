@@ -18,7 +18,6 @@ class Nav extends Component {
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="all-the-primes">All the primes</Link></li>
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="isolog">Isolog</Link></li>
                 </ul>
-                <div className="nav__mask" onClick={this.props.hideNav}></div>
             </nav>
         );
     }

@@ -1,5 +1,6 @@
-$z-index-menu: 10;
-$z-index-header: 20;
+$z-index-header: 10;
+$z-index-menu: 20;
+$z-index-hamburger: 30;
 $z-index-modal: 100;
 
 $small-med-breakpoint: 30em;
@@ -12,10 +13,11 @@ $color-grey-1: #333;
 $color-grey-2: #888;
 $color-grey-3: #f7f7f7;
 $color-nav: #35363c;
+$black: #000;
 
 $header-height: 4rem;
 $sidebar-width: 15rem;
-$content-padding: 2rem;
+$content-padding: 2%;
 $hamburger-width: 3rem;
 
 $animation-duration: 300ms;

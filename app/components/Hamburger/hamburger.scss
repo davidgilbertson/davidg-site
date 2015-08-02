@@ -3,13 +3,24 @@
 .hamburger {
     cursor: pointer;
     display: inline-block;
-    margin-left: 1rem;
-    vertical-align: middle;
+    left: 1rem;
     width: $hamburger-width;
+    position: fixed;
+    z-index: $z-index-hamburger;
+    top: 1.2rem; // magic number to get it vertically centered on top of header bar
+    // stop the blue highlight, maybe just for all links? Or as a mixin?
+    @include noTapHighlight();
 
     //&:hover {
     //    .hamburger__bar {
     //        opacity: 1;
+    //    }
+    //}
+    //
+    //&:focus,
+    //&:active {
+    //    .hamburger__bar {
+    //        opacity: 0.5;
     //    }
     //}
 }
@@ -17,9 +28,13 @@
 .hamburger__bar {
     background: $white;
     display: block;
-    height: 3px;
-    margin-bottom: 9px;
-    opacity: .5;
-    //transition: $animation-duration;
+    height: 2px;
+    margin-bottom: 10px;
+    opacity: 1;
+    transition: $animation-duration;
     width: 100%;
+
+    .app__wrapper--nav-visible & {
+        opacity: 0.5;
+    }
 }
