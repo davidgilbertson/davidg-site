@@ -10,6 +10,7 @@ module.exports = {
         contentBase: './build',
         devtool: 'eval',
         historyApiFallback: true,
+        host: '10.1.1.2',
         hot: true,
         inline: true,
         port: 80
