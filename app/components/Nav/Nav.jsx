@@ -11,7 +11,7 @@ class Nav extends Component {
 
     render() {
         return (
-            <nav style={this.props.style} className="nav">
+            <nav className="nav">
                 <ul className="nav__list">
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="/">Home</Link></li>
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="fireball">Fireball</Link></li>
@@ -24,8 +24,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-    hideNav: PropTypes.func,
-    style: PropTypes.object
+    hideNav: PropTypes.func
 };
 
 export default Nav;

@@ -40,7 +40,7 @@ class App extends Component {
         this.onResize = debounce(this.onResize.bind(this), 50);
         this.hideNavIfSmall = this.hideNavIfSmall.bind(this);
         this.onTouchStart = this.onTouchStart.bind(this);
-        this.onTouchMove = throttle(this.onTouchMove.bind(this), 32);
+        this.onTouchMove = throttle(this.onTouchMove.bind(this), 16);
         this.onTouchEnd = this.onTouchEnd.bind(this);
 
         this.state = {

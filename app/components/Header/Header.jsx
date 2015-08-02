@@ -12,15 +12,10 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-
                 <span className="header__title">DG | 707</span>
             </div>
         );
     }
 }
-
-Header.propTypes = {
-    onToggleNav: PropTypes.func.isRequired
-};
 
 export default Header;
