@@ -1,36 +1,30 @@
 @import '../../utils/styles';
 
 .header {
-    //@include shade(0, 4, 8);
-    background: $color-primary;
-    height: $header-height;
     position: fixed;
-    left: 0;
-    right: 0;
     top: 0;
+    right: 0;
+    left: 0;
+    height: $header-height;
+    transition: $animation-duration;
+    background: $color-primary;
     z-index: $z-index-header;
 
-    transition: $animation-duration;
-
-    // on big screens, adjust the left to $sidebar-width when nav is open
-    // or transition left and pad right, whatever is more performant
-
     .app__wrapper--nav-visible & {
-        @media (min-width: #{$med-large-breakpoint}) {
+        @include for-size($large-up) {
             padding-left: $sidebar-width;
         }
     }
 }
 
 .header__title {
-    color: $white;
     display: inline-block;
+    width: 100%;
+    color: $white;
     font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 1px;
     line-height: $header-height;
     text-align: center;
     text-transform: uppercase;
-    //width: calc(100% - #{$hamburger-width * 2});
-    width: 100%;
 }

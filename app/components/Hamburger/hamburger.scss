@@ -1,40 +1,27 @@
 @import '../../utils/styles';
 
 .hamburger {
-    cursor: pointer;
+    @include no-tap-highlight();
     display: inline-block;
+    position: fixed;
+    top: 1.2rem; // magic number to get it vertically centered on top of header bar
     left: 1rem;
     width: $hamburger-width;
-    position: fixed;
+    cursor: pointer;
     z-index: $z-index-hamburger;
-    top: 1.2rem; // magic number to get it vertically centered on top of header bar
-    // stop the blue highlight, maybe just for all links? Or as a mixin?
-    @include noTapHighlight();
 
-    //&:hover {
-    //    .hamburger__bar {
-    //        opacity: 1;
-    //    }
-    //}
-    //
-    //&:focus,
-    //&:active {
-    //    .hamburger__bar {
-    //        opacity: 0.5;
-    //    }
-    //}
 }
 
 .hamburger__bar {
-    background: $white;
     display: block;
+    width: 100%;
     height: 2px;
     margin-bottom: 10px;
-    opacity: 1;
     transition: $animation-duration;
-    width: 100%;
+    background: $white;
+    opacity: 1;
 
     .app__wrapper--nav-visible & {
-        opacity: 0.5;
+        opacity: .5;
     }
 }

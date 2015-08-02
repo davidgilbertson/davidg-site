@@ -2,7 +2,15 @@
     box-shadow: #{$x}px #{$y}px #{$blur}px 0 rgba(0, 0, 0, $alpha);
 }
 
-@mixin noTapHighlight {
+// stop the blue highlight on android
+@mixin no-tap-highlight {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent; /* For some Androids */
+}
+
+// alias because I have trouble typing 'susy' for some reason
+@mixin for-size($query) {
+    @include susy-breakpoint($query) {
+        @content;
+    }
 }

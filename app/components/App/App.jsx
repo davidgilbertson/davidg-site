@@ -2,14 +2,19 @@ import React, {cloneElement, Component} from 'react/addons';
 import {RouteHandler} from 'react-router';
 import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
+import throttle from 'lodash/function/throttle';
 import {isProd, isOnClient, saveLocal, loadLocal} from '../../utils';
 
 const CSSTransitionGroup = React.addons.CSSTransitionGroup; // TODO (davidg): inport with react on line 1?
 import Hamburger from '../Hamburger/Hamburger.jsx';
 
-// TODO (davidg): somehow share breakpoints between JS/CSS
+// TODO (davidg): somehow share variables between JS/CSS
 // This one should match $med-large-breakpoint = 55em * 16 = 880
-const MED_LARGE_BREAKPOINT = 880;
+const MED_LARGE_BREAKPOINT = 55; // must match $med-large-breakpoint
+const NAV_WIDTH_EMS = 15; // must match $sidebar-width
+const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
+const MAX_NAV_POS = 0;
+const NAV_MASK_OPACITY = 0.4; // must match $nav-mask-alpha
 
 if (!isProd) {
     require('./app.scss');
@@ -22,48 +27,130 @@ if (!isProd) {
 import Nav from '../Nav/Nav.jsx';
 import Header from '../Header/Header.jsx';
 
+function contain(num, min, max) {
+    return Math.min(Math.max(min, num), max);
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.hideNav = this.hideNav.bind(this);
         this.toggleNav = this.toggleNav.bind(this);
-        this.onResize = debounce(this.onResize.bind(this), 500);
+        this.onResize = debounce(this.onResize.bind(this), 50);
         this.hideNavIfSmall = this.hideNavIfSmall.bind(this);
+        this.onTouchStart = this.onTouchStart.bind(this);
+        this.onTouchMove = throttle(this.onTouchMove.bind(this), 32);
+        this.onTouchEnd = this.onTouchEnd.bind(this);
 
-        this.state = {showNav: false};
+        this.state = {
+            showNav: false,
+            navTranslate: 0
+        };
+
+        this.touchStartPos = 0;
+
+        this.navEl = undefined;
+        this.navMaskEl = undefined;
+        this.navTranslate = undefined;
+
+        this.movingNav = false;
     }
 
     onResize() {
         this.hideNavIfSmall();
     }
 
+    onTouchStart(e) {
+        this.movingNav = true;
+        const dims = e.touches ? e.touches[0] : e;
+        this.touchStartPos = dims.clientX;
+
+        this.navEl.style.transition = 'none';
+        this.navMaskEl.style.transition = 'none';
+
+        window.removeEventListener('touchstart', this.onTouchStart, false); // it will be added again depending on touch end
+        window.addEventListener('touchmove', this.onTouchMove, false);
+        window.addEventListener('touchend', this.onTouchEnd, false);
+    }
+
+    onTouchMove(e) {
+        if (!this.movingNav) return; // sometimes a touchMove can fire AFTER the touch end. Bad touchMove
+
+        const dims = e.touches ? e.touches[0] : e;
+        const currentLeft = dims.clientX;
+
+        const distanceMoved = (currentLeft - this.touchStartPos) / 16; // in ems now
+
+        this.navTranslate = contain(distanceMoved, MIN_NAV_POS, MAX_NAV_POS);
+
+        this.navEl.style.transform = `translateX(${this.navTranslate}rem)`;
+
+        let navMaskOpacity = NAV_MASK_OPACITY * (1 - (this.navTranslate / MIN_NAV_POS));
+
+        navMaskOpacity = contain(navMaskOpacity, 0, NAV_MASK_OPACITY);
+
+        this.navMaskEl.style.backgroundColor = `rgba(0, 0, 0, ${navMaskOpacity})`;
+    }
+
+    onTouchEnd() {
+        this.movingNav = false;
+
+        this.navEl.style.transition = '';
+        this.navEl.style.transform = '';
+
+        this.navMaskEl.style.transition = '';
+        this.navMaskEl.style.background = '';
+
+        if (this.navTranslate < (MIN_NAV_POS / 2)) {
+            this.hideNav();
+        } else {
+            this.showNav();
+        }
+
+        window.removeEventListener('touchmove', this.onTouchMove, false);
+        window.removeEventListener('touchend', this.onTouchEnd, false);
+    }
+
     toggleNav() {
-        const newNavVisibility = !this.state.showNav;
+        if (this.state.showNav) {
+            this.hideNav();
+        } else {
+            this.showNav();
+        }
+    }
 
-        saveLocal('showNav', newNavVisibility);
+    showNav() {
+        this.setState({showNav: true});
 
-        this.setState({showNav: newNavVisibility});
+        saveLocal('showNav', true);
 
-        //document.querySelector('.app__wrapper').classList.toggle('app__wrapper--nav-visible');
+        if (window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+            window.addEventListener('touchstart', this.onTouchStart, false);
+        }
     }
 
     hideNav() {
         this.setState({showNav: false});
-        //document.querySelector('.app__wrapper').classList.toggle('app__wrapper--nav-visible');
+
+        saveLocal('showNav', false);
+
+        window.removeEventListener('touchstart', this.onTouchStart, false);
     }
 
     hideNavIfSmall() {
-        if (this.state.showNav && window.innerWidth < MED_LARGE_BREAKPOINT) {
-            this.setState({showNav: false});
+        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+            this.hideNav();
         }
     }
 
     componentDidMount() {
-        //const localNavSetting = loadLocal('showNav'); // might be unset, might be true or false
-        if (isOnClient && loadLocal('showNav') !== false && window.innerWidth > MED_LARGE_BREAKPOINT) {
+        if (isOnClient && loadLocal('showNav') !== false && window.innerWidth > (MED_LARGE_BREAKPOINT * 16)) {
             this.toggleNav();
         }
+
+        this.navEl = document.querySelector('.nav');
+        this.navMaskEl = document.querySelector('.nav__mask');
 
         window.addEventListener('resize', this.onResize, false);
     }
@@ -90,14 +177,9 @@ class App extends Component {
 
                 <Header />
 
-
-                {/*<section className="app__container">*/}
-
                 <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
                     <RouteHandler key={key} />
                 </CSSTransitionGroup>
-
-                {/*</section>*/}
             </div>
         );
     }

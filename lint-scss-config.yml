@@ -114,6 +114,7 @@ linters:
 
   PropertySortOrder:
     enabled: true
+    order: smacss
     ignore_unspecified: false
     separate_groups: false
 

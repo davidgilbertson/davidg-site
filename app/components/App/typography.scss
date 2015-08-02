@@ -16,7 +16,7 @@ body {
 .link { @extend %link; }
 
 .justify-small {
-    @media (max-width: #{$small-med-breakpoint}) {
+    @include for-size($small-only) {
         text-align: justify;
     }
 }

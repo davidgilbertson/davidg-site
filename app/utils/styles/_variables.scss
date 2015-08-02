@@ -3,9 +3,23 @@ $z-index-menu: 20;
 $z-index-hamburger: 30;
 $z-index-modal: 100;
 
-$small-med-breakpoint: 30em;
-$med-large-breakpoint: 55em;
-$large-jumbo-breakpoint: 70em;
+$small-med-breakpoint: 30rem; // 480px
+$med-large-breakpoint: 55rem; // 880px
+$large-jumbo-breakpoint: 70rem; // 1120px
+$one-px: 1 / 16;
+
+$small-only: 0 $small-med-breakpoint;
+$medium-only: ($small-med-breakpoint + $one-px) $med-large-breakpoint;
+$large-only: ($med-large-breakpoint + $one-px) $large-jumbo-breakpoint;
+$jumbo-only: ($large-jumbo-breakpoint + $one-px);
+
+// $small-up is implied in any rule
+$medium-up: ($small-med-breakpoint + $one-px);
+$large-up: ($med-large-breakpoint + $one-px);
+$jumbo-up: $jumbo-only; // Same thing, right?
+
+$medium-down: 0 $med-large-breakpoint;
+$large-down: 0 $large-jumbo-breakpoint;
 
 $white: #fff;
 $color-primary: #a11;
@@ -14,6 +28,8 @@ $color-grey-2: #888;
 $color-grey-3: #f7f7f7;
 $color-nav: #35363c;
 $black: #000;
+
+$nav-mask-alpha: .4;
 
 $header-height: 4rem;
 $sidebar-width: 15rem;
@@ -27,9 +43,9 @@ $susy: (
     gutter-position: split,
     columns: 12,
     debug: (
-            image: show,
-            color: rgba(200, 0, 0, .2),
-            output: overlay,
-            toggle: top right,
+        image: show,
+        color: rgba(200, 0, 0, .2),
+        output: overlay,
+        toggle: top right,
     )
 );

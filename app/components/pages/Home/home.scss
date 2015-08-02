@@ -1,3 +1,18 @@
 @import '../../../utils/styles';
 
-.home {}
+.home {
+    //.breakpoint-test-exact {
+    //    &:after {content: 'nothing';}
+    //    @include for-size($small-only) {&:after {content: '$small-only';}}
+    //    @include for-size($medium-only) {&:after {content: '$medium-only';}}
+    //    @include for-size($large-only) {&:after {content: '$large-only';}}
+    //    @include for-size($jumbo-only) {&:after {content: '$jumbo-only';}}
+    //}
+    //
+    //.breakpoint-test-range {
+    //    &:after {content: 'small (no breakpoint defined)';}
+    //    @include for-size($medium-up) {&:after {content: '$medium-up';}}
+    //    @include for-size($large-up) {&:after {content: '$large-up';}}
+    //    @include for-size($jumbo-up) {&:after {content: '$jumbo-up';}}
+    //}
+}

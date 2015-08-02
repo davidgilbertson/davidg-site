@@ -4,66 +4,57 @@ $shadow-color: rgba(0, 0, 0, .4);
 $vertical-height-overflow: 1rem;
 
 .nav {
-    background: $color-nav;
-    bottom: -$vertical-height-overflow;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: $header-height + $vertical-height-overflow;
     position: fixed;
     top: -$vertical-height-overflow;
-
-    transition: $animation-duration, box-shadow ($animation-duration * 3) $animation-duration;
+    bottom: -$vertical-height-overflow;
+    left: 0;
     width: $sidebar-width;
-    z-index: $z-index-menu;
+    padding-top: $header-height + $vertical-height-overflow;
     transform: translateX(-$sidebar-width * 1.1);
-    //@include shade(4, 0, 10);
+    transition: $animation-duration, box-shadow ($animation-duration * 3) $animation-duration;
+    background: $color-nav;
+    z-index: $z-index-menu;
+    overflow-x: hidden;
 
     .app__wrapper--nav-visible & {
         transform: translateX(0);
-
-        //@media (min-width: #{$med-large-breakpoint}) {
-        //    box-shadow: none;
-        //}
     }
-
 }
 
 .nav__list {
-    padding: 0;
     width: $sidebar-width;
+    padding: 0;
 }
 
 .nav__link {
-    @include noTapHighlight();
-    color: $white;
+    @include no-tap-highlight();
     display: block;
-    font-size: 120%;
     padding: 15px;
-    text-decoration: none;
     transition: $animation-duration;
+    color: $white;
+    font-size: 120%;
+    text-decoration: none;
 
     &.active {
         background: $white;
-        //box-shadow: 0 0 10px 5px $shadow-color;
         color: $color-grey-1;
     }
 }
 
 .nav__mask {
-    @media (max-width: #{$med-large-breakpoint}) {
-        background: rgba($black, .0);
+    @include for-size($medium-down) {
+        position: fixed;
+        top: 0;
+        right: 0;
         bottom: 0;
         left: 0;
-        position: fixed;
-        right: 0;
-        top: 0;
-        //opacity: 0.01;
-        transition: $animation-duration;
+        // not transitioning the opacity because slow phones delay it while sliding
+        //transition: $animation-duration;
+        background: rgba($black, .0);
         z-index: 0;
 
         .app__wrapper--nav-visible & {
-            //opacity: 1;
-            background: rgba($black, .4);
+            background: rgba($black, $nav-mask-alpha);
             z-index: $z-index-menu - 1;
         }
     }
