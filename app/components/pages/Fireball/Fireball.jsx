@@ -14,7 +14,7 @@ class Home extends Component {
     render() {
         return (
             <PageWrapper className="fireball">
-                <h1 className="fireball__title">I am fireball!!!</h1>
+                <h1 className="heading-1">I am fireball!!!</h1>
             </PageWrapper>
         );
     }
