@@ -1,10 +1,16 @@
 @import '../../../utils/styles';
 
-.isolog_demo {
-    //@include container(50em);
-}
+.isolog{
+    &__demo {
+        padding-bottom: 2rem;
+    }
 
-.isolog__column {
-    @include span(4 of 12);
-    text-align: center;
+    &__column {
+        width: 100%;
+        text-align: center;
+
+        @include for-size($medium-up) {
+            @include span(4 of 12);
+        }
+    }
 }

@@ -30,8 +30,6 @@ class Isolog extends Component {
                     </div>
                 </section>
 
-                <hr />
-
                 <section>
                     <h1 className="heading-2">Read some words about it</h1>
 
