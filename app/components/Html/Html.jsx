@@ -11,6 +11,7 @@ class Html extends Component {
                 <head>
                     <meta charSet="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
+                    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700,300italic" rel="stylesheet" type="text/css" />
                     <title>{this.props.title || 'DG | 707'}</title>
                     <style>{this.props.cssString}</style>
                 </head>

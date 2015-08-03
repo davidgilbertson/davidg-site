@@ -4,10 +4,10 @@
 // This allows browsers to increase font size for accessibility
 body {
     color: $color-grey-1;
-    font-family: 'Roboto', sans-serif;
+    font-family: $sans-serif;
     font-weight: 300;
     letter-spacing: .04em;
-    line-height: 1.6em;
+    line-height: 1.6;
 }
 
 .heading-1 { @extend %heading-1; }

@@ -5,7 +5,7 @@
 }
 
 .app__content {
-    @include container(50em);
+    @include container(60em);
     padding: $content-padding;
 }
 

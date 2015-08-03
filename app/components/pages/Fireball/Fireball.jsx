@@ -5,6 +5,7 @@ import {isProd} from '../../../utils';
 if (!isProd) require('./fireball.scss');
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+import MarkDown from '../../MarkDown/MarkDown.jsx';
 
 class Home extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Home extends Component {
     render() {
         return (
             <PageWrapper className="fireball">
-                <h1 className="heading-1">I am fireball!!!</h1>
+                <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/fireball/master/README.md" />
             </PageWrapper>
         );
     }

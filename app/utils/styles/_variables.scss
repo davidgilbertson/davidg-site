@@ -1,8 +1,18 @@
+// --  SIZE AND POSITION  --  /
 $z-index-header: 10;
 $z-index-menu: 20;
 $z-index-hamburger: 30;
 $z-index-modal: 100;
 
+$animation-duration: 300ms;
+
+$header-height: 4rem;
+$sidebar-width: 15rem;
+$content-padding: 5%;
+$hamburger-width: 3rem;
+
+
+//  --  BREAKPOINTS  --  //
 $small-med-breakpoint: 30rem; // 480px
 $med-large-breakpoint: 55rem; // 880px
 $large-jumbo-breakpoint: 70rem; // 1120px
@@ -21,23 +31,27 @@ $jumbo-up: $jumbo-only; // Same thing, right?
 $medium-down: 0 $med-large-breakpoint;
 $large-down: 0 $large-jumbo-breakpoint;
 
+
+//  --  COLOURS  --  //
 $white: #fff;
 $color-primary: #a11;
+$color-hero-text: #6F7281;
+$color-nav: #35363c;
+
+$black: #000;
 $color-grey-1: #333;
 $color-grey-2: #888;
 $color-grey-3: #f7f7f7;
-$color-nav: #35363c;
-$black: #000;
 
 $nav-mask-alpha: .4;
 
-$header-height: 4rem;
-$sidebar-width: 15rem;
-$content-padding: 2%;
-$hamburger-width: 3rem;
 
-$animation-duration: 300ms;
+//  --  TYPOGRAPHY  --  //
+$sans-serif: 'Roboto', sans-serif;
+$serif: 'Roboto Slab', serif;
 
+
+//  --  VENDOR  --  //
 $susy: (
     global-box-sizing: border-box,
     gutter-position: split,

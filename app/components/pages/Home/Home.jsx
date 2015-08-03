@@ -25,18 +25,19 @@ class Home extends Component {
         return (
             <PageWrapper className="home">
                 <div className="justify-small">
-                    <p className="heading-1">David Gilbertson</p>
+                    <p className="heading-1">Hello</p>
 
-                    <p className="heading-2">I am, web developer</p>
+                    <p className="home__hero-text">I am David Gilbertson. This is my site.</p>
 
-                    <p className="heading-3">Here are some things that I have done...</p>
+                    <p className="home__hero-text">
+                        Here is <Link className="link" to="all-the-primes">a list of all the prime numbers</Link>.
+                        Over here is <Link className="link" to="fireball">Fireball</Link>, who will make you breakpoints for performance.
+                        This here is <Link className="link" to="isolog">isolog</Link>, who loves sending node.js console logs to the browser. And
+                        for no reason whatsoever, <Link className="link" to="color-swatches">a color swatch builder</Link> using only CSS named colors.
+                    </p>
 
-                    <p className="body-text">
-                        I have made <Link className="link" to="/">a list of all the prime numbers</Link> and
-                        created <Link className="link" to="fireball">Fireball,
-                        a thing</Link> and wrote <Link className="link" to="isolog">isolog, for sending
-                        node.js console logs to the browser</Link> and
-                        also <Link className="link" to="color-swatches">a color swatch builder using named colors</Link>. That last one for no known reason.
+                    <p className="home__hero-text">
+                        If you're even remotely interested, <a href="https://github.com/davidgilbertson/davidg-site" className="link" target="_blank">here is the sauce</a> for this here site.
                     </p>
                 </div>
             </PageWrapper>
