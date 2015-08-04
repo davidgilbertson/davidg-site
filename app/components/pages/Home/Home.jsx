@@ -30,10 +30,10 @@ class Home extends Component {
                     <p className="home__hero-text">I am David Gilbertson. This is my site.</p>
 
                     <p className="home__hero-text">
-                        Here is <Link className="link" to="all-the-primes">a list of all the prime numbers</Link>.
                         Over here is <Link className="link" to="fireball">Fireball</Link>, who will make you breakpoints for performance.
                         This here is <Link className="link" to="isolog">isolog</Link>, who loves sending node.js console logs to the browser. And
-                        for no reason whatsoever, <Link className="link" to="color-swatches">a color swatch builder</Link> using only CSS named colors.
+                        for no reason whatsoever, <Link className="link" to="colors">a color swatch builder</Link> using only CSS named colors.
+                        As a special gift for visiting, here is <Link className="link" to="all-the-primes">a list of all the prime numbers</Link>.
                     </p>
 
                     <p className="home__hero-text">

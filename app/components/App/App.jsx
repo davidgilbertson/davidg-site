@@ -19,6 +19,7 @@ const NAV_MASK_OPACITY = 0.4; // must match $nav-mask-alpha
 if (!isProd) {
     require('./app.scss');
     require('./fontFace.scss');
+    require('./layout.scss');
     require('./resets.scss');
     require('./theme.scss');
     require('./typography.scss');

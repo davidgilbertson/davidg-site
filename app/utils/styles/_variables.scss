@@ -35,7 +35,7 @@ $large-down: 0 $large-jumbo-breakpoint;
 //  --  COLOURS  --  //
 $white: #fff;
 $color-primary: #a11;
-$color-hero-text: #6F7281;
+$color-hero-text: #6f7281;
 $color-nav: #35363c;
 
 $black: #000;
@@ -55,11 +55,11 @@ $serif: 'Roboto Slab', serif;
 $susy: (
     global-box-sizing: border-box,
     gutter-position: split,
-    columns: 12,
-    debug: (
-        image: show,
-        color: rgba(200, 0, 0, .2),
-        output: overlay,
-        toggle: top right,
-    )
+    columns: 12
+    //debug: (
+    //    image: show,
+    //    color: rgba(200, 0, 0, .2),
+    //    output: overlay,
+    //    toggle: top right,
+    //)
 );

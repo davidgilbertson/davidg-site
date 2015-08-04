@@ -5,7 +5,7 @@ import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
 if (!isProd) require('./allThePrimes.scss');
 
-class Home extends Component {
+class AllThePrimes extends Component {
     constructor(props) {
         super(props);
 
@@ -158,4 +158,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default AllThePrimes;

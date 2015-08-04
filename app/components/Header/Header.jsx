@@ -6,7 +6,7 @@ if (!isProd) require('./header.scss');
 
 class Header extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     render() {

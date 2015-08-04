@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 
 class Html extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     render() {
