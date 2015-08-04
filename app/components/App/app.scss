@@ -11,12 +11,13 @@
 
 .app__transition-wrapper {
     position: absolute;
+    top: $header-height;
     width: 100%;
     transition: opacity 150ms, padding-left $animation-duration;
     opacity: 1;
 
-    &:not(body.hosting-iframe &) {
-        top: $header-height;
+    body.hosting-iframe & {
+        top: 0;
     }
 
     .app__wrapper--nav-visible & {

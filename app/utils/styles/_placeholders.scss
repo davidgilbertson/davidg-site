@@ -22,8 +22,8 @@
 }
 
 %link {
-    border-bottom: 1px dotted $color-primary;
-    color: $color-primary;
+    border-bottom: 1px dotted $link-color;
+    color: $link-color;
     text-decoration: none;
     cursor: pointer;
 
@@ -38,13 +38,13 @@
     display: inline-block;
     padding: 0 5px;
     border-radius: 4px;
-    background: $color-grey-3;
+    background: $color-grey-40;
 }
 
 %pre {
     padding: 1em;
     border-radius: 3px;
-    background-color: $color-grey-3;
+    background-color: $color-grey-40;
     line-height: 1.45;
     overflow: auto;
 }

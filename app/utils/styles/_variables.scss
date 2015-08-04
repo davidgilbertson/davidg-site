@@ -32,19 +32,25 @@ $medium-down: 0 $med-large-breakpoint;
 $large-down: 0 $large-jumbo-breakpoint;
 
 
-//  --  COLOURS  --  //
+//  --  RAW COLOURS  --  //
 $white: #fff;
-$color-primary: #a11;
-$color-hero-text: #6f7281;
+$blue: #4642c2;
+$red: #a11;
 $color-nav: #35363c;
 
 $black: #000;
-$color-grey-1: #333;
-$color-grey-2: #888;
-$color-grey-3: #f7f7f7;
+$color-grey-10: #333;
+$color-grey-15: #5A5E6D;
+$color-grey-20: #888;
+$color-grey-30: #ddd;
+$color-grey-40: #f7f7f7;
 
 $nav-mask-alpha: .4;
 
+//  --  COLOUR INSTANCES  --  //
+$hero-text: $color-grey-15;
+$color-primary: $red;
+$link-color: $blue;
 
 //  --  TYPOGRAPHY  --  //
 $sans-serif: 'Roboto', sans-serif;

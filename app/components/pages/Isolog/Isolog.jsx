@@ -14,6 +14,7 @@ class Isolog extends Component {
     render() {
         return (
             <PageWrapper className="isolog">
+                {/*
                 <section className="isolog__demo">
                     <h1 className="heading-1">Isolog demo</h1>
 
@@ -32,9 +33,17 @@ class Isolog extends Component {
 
                 <section>
                     <h1 className="heading-2">Read some words about it</h1>
-
-                    <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
                 </section>
+
+                */}
+
+                <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
+
+                <hr />
+
+                <p>
+                    View the source on <a href="https://github.com/davidgilbertson/isolog" className="link" targt="_blank">GitHub</a>
+                </p>
             </PageWrapper>
         );
     }

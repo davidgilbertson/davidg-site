@@ -65,4 +65,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+hr {
+    border: 0;
+    border-bottom: 1px solid $color-grey-30;
+}
 // scss-lint:enable all
