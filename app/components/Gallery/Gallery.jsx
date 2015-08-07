@@ -63,10 +63,16 @@ class Gallery extends Component {
         this.photos.forEach((photo) => {
             photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg');
         });
-        console.log('  --  >  Gallery.jsx:66 > constructor > this.photos:', this.photos);
+
+        this.state = {
+            imageHeight: 200
+        };
     }
 
     componentDidMount() {
+        this.setState({
+            imageHeight: isOnClient ? window.innerWidth / 5 : 200
+        });
     }
 
     showGallery(index) {
@@ -85,11 +91,9 @@ class Gallery extends Component {
             this.props.className
         );
 
-        this.imageHeight = isOnClient ? window.innerWidth / 5 : 200;
-
         const photoEls = this.photos.map((img, i) => {
             return (
-                <img className="gallery__thumb" height={this.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+                <img key={i} className="gallery__thumb" height={this.state.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
             );
         });
 
@@ -102,7 +106,7 @@ class Gallery extends Component {
                     {photoEls}
                 </div>
                 {/* Root element of PhotoSwipe. Must have class pswp. */}
-                <div className="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                <div className="pswp" tabIndex="-1" role="dialog" aria-hidden="true">
 
                     {/* Background of PhotoSwipe.
                          It's a separate element as animating opacity is faster than rgba(). */}
@@ -173,8 +177,7 @@ class Gallery extends Component {
 }
 
 Gallery.propTypes = {
-    className: PropTypes.string,
-    onToggleNav: PropTypes.func.isRequired
+    className: PropTypes.string
 };
 
 export default Gallery;
