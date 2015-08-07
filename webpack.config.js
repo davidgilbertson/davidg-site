@@ -40,12 +40,16 @@ module.exports = {
                 loaders: ['react-hot', 'babel']
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 loader: 'style!css!sass'
             },
             {
                 test: /\.woff$/,
                 loader: 'url?limit=100000'
+            },
+            {
+                test: /\.gif|svg|png$/,
+                loader: 'file'
             }
         ],
         noParse: [

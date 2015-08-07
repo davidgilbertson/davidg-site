@@ -10,13 +10,6 @@ html {
     box-sizing: border-box;
 }
 
-body {
-    overflow-x: hidden;
-    &:not(.hosting-iframe) {
-        overflow-y: scroll;
-    }
-}
-
 *,
 *:before,
 *:after {

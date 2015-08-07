@@ -21,6 +21,7 @@ class Nav extends Component {
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="guam">GUAM</Link></li>
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="tk">Time Keeper</Link></li>
                     <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="all-the-primes">All the primes</Link></li>
+                    <li><Link onClick={this.props.hideNavIfSmall} className="nav__link" to="not-the-web">Not the web</Link></li>
                 </ul>
             </nav>
         );

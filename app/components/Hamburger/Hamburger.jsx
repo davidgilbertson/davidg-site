@@ -1,10 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import isOnClient from '../../utils/isOnClient.js';
+import isProd from '../../utils/isProd.js';
 
-if (isOnClient) {
-    require('./hamburger.scss');
-}
+if (!isProd) require('./hamburger.scss');
 
 class Hamburger extends Component {
     render() {

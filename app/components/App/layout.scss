@@ -1,3 +1,15 @@
+body {
+    overflow-x: hidden;
+
+    &:not(.hosting-iframe) {
+        overflow-y: scroll;
+    }
+
+    //&.no-scroll {
+    //    overflow-y: hidden;
+    //}
+}
+
 .hide {
     display: none;
 }

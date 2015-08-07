@@ -50,6 +50,7 @@ class App extends Component {
         };
 
         this.touchStartPos = 0;
+        //this.bodyTopAtStart = 0;
 
         this.navEl = undefined;
         this.navMaskEl = undefined;
@@ -66,6 +67,7 @@ class App extends Component {
         this.movingNav = true;
         const dims = e.touches ? e.touches[0] : e;
         this.touchStartPos = dims.clientX;
+        //this.bodyTopAtStart = document.body.scrollTop;
 
         this.navEl.style.transition = 'none';
         this.navMaskEl.style.transition = 'none';
@@ -76,7 +78,8 @@ class App extends Component {
     }
 
     onTouchMove(e) {
-        if (!this.movingNav) return; // sometimes a touchMove can fire AFTER the touch end. Bad touchMove
+        if (!this.movingNav) return; // sometimes a touchMove can fire AFTER the touch end. Bad touchMove. Bad.
+        //document.body.scrollTop = this.bodyTopAtStart; // block scrolling which on mobile does the annoying header shuffle
 
         const dims = e.touches ? e.touches[0] : e;
         const currentLeft = dims.clientX;
@@ -91,7 +94,8 @@ class App extends Component {
 
         navMaskOpacity = contain(navMaskOpacity, 0, NAV_MASK_OPACITY);
 
-        this.navMaskEl.style.backgroundColor = `rgba(0, 0, 0, ${navMaskOpacity})`;
+        //this.navMaskEl.style.backgroundColor = `rgba(0, 0, 0, ${navMaskOpacity})`;
+        this.navMaskEl.style.opacity = navMaskOpacity;
     }
 
     onTouchEnd() {
@@ -101,7 +105,7 @@ class App extends Component {
         this.navEl.style.transform = '';
 
         this.navMaskEl.style.transition = '';
-        this.navMaskEl.style.background = '';
+        this.navMaskEl.style.opacity = '';
 
         if (this.navTranslate < (MIN_NAV_POS / 2)) {
             this.hideNav();
@@ -124,9 +128,11 @@ class App extends Component {
     showNav() {
         this.setState({showNav: true});
 
+
         saveLocal('showNav', true);
 
         if (window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+            //document.body.classList.add('no-scroll');
             window.addEventListener('touchstart', this.onTouchStart, false);
         }
     }
@@ -137,6 +143,7 @@ class App extends Component {
         saveLocal('showNav', false);
 
         window.removeEventListener('touchstart', this.onTouchStart, false);
+        //document.body.classList.remove('no-scroll');
     }
 
     hideNavIfSmall() {

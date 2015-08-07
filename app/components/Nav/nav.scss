@@ -5,13 +5,14 @@ $vertical-height-overflow: 1rem;
 
 .nav {
     position: fixed;
-    top: -$vertical-height-overflow;
-    bottom: -$vertical-height-overflow;
+    height: 120%; // Allow for user scrolling an mobile browser nav disappearing
+    top: 0;
+    //bottom: 0;
     left: 0;
     width: $sidebar-width;
-    padding-top: $header-height + $vertical-height-overflow;
+    padding-top: $header-height;
     transform: translateX(-$sidebar-width * 1.1);
-    transition: $animation-duration, box-shadow ($animation-duration * 3) $animation-duration;
+    transition: $animation-duration;
     background: $color-nav;
     z-index: $z-index-menu;
     overflow-x: hidden;
@@ -44,17 +45,17 @@ $vertical-height-overflow: 1rem;
 .nav__mask {
     @include for-size($medium-down) {
         position: fixed;
-        top: 0;
+        top: -5rem; // handle browser top bit hiding on scroll
         right: 0;
-        bottom: 0;
+        bottom: -2px; // that little white line at the bottom of fixed elements
         left: 0;
-        // not transitioning the opacity because slow phones delay it while sliding
-        //transition: $animation-duration;
-        background: rgba($black, .0);
+        transition: $animation-duration;
+        background: $black;
+        opacity: 0;
         z-index: 0;
 
         .app__wrapper--nav-visible & {
-            background: rgba($black, $nav-mask-alpha);
+            opacity: $nav-mask-alpha;
             z-index: $z-index-menu - 1;
         }
     }
