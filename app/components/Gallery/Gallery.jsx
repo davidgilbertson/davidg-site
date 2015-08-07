@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import isProd from '../../utils/isProd.js';
+import {isOnClient, isProd} from '../../utils';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -12,20 +12,67 @@ if (!isProd) {
 }
 
 class Gallery extends Component {
-    componentDidMount() {
-        const pswpElement = document.querySelector('.pswp');
+    constructor(props) {
+        super(props);
 
         this.photos = [
-            {w: 1024, h: 1365, src: require('file!../../assets/images/photo-1_1024x1365.jpg')},
-            {w: 2048, h: 1365, src: require('file!../../assets/images/photo-2_2048x1365.jpg')},
-            {w: 1709, h: 1978, src: require('file!../../assets/images/photo-3_1709x1978.jpg')}
+            {
+                w: 1680,
+                h: 1120,
+                src: 'http://i.imgur.com/c0G4Ffs.jpg',
+                title: 'Mondrian meets Fibonacci and together they make a table'
+            },
+            {
+                w: 3648,
+                h: 1739,
+                src: 'http://i.imgur.com/YjxLUSh.jpg',
+                title: 'Lift in Lauterbrunnen'
+            },
+            {
+                w: 761,
+                h: 1024,
+                src: 'http://i.imgur.com/OWR32gJ.jpg',
+                title: 'Pencil on paper, obviously'
+            },
+            {
+                w: 1680,
+                h: 1466,
+                src: 'http://i.imgur.com/SR3DSag.jpg',
+                title: 'Floating panel coffee table'
+            },
+            {
+                w: 2048,
+                h: 1622,
+                src: 'http://i.imgur.com/d2jcTYO.jpg',
+                title: 'Piano up close and personal'
+            },
+            {
+                w: 2048,
+                h: 1365,
+                src: 'http://i.imgur.com/WRZ4mZU.jpg',
+                title: 'Very pepper'
+            },
+            {
+                w: 2383,
+                h: 1759,
+                src: 'http://i.imgur.com/ydYdtzc.jpg',
+                title: 'Liquid light in Vienna'
+            }
         ];
-        // define options (if needed)
-        const options = {
-            // optionName: 'option value'
-            // for example:
-            index: 0 // start at first slide
-        };
+
+        this.photos.forEach((photo) => {
+            photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg');
+        });
+        console.log('  --  >  Gallery.jsx:66 > constructor > this.photos:', this.photos);
+    }
+
+    componentDidMount() {
+    }
+
+    showGallery(index) {
+        const pswpElement = document.querySelector('.pswp');
+
+        const options = {index: index};
 
         // Initializes and opens PhotoSwipe
         var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, this.photos, options);
@@ -38,9 +85,22 @@ class Gallery extends Component {
             this.props.className
         );
 
+        this.imageHeight = isOnClient ? window.innerWidth / 5 : 200;
+
+        const photoEls = this.photos.map((img, i) => {
+            return (
+                <img className="gallery__thumb" height={this.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+            );
+        });
+
+        // The below boilerplate and comments are from http://photoswipe.com/documentation/getting-started.html
         return (
             <section className={classes}>
-                <h1>I am a gallery</h1>
+                <h1 className="heading-1">Photos, sketches, paintings and furniture...</h1>
+
+                <div className="gallery_wrapper">
+                    {photoEls}
+                </div>
                 {/* Root element of PhotoSwipe. Must have class pswp. */}
                 <div className="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 

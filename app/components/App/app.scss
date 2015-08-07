@@ -5,8 +5,15 @@
 }
 
 .app__content {
-    @include container(60em);
-    padding: $content-padding;
+    &--narrow {
+        @include container(60em);
+        padding: $content-padding;
+    }
+
+    &--wide {
+        @include container();
+        padding: 10px;
+    }
 }
 
 .app__transition-wrapper {

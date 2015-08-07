@@ -1,31 +1,18 @@
 @import '../../utils/styles';
 
-.hamburger {
-    @include no-tap-highlight();
-    display: inline-block;
-    position: fixed;
-    top: 1.2rem; // magic number to get it vertically centered on top of header bar
-    left: 1rem;
-    width: $hamburger-width;
-    cursor: pointer;
-    z-index: $z-index-hamburger;
-}
+.gallery {
+    &__wrapper {
 
-.hamburger__bar {
-    display: block;
-    width: 100%;
-    height: 2px;
-    margin-bottom: 10px;
-    transition: $animation-duration;
-    background: $white;
-    opacity: 1;
-
-    body.hosting-iframe & {
-        @include shade(2, 1, 6, .9);
     }
 
-    .app__wrapper--nav-visible & {
-        box-shadow: none;
-        opacity: .5;
+    &__thumb {
+        margin: 5px;
+        transition: $animation-duration;
+        border: 1px solid $white;
+        cursor: pointer;
+
+        &:hover {
+            @include shade(1, 1, 10);
+        }
     }
 }

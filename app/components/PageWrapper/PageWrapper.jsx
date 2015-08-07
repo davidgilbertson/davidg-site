@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import classnames from 'classnames';
 
 class PageWrapper extends Component {
     constructor(props) {
@@ -6,9 +7,16 @@ class PageWrapper extends Component {
     }
 
     render() {
+        const classes = classnames(
+            this.props.className,
+            'app__content',
+            {'app__content--narrow': !this.props.wide},
+            {'app__content--wide': this.props.wide}
+        );
+
         return (
             <div className="app__transition-wrapper">
-                <main className={`app__content ${this.props.className}`}>
+                <main className={classes}>
                     {this.props.children}
                 </main>
             </div>
@@ -18,7 +26,8 @@ class PageWrapper extends Component {
 
 PageWrapper.propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
-    className: PropTypes.string
+    className: PropTypes.string,
+    wide: PropTypes.bool
 };
 
 export default PageWrapper;

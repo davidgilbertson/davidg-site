@@ -14,7 +14,7 @@ class Home extends Component {
 
     render() {
         return (
-            <PageWrapper className="not-the-web">
+            <PageWrapper className="not-the-web" wide={true}>
                 <Gallery className="not-the-web__gallery" />
             </PageWrapper>
         );
