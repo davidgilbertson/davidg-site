@@ -48,14 +48,18 @@ looks finished without the JS.
 
 * Clean up of the `node_modules` folder (e.g. `node-jsx` can go).
 
-* `server/routes.jsx` is an odd file. I'd prefer a config file separate the the JSX.
+* `server/routes.jsx` is an odd mix of concerns. I'd prefer a config file separate the the JSX.
 
 * Get the `<title>` working across routes
 
 * Do better with the header on the iFramed sites
 
-* Bring in [bubble reader](http://www.bubblereader.com)
+* Bring in [bubble reader](http://www.bubblereader.com), Facebook Slim and cookbox, do they even still work?
 
 * Maybe use this site a testbed for self-testing react components
 
-* There is shared logic in the two config files, bring this out a config base and import it into the other config files.
+* There is shared logic/loaders/etc. in the two config files, bring this out a config base and import it into the other config files.
+
+* Hide/show nav doesn't update the masonry photo layout
+
+* The arranging of images on load is a bit funky, can I do something here?
