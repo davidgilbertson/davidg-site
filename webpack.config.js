@@ -50,6 +50,10 @@ module.exports = {
             {
                 test: /\.gif|svg|png$/,
                 loader: 'file'
+            },
+            {
+                test: /masonry-layout|imagesloaded/,
+                loader: 'imports?define=>false&this=>window'
             }
         ],
         noParse: [
