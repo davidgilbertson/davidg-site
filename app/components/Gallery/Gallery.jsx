@@ -14,7 +14,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {isOnClient, isProd} from '../../utils';
+import {isOnClient, isOnServer, isProd} from '../../utils';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -32,13 +32,6 @@ class Gallery extends Component {
         this.getThumbBoundsFn = this.getThumbBoundsFn.bind(this);
 
         this.photos = require('./photos');
-
-        this.photos.forEach((photo) => {
-            // imgur uses the syntax of adding an l at the end to denote the 'large thumbnail' version of an image
-            // Nice one, imgur
-            //photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each
-             photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each
-        });
     }
 
     getThumbBoundsFn(i) {
@@ -50,13 +43,12 @@ class Gallery extends Component {
         return {x:dims.left, y:dims.top + pageYScroll, w:dims.width};
     }
 
-    showGallery(i) { // TODO (davidg): img not used any more
+    showGallery(i) {
         const pswpElement = document.querySelector('.pswp');
 
         const options = {
             index: i,
             getThumbBoundsFn: this.getThumbBoundsFn,
-            //fullscreenEl: false,
             shareEl: false,
             zoomEl: false
         };
@@ -66,21 +58,34 @@ class Gallery extends Component {
         gallery.init();
     }
 
-    componentDidMount() {
-        if (isOnClient) {
-            const Masonry = require('masonry-layout');
-            const imagesLoaded = require('imagesloaded');
+    componentWillMount() { // client and server
+        if (isOnServer) return; // No point doing this when server-side rendering
 
-            const gridEl = document.querySelector('.gallery__wrapper');
+        // On mount, set the thumbnail version to medium or large
+        // imgur uses the syntax of adding an 'l' or 'm' at the end to denote a large or medium thumbnail version of an image
+        // I haven't been able to find what they use for 'small'
+        this.photos.forEach((photo) => {
+            if (window.innerWidth >= 1300) {
+                photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each;  640px
+            } else {
+                photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each;  320px
+            }
+        });
+    }
 
-            const msnry = new Masonry(gridEl, {
-                itemSelector: '.gallery__thumb',
-                columnWidth: '.gallery__thumb-sizer',
-                percentPosition: true
-            });
+    componentDidMount() { // client side only
+        const Masonry = require('masonry-layout');
+        const imagesLoaded = require('imagesloaded');
 
-            imagesLoaded(gridEl).on('progress', () => msnry.layout());
-        }
+        const gridEl = document.querySelector('.gallery__wrapper');
+
+        const msnry = new Masonry(gridEl, {
+            itemSelector: '.gallery__thumb',
+            columnWidth: '.gallery__thumb-sizer',
+            percentPosition: true
+        });
+
+        imagesLoaded(gridEl).on('progress', () => msnry.layout());
     }
 
     render() {
@@ -90,6 +95,7 @@ class Gallery extends Component {
         );
 
         const photoEls = this.photos.map((img, i) => {
+            // TODO (davidg): in here, if I'm selecting double width I should be taking the big thumb
             return (
                 <div key={i} className="gallery__thumb">
                     <img ref={`img-${i}`} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
