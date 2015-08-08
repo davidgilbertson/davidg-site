@@ -15,8 +15,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {isOnClient, isProd} from '../../utils';
-import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -69,19 +67,23 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        const gridEl = document.querySelector('.gallery__wrapper');
+        if (isOnClient) {
+            const Masonry = require('masonry-layout');
+            const imagesLoaded = require('imagesloaded');
 
-        const msnry = new Masonry(gridEl, {
-            itemSelector: '.gallery__thumb',
-            columnWidth: '.gallery__thumb-sizer',
-            percentPosition: true
-        });
+            const gridEl = document.querySelector('.gallery__wrapper');
 
-        imagesLoaded(gridEl).on('progress', () => msnry.layout());
+            const msnry = new Masonry(gridEl, {
+                itemSelector: '.gallery__thumb',
+                columnWidth: '.gallery__thumb-sizer',
+                percentPosition: true
+            });
+
+            imagesLoaded(gridEl).on('progress', () => msnry.layout());
+        }
     }
 
     render() {
-        console.log('  --  >  Gallery.jsx:84 > render');
         const classes = classnames(
             'gallery',
             this.props.className
@@ -152,27 +154,24 @@ class Gallery extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-
-                                <div className="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                                    <div className="pswp__share-tooltip"></div>
-                                </div>
-
-                                <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-                                </button>
-
-                                <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-                                </button>
-
-                                <div className="pswp__caption">
-                                    <div className="pswp__caption__center"></div>
-                                </div>
-
                             </div>
 
-                        </div>
+                            <div className="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                <div className="pswp__share-tooltip"></div>
+                            </div>
 
+                            <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                            </button>
+
+                            <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                            </button>
+
+                            <div className="pswp__caption">
+                                <div className="pswp__caption__center"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </section>
         );
     }
