@@ -8,21 +8,25 @@
     // masonry class
     &__thumb-sizer,
     &__thumb {
-        width: (100% / 3) - 1;
+        $three-col: (100% / 3) - 1;
+        $four-col: (100% / 4) - 1;
+        $five-col: (100% / 5) - 1;
+        $six-col: (100% / 6) - 1;
+
+        width: $three-col;
         margin: .5%;
         cursor: pointer;
 
-        @include for-size($medium-up) {
-            width: (100% / 4) - 1;
-        }
+        @include for-size($medium-up) {width: $four-col;}
+        @include for-size($large-up) {width: $five-col;}
+        @include for-size($jumbo-up) {width: $six-col;}
 
-        @include for-size($large-up) {
-            width: (100% / 5) - 1;
-        }
-
-        @include for-size($jumbo-up) {
-            width: (100% / 6) - 1;
-        }
+        //&--double {
+        //    @include for-size($small-only) {width: $three-col * 2 + 1;}
+        //    @include for-size($medium-only) {width: $four-col * 2 + 1;}
+        //    @include for-size($large-only) {width: $five-col * 2 + 1;}
+        //    //@include for-size($jumbo-up) {width: $sixCol * 2 + 1;}
+        //}
 
         img {
             display: block;

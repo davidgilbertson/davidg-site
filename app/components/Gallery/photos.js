@@ -1,6 +1,7 @@
 export default [
     {
         w: 2048, h: 1527,
+        doubleWidth: true,
         src: 'http://i.imgur.com/vYLmBGQ.jpg', // B&W (ish) photo
         title: 'The Tuileries in Paris'
     },
@@ -61,6 +62,7 @@ export default [
     },
     {
         w: 2048, h: 1365,
+        doubleWidth: true,
         src: 'http://i.imgur.com/qFQGmAG.jpg', // Photo
         title: 'That time a bee made off with my camera'
     },
