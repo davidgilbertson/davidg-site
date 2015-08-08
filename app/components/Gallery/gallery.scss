@@ -1,18 +1,10 @@
 @import '../../utils/styles';
 
 .gallery {
-    &__wrapper {
-
-    }
-
     &__thumb {
         margin: 5px;
         transition: $animation-duration;
         border: 1px solid $white;
         cursor: pointer;
-
-        &:hover {
-            @include shade(1, 1, 10);
-        }
     }
 }

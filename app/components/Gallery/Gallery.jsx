@@ -15,74 +15,89 @@ class Gallery extends Component {
     constructor(props) {
         super(props);
 
+        this.getThumbBoundsFn = this.getThumbBoundsFn.bind(this);
+
         this.photos = [
             {
-                w: 1680,
-                h: 1120,
+                w: 1680, h: 1120,
                 src: 'http://i.imgur.com/c0G4Ffs.jpg',
                 title: 'Mondrian meets Fibonacci and together they make a table'
             },
             {
-                w: 3648,
-                h: 1739,
+                w: 3648, h: 1739,
                 src: 'http://i.imgur.com/YjxLUSh.jpg',
                 title: 'Lift in Lauterbrunnen'
             },
             {
-                w: 761,
-                h: 1024,
+                w: 761, h: 1024,
                 src: 'http://i.imgur.com/OWR32gJ.jpg',
                 title: 'Pencil on paper, obviously'
             },
             {
-                w: 1680,
-                h: 1466,
+                w: 1680, h: 1466,
                 src: 'http://i.imgur.com/SR3DSag.jpg',
                 title: 'Floating panel coffee table'
             },
             {
-                w: 2048,
-                h: 1622,
+                w: 2048, h: 1622,
                 src: 'http://i.imgur.com/d2jcTYO.jpg',
                 title: 'Piano up close and personal'
             },
             {
-                w: 2048,
-                h: 1365,
+                w: 2048, h: 1365,
                 src: 'http://i.imgur.com/WRZ4mZU.jpg',
                 title: 'Very pepper'
             },
             {
-                w: 2383,
-                h: 1759,
+                w: 2383, h: 1759,
                 src: 'http://i.imgur.com/ydYdtzc.jpg',
                 title: 'Liquid light in Vienna'
             }
         ];
 
         this.photos.forEach((photo) => {
+            // imgur uses the syntax of adding an l at the end to denote the 'large thumbnail' version of an image
+            // Nice one, imgur
             photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg');
         });
 
-        this.state = {
-            imageHeight: 200
+        // I'm setting the 'default' height in state so that when I update it client-side
+        // it triggers a render and React doesn't complain about the server code not
+        // matching the client code
+        // This means images are downloading before javascript even runs
+        this.state = {imageHeight: 200};
+    }
+
+
+    getThumbBoundsFn(i) {
+        const photoEl = React.findDOMNode(this.refs[`img-${i}`]);
+        const dims = photoEl.getBoundingClientRect();
+
+        const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        return {x:dims.left, y:dims.top + pageYScroll, w:dims.width};
+    }
+
+    showGallery(i) { // TODO (davidg): img not used any more
+        const pswpElement = document.querySelector('.pswp');
+
+        const options = {
+            index: i,
+            getThumbBoundsFn: this.getThumbBoundsFn,
+            fullscreenEl: false,
+            shareEl: false,
+            zoomEl: false
         };
+
+        // Initializes and opens PhotoSwipe
+        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, this.photos, options);
+        gallery.init();
     }
 
     componentDidMount() {
         this.setState({
             imageHeight: isOnClient ? window.innerWidth / 5 : 200
         });
-    }
-
-    showGallery(index) {
-        const pswpElement = document.querySelector('.pswp');
-
-        const options = {index: index};
-
-        // Initializes and opens PhotoSwipe
-        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, this.photos, options);
-        gallery.init();
     }
 
     render() {
@@ -93,7 +108,7 @@ class Gallery extends Component {
 
         const photoEls = this.photos.map((img, i) => {
             return (
-                <img key={i} className="gallery__thumb" height={this.state.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+                <img key={i} ref={`img-${i}`} className="gallery__thumb" height={this.state.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
             );
         });
 
