@@ -1,10 +1,43 @@
 @import '../../utils/styles';
 
 .gallery {
+    &__wrapper {
+        margin: .5%;
+    }
+
+    // masonry class
+    &__thumb-sizer,
     &__thumb {
-        margin: 5px;
-        transition: $animation-duration;
-        border: 1px solid $white;
+        width: (100% / 3) - 1;
+        margin: .5%;
         cursor: pointer;
+
+        @include for-size($medium-up) {
+            width: (100% / 4) - 1;
+        }
+
+        @include for-size($large-up) {
+            width: (100% / 5) - 1;
+        }
+
+        @include for-size($jumbo-up) {
+            width: (100% / 6) - 1;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+    }
+
+    // Override the photoswipe CSS rule for captions
+    .pswp__caption__center {
+        text-align: center;
+    }
+
+    // That little 1px gap at the bottom on Android
+    .pswp__bg {
+        height: 111%;
     }
 }

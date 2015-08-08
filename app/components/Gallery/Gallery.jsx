@@ -1,6 +1,22 @@
+/**
+ * This page is a bit heavy on the plugins, but here we go:
+ *
+ * Masonry is in charge of laying out the thumbnails in a grid.
+ * It does maths once the images are loaded, the sizing is done in CSS
+ *
+ * PhotoSwipe is just awesome and used for showing individual images and
+ * handling all the swiping, pinchy zoomy, etc.
+ *
+ * imagesloaded is a library by the masonry guy and just fires a function as each
+ * image finishes loading, without this, Masonry doesn't really work.
+ *
+ **/
+
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {isOnClient, isProd} from '../../utils';
+import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -17,57 +33,15 @@ class Gallery extends Component {
 
         this.getThumbBoundsFn = this.getThumbBoundsFn.bind(this);
 
-        this.photos = [
-            {
-                w: 1680, h: 1120,
-                src: 'http://i.imgur.com/c0G4Ffs.jpg',
-                title: 'Mondrian meets Fibonacci and together they make a table'
-            },
-            {
-                w: 3648, h: 1739,
-                src: 'http://i.imgur.com/YjxLUSh.jpg',
-                title: 'Lift in Lauterbrunnen'
-            },
-            {
-                w: 761, h: 1024,
-                src: 'http://i.imgur.com/OWR32gJ.jpg',
-                title: 'Pencil on paper, obviously'
-            },
-            {
-                w: 1680, h: 1466,
-                src: 'http://i.imgur.com/SR3DSag.jpg',
-                title: 'Floating panel coffee table'
-            },
-            {
-                w: 2048, h: 1622,
-                src: 'http://i.imgur.com/d2jcTYO.jpg',
-                title: 'Piano up close and personal'
-            },
-            {
-                w: 2048, h: 1365,
-                src: 'http://i.imgur.com/WRZ4mZU.jpg',
-                title: 'Very pepper'
-            },
-            {
-                w: 2383, h: 1759,
-                src: 'http://i.imgur.com/ydYdtzc.jpg',
-                title: 'Liquid light in Vienna'
-            }
-        ];
+        this.photos = require('./photos');
 
         this.photos.forEach((photo) => {
             // imgur uses the syntax of adding an l at the end to denote the 'large thumbnail' version of an image
             // Nice one, imgur
-            photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg');
+            //photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each
+             photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each
         });
-
-        // I'm setting the 'default' height in state so that when I update it client-side
-        // it triggers a render and React doesn't complain about the server code not
-        // matching the client code
-        // This means images are downloading before javascript even runs
-        this.state = {imageHeight: 200};
     }
-
 
     getThumbBoundsFn(i) {
         const photoEl = React.findDOMNode(this.refs[`img-${i}`]);
@@ -84,7 +58,7 @@ class Gallery extends Component {
         const options = {
             index: i,
             getThumbBoundsFn: this.getThumbBoundsFn,
-            fullscreenEl: false,
+            //fullscreenEl: false,
             shareEl: false,
             zoomEl: false
         };
@@ -95,12 +69,19 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            imageHeight: isOnClient ? window.innerWidth / 5 : 200
+        const gridEl = document.querySelector('.gallery__wrapper');
+
+        const msnry = new Masonry(gridEl, {
+            itemSelector: '.gallery__thumb',
+            columnWidth: '.gallery__thumb-sizer',
+            percentPosition: true
         });
+
+        imagesLoaded(gridEl).on('progress', () => msnry.layout());
     }
 
     render() {
+        console.log('  --  >  Gallery.jsx:84 > render');
         const classes = classnames(
             'gallery',
             this.props.className
@@ -108,16 +89,22 @@ class Gallery extends Component {
 
         const photoEls = this.photos.map((img, i) => {
             return (
-                <img key={i} ref={`img-${i}`} className="gallery__thumb" height={this.state.imageHeight} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+                <div key={i} className="gallery__thumb">
+                    <img ref={`img-${i}`} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+                </div>
             );
         });
 
         // The below boilerplate and comments are from http://photoswipe.com/documentation/getting-started.html
         return (
-            <section className={classes}>
-                <h1 className="heading-1">Photos, sketches, paintings and furniture...</h1>
+            <section ref="galleryWrapper" className={classes}>
+                {/*
+                <h1 className="heading-1">Not the web</h1>
+                <p>Every now and then I leave the code behind and...</p>
+                */}
 
-                <div className="gallery_wrapper">
+                <div className="gallery__wrapper">
+                    <div className="gallery__thumb-sizer"></div>
                     {photoEls}
                 </div>
                 {/* Root element of PhotoSwipe. Must have class pswp. */}
