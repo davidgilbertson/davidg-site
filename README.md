@@ -33,6 +33,8 @@ In production, `server.js` looks at this file to get the hash that it needs to r
 When `server.js` first responds, it gets a reference to the correct JS file and sends that to the HTML template. 
 It also gets the compiled CSS and inlines it in a `<style>` tag.
 
+Server-side rendering only happens in production mode.
+
 ## Performance
 It's a single network request to get ~20kb of HTML, CSS and the font downloaded and rendered at the moment. I'll be happy
 with the setup up until the first page is getting near ~200kb. Then I'll think about splitting out the CSS so that's
