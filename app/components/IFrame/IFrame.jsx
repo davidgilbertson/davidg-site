@@ -51,7 +51,7 @@ class IFrame extends Component {
 
         return (
             <div className={classNames}>
-                <iframe style={frameStyle} src={this.props.src}></iframe>
+                <iframe style={frameStyle} src={this.props.src} frameborder="no"></iframe>
             </div>
         );
     }
