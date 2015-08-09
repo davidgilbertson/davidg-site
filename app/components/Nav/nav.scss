@@ -15,18 +15,15 @@ $vertical-height-overflow: 1rem;
     background: $nav-color;
     z-index: $z-index-menu;
     overflow-x: hidden;
-    //@include shade(2, 0, 10, 1);
-    //border-right: 4px solid darken($nav-color, 10%);
 
     &:after {
-        content: '';
+        @include shade(-2, 0, 10, .8);
         position: absolute;
         top: 0;
         right: -10px;
         bottom: 0;
         width: 10px;
-        @include shade(-2, 0, 10, .8);
-        //box-shadow: -2px 0 10px black;
+        content: '';
     }
 
     .app__wrapper--nav-visible & {
@@ -62,9 +59,9 @@ $vertical-height-overflow: 1rem;
 
     &.focus,
     &.active {
+        outline: none;
         background: $nav-color--active;
         color: $nav-text-color--active;
-        outline: none;
     }
 }
 

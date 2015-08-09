@@ -15,6 +15,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {isOnServer, isProd} from '../../utils';
+import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const photoSwipeUIDefault = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -32,6 +33,7 @@ class Gallery extends Component {
         this.calcThumbBoundsFn = this.calcThumbBoundsFn.bind(this);
 
         this.photos = require('./photos');
+        this.msnry = undefined;
     }
 
     calcThumbBoundsFn(i) {
@@ -65,7 +67,7 @@ class Gallery extends Component {
         // imgur uses the syntax of adding an 'l' or 'm' at the end to denote a large or medium thumbnail version of an image
         // I haven't been able to find what they use for 'small'
         this.photos.forEach((photo) => {
-            if (window.innerWidth >= 1300) {
+            if (window.innerWidth >= 1300 || photo.doubleWidth) {
                 photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each;  640px
             } else {
                 photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each;  320px
@@ -79,13 +81,23 @@ class Gallery extends Component {
 
         const gridEl = document.querySelector('.gallery__wrapper');
 
-        const msnry = new Masonry(gridEl, {
+        this.msnry = new Masonry(gridEl, {
             itemSelector: '.gallery__thumb',
             columnWidth: '.gallery__thumb-sizer',
             percentPosition: true
         });
 
-        imagesLoaded(gridEl).on('progress', () => msnry.layout());
+        imagesLoaded(gridEl).on('progress', () => this.msnry.layout());
+    }
+
+    shouldComponentUpdate(newProps) {
+        if (newProps.showNav !== this.props.showNav) {
+            setTimeout(() => {
+                this.msnry.layout();
+            }, ANIMATION_DURATION_MS);
+        }
+
+        return false;
     }
 
     render() {
@@ -96,8 +108,14 @@ class Gallery extends Component {
 
         const photoEls = this.photos.map((img, i) => {
             // TODO (davidg): in here, if I'm selecting double width I should be taking the big thumb
+            let thumbClasses = 'gallery__thumb';
+
+            if (img.doubleWidth) {
+                thumbClasses += ' gallery__thumb--double';
+            }
+
             return (
-                <div key={i} className="gallery__thumb">
+                <div key={i} className={thumbClasses}>
                     <img ref={`img-${i}`} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
                 </div>
             );
@@ -106,11 +124,6 @@ class Gallery extends Component {
         // The below boilerplate and comments are from http://photoswipe.com/documentation/getting-started.html
         return (
             <section ref="galleryWrapper" className={classes}>
-                {/*
-                <h1 className="heading-1">Not the web</h1>
-                <p>Every now and then I leave the code behind and...</p>
-                */}
-
                 <div className="gallery__wrapper">
                     <div className="gallery__thumb-sizer"></div>
                     {photoEls}
@@ -184,7 +197,8 @@ class Gallery extends Component {
 }
 
 Gallery.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    showNav: PropTypes.bool
 };
 
 export default Gallery;

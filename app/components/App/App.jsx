@@ -173,7 +173,7 @@ class App extends Component {
                 <Header title={title} />
 
                 <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
-                    <RouteHandler key={key} />
+                    <RouteHandler showNav={this.state.showNav} key={key} />
                 </CSSTransitionGroup>
             </div>
         );
