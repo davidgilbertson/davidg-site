@@ -1,20 +1,15 @@
 import React, {Component} from 'react/addons';
+const CSSTransitionGroup = React.addons.CSSTransitionGroup; // This needs to be separate from the React import
 import {RouteHandler} from 'react-router';
 import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
 import throttle from 'lodash/function/throttle';
-import {isProd, isOnClient, saveLocal, loadLocal} from '../../utils';
+import {contain, isProd} from '../../utils';
 
-const CSSTransitionGroup = React.addons.CSSTransitionGroup; // TODO (davidg): inport with react on line 1?
 import Hamburger from '../Hamburger/Hamburger.jsx';
 
-// TODO (davidg): somehow share variables between JS/CSS
-// This one should match $med-large-breakpoint = 55em * 16 = 880
-const MED_LARGE_BREAKPOINT = 55; // must match $med-large-breakpoint
-const NAV_WIDTH_EMS = 15; // must match $sidebar-width
+import {ANIMATION_DURATION_MS, MED_LARGE_BREAKPOINT_EMS, NAV_WIDTH_EMS, MAX_NAV_POS, NAV_MASK_OPACITY} from '../../utils/constants';
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
-const MAX_NAV_POS = 0;
-const NAV_MASK_OPACITY = 0.4; // must match $nav-mask-alpha
 
 if (!isProd) {
     require('./app.scss');
@@ -27,10 +22,6 @@ if (!isProd) {
 
 import Nav from '../Nav/Nav.jsx';
 import Header from '../Header/Header.jsx';
-
-function contain(num, min, max) {
-    return Math.min(Math.max(min, num), max);
-}
 
 class App extends Component {
     constructor(props) {
@@ -45,17 +36,15 @@ class App extends Component {
         this.onTouchEnd = this.onTouchEnd.bind(this);
 
         this.state = {
-            showNav: false,
+            showNav: true,
+            showNavInitial: true,
             navTranslate: 0
         };
 
         this.touchStartPos = 0;
-        //this.bodyTopAtStart = 0;
-
         this.navEl = undefined;
         this.navMaskEl = undefined;
         this.navTranslate = undefined;
-
         this.movingNav = false;
     }
 
@@ -70,11 +59,7 @@ class App extends Component {
     showNav() {
         this.setState({showNav: true});
 
-
-        saveLocal('showNav', true);
-
-        if (window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
-            //document.body.classList.add('no-scroll');
+        if (window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
             window.addEventListener('touchstart', this.onTouchStart, false);
         }
     }
@@ -82,14 +67,11 @@ class App extends Component {
     hideNav() {
         this.setState({showNav: false});
 
-        saveLocal('showNav', false);
-
         window.removeEventListener('touchstart', this.onTouchStart, false);
-        //document.body.classList.remove('no-scroll');
     }
 
     hideNavIfSmall() {
-        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
             this.hideNav();
         }
     }
@@ -102,7 +84,6 @@ class App extends Component {
         this.movingNav = true;
         const dims = e.touches ? e.touches[0] : e;
         this.touchStartPos = dims.clientX;
-        //this.bodyTopAtStart = document.body.scrollTop;
 
         this.navEl.style.transition = 'none';
         this.navMaskEl.style.transition = 'none';
@@ -114,7 +95,6 @@ class App extends Component {
 
     onTouchMove(e) {
         if (!this.movingNav) return; // sometimes a touchMove can fire AFTER the touch end. Bad touchMove. Bad.
-        //document.body.scrollTop = this.bodyTopAtStart; // block scrolling which on mobile does the annoying header shuffle
 
         const dims = e.touches ? e.touches[0] : e;
         const currentLeft = dims.clientX;
@@ -129,7 +109,6 @@ class App extends Component {
 
         navMaskOpacity = contain(navMaskOpacity, 0, NAV_MASK_OPACITY);
 
-        //this.navMaskEl.style.backgroundColor = `rgba(0, 0, 0, ${navMaskOpacity})`;
         this.navMaskEl.style.opacity = navMaskOpacity;
     }
 
@@ -153,9 +132,13 @@ class App extends Component {
     }
 
     componentDidMount() {
-        if (isOnClient && loadLocal('showNav') !== false && window.innerWidth > (MED_LARGE_BREAKPOINT * 16)) {
-            this.toggleNav();
-        }
+        // The nav is always in the show position on load (good for desktop)
+        // but leave it hidden on mobile, then close it after a while
+        this.hideNavIfSmall();
+
+        setTimeout(() => {
+            this.setState({showNavInitial: false});
+        }, ANIMATION_DURATION_MS);
 
         this.navEl = document.querySelector('.nav');
         this.navMaskEl = document.querySelector('.nav__mask');
@@ -172,6 +155,7 @@ class App extends Component {
 
         const appWrapperClasses = classnames(
             'app__wrapper',
+            {'app__wrapper--nav-visible--init': this.state.showNavInitial},
             {'app__wrapper--nav-visible': this.state.showNav}
         );
 

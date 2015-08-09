@@ -5,6 +5,7 @@
 //  > import saveLocal from '../../utils/saveLocal';
 
 export default {
+    contain: require('./contain.js'),
     isOnClient: require('./isOnClient.js'),
     isOnServer: require('./isOnServer.js'),
     isProd: require('./isProd.js'),

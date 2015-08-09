@@ -5,11 +5,10 @@ $vertical-height-overflow: 1rem;
 
 .nav {
     position: fixed;
-    height: 120%; // Allow for user scrolling an mobile browser nav disappearing
     top: 0;
-    //bottom: 0;
     left: 0;
     width: $sidebar-width;
+    height: 120%; // Allow for user scrolling an mobile browser nav disappearing
     padding-top: $header-height;
     transform: translateX(-$sidebar-width * 1.1);
     transition: $animation-duration;
@@ -19,6 +18,12 @@ $vertical-height-overflow: 1rem;
 
     .app__wrapper--nav-visible & {
         transform: translateX(0);
+    }
+
+    @include for-size($hover-nav) {
+        .app__wrapper--nav-visible--init & {
+            display: none;
+        }
     }
 }
 
@@ -43,7 +48,9 @@ $vertical-height-overflow: 1rem;
 }
 
 .nav__mask {
-    @include for-size($medium-down) {
+    opacity: 0;
+
+    @include for-size($hover-nav) {
         position: fixed;
         top: -5rem; // handle browser top bit hiding on scroll
         right: 0;
@@ -51,12 +58,15 @@ $vertical-height-overflow: 1rem;
         left: 0;
         transition: $animation-duration;
         background: $black;
-        opacity: 0;
         z-index: 0;
 
         .app__wrapper--nav-visible & {
             opacity: $nav-mask-alpha;
             z-index: $z-index-menu - 1;
+        }
+
+        .app__wrapper--nav-visible--init & {
+            display: none;
         }
     }
 }
