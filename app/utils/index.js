@@ -5,12 +5,12 @@
 //  > import saveLocal from '../../utils/saveLocal';
 
 export default {
-    contain: require('./contain.js'),
-    isOnClient: require('./isOnClient.js'),
-    isOnServer: require('./isOnServer.js'),
-    isProd: require('./isProd.js'),
-    isWebPack: require('./isWebPack.js'),
-    loadLocal: require('./loadLocal.js'),
-    saveLocal: require('./saveLocal.js'),
-    xhr: require('./xhr.js')
+    contain: require('./lib/contain.js'),
+    isOnClient: require('./lib/isOnClient.js'),
+    isOnServer: require('./lib/isOnServer.js'),
+    isProd: require('./lib/isProd.js'),
+    isWebPack: require('./lib/isWebPack.js'),
+    loadLocal: require('./lib/loadLocal.js'),
+    saveLocal: require('./lib/saveLocal.js'),
+    xhr: require('./lib/xhr.js')
 };

@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import isProd from '../../utils/isProd.js';
-
+import React, {Component, PropTypes} from 'react';
+import isProd from '../../utils/lib/isProd.js';
 
 if (!isProd) require('./header.scss');
 
@@ -12,10 +11,14 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <span className="header__title">DG | 707</span>
+                <span className="header__title">{this.props.title}</span>
             </div>
         );
     }
 }
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired
+};
 
 export default Header;

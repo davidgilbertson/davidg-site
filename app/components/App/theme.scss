@@ -3,15 +3,19 @@
 
 @import '../../utils/styles';
 
+body {
+    background: $body-color;
+}
+
 .button {
-    background: $color-primary;
-    border: 0;
-    color: $white;
-    cursor: pointer;
-    font-size: 1.1rem;
-    outline: 0;
     padding: 1em 2em;
     transition: opacity $animation-duration;
+    border: 0;
+    outline: 0;
+    background: $color-primary;
+    color: $white;
+    font-size: 1.1rem;
+    cursor: pointer;
 
     &:hover {
         opacity: .9;

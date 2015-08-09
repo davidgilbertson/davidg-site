@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
 import throttle from 'lodash/function/throttle';
 import {contain, isProd} from '../../utils';
+import {getRouteByUrl} from '../../utils/routeLibrary.js';
 
 import Hamburger from '../Hamburger/Hamburger.jsx';
 
@@ -152,6 +153,8 @@ class App extends Component {
 
     render() {
         const key = this.context.router.getCurrentPath();
+        const currentRoute = getRouteByUrl(this.context.router.getCurrentPath());
+        const title = currentRoute ? currentRoute.title : 'DG707';
 
         const appWrapperClasses = classnames(
             'app__wrapper',
@@ -167,7 +170,7 @@ class App extends Component {
 
                 <Nav hideNavIfSmall={this.hideNavIfSmall}/>
 
-                <Header />
+                <Header title={title} />
 
                 <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
                     <RouteHandler key={key} />

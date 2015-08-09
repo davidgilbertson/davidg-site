@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import isProd from '../../../utils/isProd.js';
+import isProd from '../../../utils/lib/isProd.js';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
@@ -12,6 +12,8 @@ class Home extends Component {
     }
 
     render() {
+        console.log('  --  >  Home.jsx:15 > render > this.props:', this.props);
+
         return (
             <PageWrapper className="home">
                 <div className="justify-small">

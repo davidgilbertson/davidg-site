@@ -14,6 +14,8 @@ class ShowcaseWrapper extends Component {
         super(props);
     }
 
+    // TODO (davidg): put setting the iframe src in componentDidMount so it's more declaratively client-side?
+
     render() {
         const frame = isOnClient ? (
             <IFrame fullScreen={true} src={'http://davidg.com.au/showcase' + document.location.pathname} />
@@ -22,7 +24,7 @@ class ShowcaseWrapper extends Component {
         );
 
         return (
-            <PageWrapper className="showcase-wrapper">
+            <PageWrapper className="showcase-wrapper" wide={true}>
                 {frame}
             </PageWrapper>
         );

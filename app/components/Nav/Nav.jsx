@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import isProd from '../../utils/isProd.js';
+import isProd from '../../utils/lib/isProd.js';
 import {Link} from 'react-router';
 
 if (!isProd) require('./nav.scss');

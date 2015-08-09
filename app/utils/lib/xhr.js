@@ -5,9 +5,7 @@ export default function(url) {
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = () => {
-            if (xhr.readyState !== 4 || xhr.status !== 200) {
-                reject({err: 'error'});
-            }
+            if (xhr.readyState !== 4 || xhr.status !== 200) return;
 
             resolve(xhr.responseText);
         };

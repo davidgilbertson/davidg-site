@@ -87,7 +87,6 @@ class AllThePrimes extends Component {
     render() {
         return (
             <PageWrapper className="all-the-primes">
-                <h1 className="heading-1">All the primes</h1>
                 <ul ref="primeList" className="all-the-primes__list">
                     <li>1</li>
                     <li>2</li>

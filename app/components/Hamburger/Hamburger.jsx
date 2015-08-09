@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import isProd from '../../utils/isProd.js';
+import isProd from '../../utils/lib/isProd.js';
 
 if (!isProd) require('./hamburger.scss');
 

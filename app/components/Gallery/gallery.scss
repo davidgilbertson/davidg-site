@@ -18,7 +18,7 @@
         cursor: pointer;
 
         @include for-size($medium-up) {width: $four-col;}
-        @include for-size($large-up) {width: $five-col;}
+        //@include for-size($large-up) {width: $five-col;}
         @include for-size($jumbo-up) {width: $six-col;}
 
         //&--double {
