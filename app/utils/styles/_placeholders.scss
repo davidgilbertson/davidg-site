@@ -1,6 +1,6 @@
 %heading-1 {
     margin: 1em 0;
-    color: $color-primary;
+    color: $heading-color;
     font-size: 2em;
     font-weight: 400;
     text-align: center;
@@ -9,14 +9,14 @@
 
 %heading-2 {
     margin: 1em 0 .5em;
-    color: $color-primary;
+    color: $heading-color;
     font-size: 1.5em;
     font-weight: 400;
 }
 
 %heading-3 {
     margin: 1em 0 .4em;
-    color: $color-primary;
+    color: $heading-color;
     font-size: 1.2em;
     font-weight: 400;
 }
@@ -29,7 +29,9 @@
 
     &:focus,
     &:active,
+    &:visited,
     &:hover {
+        color: $link-color--hover;
         text-decoration: none;
     }
 }

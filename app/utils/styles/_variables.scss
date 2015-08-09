@@ -18,6 +18,7 @@ $med-large-breakpoint: 55rem; // 880px
 $large-jumbo-breakpoint: 70rem; // 1120px
 $one-px: 1 / 16;
 
+//  --  RAW BREAKPOINTS  --  //
 $small-only: 0 $small-med-breakpoint;
 $medium-only: ($small-med-breakpoint + $one-px) $med-large-breakpoint;
 $large-only: ($med-large-breakpoint + $one-px) $large-jumbo-breakpoint;
@@ -31,16 +32,26 @@ $jumbo-up: $jumbo-only; // Same thing, right?
 $medium-down: 0 $med-large-breakpoint;
 $large-down: 0 $large-jumbo-breakpoint;
 
+//  --  NAMED BREAKPOINTS  --  //
+$hover-nav: $medium-down;
+
 
 //  --  RAW COLOURS  --  //
 $white: #fff;
 $blue: #4642c2;
-$red: #a11;
-$color-nav: #35363c;
+$aqua: #04b4bf;
+
+$turquoise: #16a085;
+$turquoise--light: #1abc9c;
+$red: #c0392b;
+$red--light: #e74c3c;
+$grey--dark: #2c3e50;
+$grey--light: #ecf0f1;
+
 
 $black: #000;
 $color-grey-10: #333;
-$color-grey-15: #5A5E6D;
+$color-grey-15: #5a5e6d;
 $color-grey-20: #888;
 $color-grey-30: #ddd;
 $color-grey-40: #f7f7f7;
@@ -48,9 +59,22 @@ $color-grey-40: #f7f7f7;
 $nav-mask-alpha: .4;
 
 //  --  COLOUR INSTANCES  --  //
-$hero-text: $color-grey-15;
 $color-primary: $red;
-$link-color: $blue;
+$body-color: $grey--light;
+$hero-text: $grey--dark;
+$text-color: $grey--dark;
+$header-color: $grey--dark;
+$header-title-color: $grey--light;
+
+$heading-color: $red;
+$link-color: $red;
+$link-color--hover: $red--light;
+
+$nav-color: $turquoise;
+$nav-text-color: $white;
+$nav-color--active: $turquoise--light;
+$nav-text-color--active: $white;
+$nav-mask-color: $black;
 
 //  --  TYPOGRAPHY  --  //
 $sans-serif: 'Roboto', sans-serif;

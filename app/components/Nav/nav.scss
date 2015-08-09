@@ -12,9 +12,10 @@ $vertical-height-overflow: 1rem;
     padding-top: $header-height;
     transform: translateX(-$sidebar-width * 1.1);
     transition: $animation-duration;
-    background: $color-nav;
+    background: $nav-color;
     z-index: $z-index-menu;
     overflow-x: hidden;
+    @include shade(2, 0, 10, 1);
 
     .app__wrapper--nav-visible & {
         transform: translateX(0);
@@ -37,13 +38,13 @@ $vertical-height-overflow: 1rem;
     display: block;
     padding: 15px;
     transition: $animation-duration;
-    color: $white;
+    color: $nav-text-color;
     font-size: 120%;
     text-decoration: none;
 
     &.active {
-        background: $white;
-        color: $color-grey-10;
+        background: $nav-color--active;
+        color: $nav-text-color--active;
     }
 }
 
@@ -57,7 +58,7 @@ $vertical-height-overflow: 1rem;
         bottom: -2px; // that little white line at the bottom of fixed elements
         left: 0;
         transition: $animation-duration;
-        background: $black;
+        background: $nav-mask-color;
         z-index: 0;
 
         .app__wrapper--nav-visible & {

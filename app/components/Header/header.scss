@@ -7,7 +7,7 @@
     left: 0;
     height: $header-height;
     transition: $animation-duration;
-    background: $color-primary;
+    background: $header-color;
     z-index: $z-index-header;
 
     body.hosting-iframe & {
@@ -24,7 +24,7 @@
 .header__title {
     display: inline-block;
     width: 100%;
-    color: $white;
+    color: $header-title-color;
     font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 1px;
