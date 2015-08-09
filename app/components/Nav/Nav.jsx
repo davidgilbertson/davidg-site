@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import isProd from '../../utils/isProd.js';
-import {Router, Link} from 'react-router';
+import {Link} from 'react-router';
 
 if (!isProd) require('./nav.scss');
 
@@ -29,7 +29,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-    hideNav: PropTypes.func
+    hideNavIfSmall: PropTypes.func
 };
 
 export default Nav;

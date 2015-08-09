@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {isOnClient, isWebPack, xhr} from '../../utils';
+import {isOnClient, xhr} from '../../utils';
 import marked from 'marked';
 
 if (isOnClient) {

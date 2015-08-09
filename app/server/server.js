@@ -39,8 +39,5 @@ server.get('*', (req, res) => {
 });
 
 export default function() {
-    server.listen(port, () => {
-        console.info('  --  >>  process.env.NODE_ENV:', process.env.NODE_ENV);
-        console.info('  --  >>  Server listening on port', port);
-    });
+    server.listen(port);
 }

@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "npm run lint && webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
-    "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon"
+    "prod": "npm run lint && set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
+    "lint": "eslint ./app --ext .js,.jsx"
   },
   "repository": {
     "type": "git",
@@ -40,8 +41,11 @@
     "susy": "^2.2.5"
   },
   "devDependencies": {
+    "babel-eslint": "^4.0.5",
     "babel-loader": "^5.3.2",
     "css-loader": "^0.15.5",
+    "eslint": "^1.1.0",
+    "eslint-plugin-react": "^3.2.1",
     "expose-loader": "^0.7.0",
     "file-loader": "^0.8.4",
     "imports-loader": "^0.6.4",

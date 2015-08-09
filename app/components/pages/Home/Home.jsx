@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router';
 import isProd from '../../../utils/isProd.js';
 
@@ -9,16 +9,6 @@ if (!isProd) require('./home.scss');
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.update = this.update.bind(this);
-
-        this.state = {value: 22};
-    }
-
-    update(e) {
-        let value = e.target.value;
-        console.log(value);
-
-        this.setState({value});
     }
 
     render() {

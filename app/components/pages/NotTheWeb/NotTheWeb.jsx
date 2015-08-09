@@ -1,5 +1,4 @@
-import React, {Component, PropTypes} from 'react';
-import classnames from 'classnames';
+import React, {Component} from 'react';
 import {isProd} from '../../../utils';
 
 if (!isProd) require('./notTheWeb.scss');

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {isProd, isOnClient} from '../../../utils';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';

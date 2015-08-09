@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import isProd from '../../../utils/isProd.js';
 
 import MarkDown from '../../MarkDown/MarkDown.jsx';

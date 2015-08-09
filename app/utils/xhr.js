@@ -1,12 +1,15 @@
 export default function(url) {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     return new Promise((resolve) => {
         xhr.open('GET', url, true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState != 4 || xhr.status != 200) return;
-            return resolve(xhr.responseText);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4 || xhr.status !== 200) {
+                reject({err: 'error'});
+            }
+
+            resolve(xhr.responseText);
         };
 
         xhr.send();

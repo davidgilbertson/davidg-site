@@ -1,4 +1,4 @@
-import React, {cloneElement, Component} from 'react/addons';
+import React, {Component} from 'react/addons';
 import {RouteHandler} from 'react-router';
 import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
@@ -59,6 +59,41 @@ class App extends Component {
         this.movingNav = false;
     }
 
+    toggleNav() {
+        if (this.state.showNav) {
+            this.hideNav();
+        } else {
+            this.showNav();
+        }
+    }
+
+    showNav() {
+        this.setState({showNav: true});
+
+
+        saveLocal('showNav', true);
+
+        if (window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+            //document.body.classList.add('no-scroll');
+            window.addEventListener('touchstart', this.onTouchStart, false);
+        }
+    }
+
+    hideNav() {
+        this.setState({showNav: false});
+
+        saveLocal('showNav', false);
+
+        window.removeEventListener('touchstart', this.onTouchStart, false);
+        //document.body.classList.remove('no-scroll');
+    }
+
+    hideNavIfSmall() {
+        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
+            this.hideNav();
+        }
+    }
+
     onResize() {
         this.hideNavIfSmall();
     }
@@ -117,41 +152,6 @@ class App extends Component {
         window.removeEventListener('touchend', this.onTouchEnd, false);
     }
 
-    toggleNav() {
-        if (this.state.showNav) {
-            this.hideNav();
-        } else {
-            this.showNav();
-        }
-    }
-
-    showNav() {
-        this.setState({showNav: true});
-
-
-        saveLocal('showNav', true);
-
-        if (window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
-            //document.body.classList.add('no-scroll');
-            window.addEventListener('touchstart', this.onTouchStart, false);
-        }
-    }
-
-    hideNav() {
-        this.setState({showNav: false});
-
-        saveLocal('showNav', false);
-
-        window.removeEventListener('touchstart', this.onTouchStart, false);
-        //document.body.classList.remove('no-scroll');
-    }
-
-    hideNavIfSmall() {
-        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT * 16)) {
-            this.hideNav();
-        }
-    }
-
     componentDidMount() {
         if (isOnClient && loadLocal('showNav') !== false && window.innerWidth > (MED_LARGE_BREAKPOINT * 16)) {
             this.toggleNav();
@@ -181,7 +181,7 @@ class App extends Component {
 
                 <div className="nav__mask" onClick={this.hideNav}></div>
 
-                <Nav hideNav={this.hideNav} hideNavIfSmall={this.hideNavIfSmall}/>
+                <Nav hideNavIfSmall={this.hideNavIfSmall}/>
 
                 <Header />
 

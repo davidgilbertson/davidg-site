@@ -14,10 +14,10 @@
 
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {isOnClient, isOnServer, isProd} from '../../utils';
+import {isOnServer, isProd} from '../../utils';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
-const PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default.js');
+const photoSwipeUIDefault = require('photoswipe/dist/photoswipe-ui-default.js');
 
 if (!isProd) {
     require('./gallery.scss');
@@ -29,18 +29,18 @@ class Gallery extends Component {
     constructor(props) {
         super(props);
 
-        this.getThumbBoundsFn = this.getThumbBoundsFn.bind(this);
+        this.calcThumbBoundsFn = this.calcThumbBoundsFn.bind(this);
 
         this.photos = require('./photos');
     }
 
-    getThumbBoundsFn(i) {
+    calcThumbBoundsFn(i) {
         const photoEl = React.findDOMNode(this.refs[`img-${i}`]);
         const dims = photoEl.getBoundingClientRect();
 
         const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-        return {x:dims.left, y:dims.top + pageYScroll, w:dims.width};
+        return {x: dims.left, y: dims.top + pageYScroll, w: dims.width};
     }
 
     showGallery(i) {
@@ -48,13 +48,13 @@ class Gallery extends Component {
 
         const options = {
             index: i,
-            getThumbBoundsFn: this.getThumbBoundsFn,
+            getThumbBoundsFn: this.calcThumbBoundsFn,
             shareEl: false,
             zoomEl: false
         };
 
         // Initializes and opens PhotoSwipe
-        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, this.photos, options);
+        const gallery = new PhotoSwipe(pswpElement, photoSwipeUIDefault, this.photos, options);
         gallery.init();
     }
 
@@ -134,7 +134,7 @@ class Gallery extends Component {
                             <div className="pswp__item"></div>
                         </div>
 
-                        {/* Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. */}
+                        {/* Default (photoSwipeUIDefault) interface on top of sliding area. Can be changed. */}
                         <div className="pswp__ui pswp__ui--hidden">
 
                             <div className="pswp__top-bar">
