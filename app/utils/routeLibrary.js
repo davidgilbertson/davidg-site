@@ -1,3 +1,4 @@
+import find from 'lodash/collection/find';
 import Home from '../components/pages/Home/Home.jsx';
 import Isolog from '../components/pages/Isolog/Isolog.jsx';
 import Fireball from '../components/pages/Fireball/Fireball.jsx';
@@ -63,5 +64,5 @@ export const routeLibrary = [
 ];
 
 export function getRouteByUrl(url) {
-    return routeLibrary.find(route => route.path === url);
+    return find(routeLibrary, {path: url});
 }
