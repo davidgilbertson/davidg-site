@@ -15,10 +15,10 @@ class Home extends Component {
         return (
             <PageWrapper className="home">
                 <div className="justify-small">
-                    <p className="heading-1">Hello</p>
+                    <p className="home__hero-text">Hello</p>
 
                     <p className="home__hero-text">
-                        I am David Gilbertson. This is my site. A haphazard mix of things I've
+                        I am David Gilbertson. This is my site. A haphazard mix of weekend projects I've
                         worked on over the years, with varying degrees of polish.
                     </p>
 
