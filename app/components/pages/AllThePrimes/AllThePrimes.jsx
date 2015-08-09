@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {isProd, isOnClient} from '../../../utils';
+import {isProd} from '../../../utils';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
@@ -55,7 +55,7 @@ class AllThePrimes extends Component {
 
     maybeAppendNextPrime() {
         const listHeight = this.primeListEl.offsetHeight;
-        const scrollPos = document.body.scrollTop;
+        const scrollPos = document.body.scrollTop || window.pageYOffset;
         const spaceBelow = listHeight - scrollPos - this.viewportHeight;
 
         if (spaceBelow < this.viewportHeight * 5) {
@@ -68,16 +68,14 @@ class AllThePrimes extends Component {
     componentDidMount() {
         this.primeListEl = React.findDOMNode(this.refs.primeList);
 
-        if (isOnClient) {
-            this.viewportHeight = window.innerHeight;
+        this.viewportHeight = window.innerHeight;
 
-            setTimeout(() => {
-                document.body.scrollTop = 0; // going back/forward might start already scrolled down
-                this.appendNextPrime({andTryAgain: true});
-            }, 50); // react-router or the browser will do some clever scrolling jazz. Hack away at that.
+        setTimeout(() => {
+            document.body.scrollTop = 0; // going back/forward might start already scrolled down
+            this.appendNextPrime({andTryAgain: true});
+        }, 50); // react-router or the browser will do some clever scrolling jazz. Hack away at that.
 
-            window.addEventListener('scroll', this.onScroll, false);
-        }
+        window.addEventListener('scroll', this.onScroll, false);
     }
 
     componentWillUnmount() {
