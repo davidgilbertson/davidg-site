@@ -10,10 +10,6 @@
     background: $header-color;
     z-index: $z-index-header;
 
-    body.hosting-iframe & {
-        display: none;
-    }
-
     .app__wrapper--nav-visible & {
         @include for-size($large-up) {
             padding-left: $sidebar-width;

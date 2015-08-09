@@ -4,10 +4,6 @@ body {
     &:not(.hosting-iframe) {
         overflow-y: scroll;
     }
-
-    //&.no-scroll {
-    //    overflow-y: hidden;
-    //}
 }
 
 .hide {

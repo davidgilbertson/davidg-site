@@ -20,10 +20,6 @@
     background: $white;
     opacity: 1;
 
-    body.hosting-iframe & {
-        @include shade(2, 1, 6, .9);
-    }
-
     .app__wrapper--nav-visible & {
         box-shadow: none;
         opacity: .5;

@@ -12,7 +12,6 @@
 
     &--wide {
         @include container();
-        //padding: 10px;
     }
 }
 
@@ -22,10 +21,6 @@
     width: 100%;
     transition: opacity 150ms, padding-left $animation-duration;
     opacity: 1;
-
-    body.hosting-iframe & {
-        top: 0;
-    }
 
     .app__wrapper--nav-visible & {
         @include for-size($large-up) {

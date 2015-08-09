@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {isProd, isOnClient} from '../../../utils';
+import {isProd} from '../../../utils';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 import IFrame from '../../IFrame/IFrame.jsx';
@@ -12,20 +12,22 @@ if (!isProd) require('./showcaseWrapper.scss');
 class ShowcaseWrapper extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            frameSrc: ''
+        };
     }
 
-    // TODO (davidg): put setting the iframe src in componentDidMount so it's more declaratively client-side?
+    componentDidMount() {
+        this.setState({
+            frameSrc: 'http://davidg.com.au/showcase' + document.location.pathname
+        });
+    }
 
     render() {
-        const frame = isOnClient ? (
-            <IFrame fullScreen={true} src={'http://davidg.com.au/showcase' + document.location.pathname} />
-        ) : (
-            null
-        );
-
         return (
             <PageWrapper className="showcase-wrapper" wide={true}>
-                {frame}
+                <IFrame fullScreen={true} src={this.state.frameSrc} />
             </PageWrapper>
         );
     }
