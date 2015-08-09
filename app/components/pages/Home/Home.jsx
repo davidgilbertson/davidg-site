@@ -12,8 +12,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log('  --  >  Home.jsx:15 > render > this.props:', this.props);
-
         return (
             <PageWrapper className="home">
                 <div className="justify-small">
