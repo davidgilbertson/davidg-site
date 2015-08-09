@@ -36,6 +36,7 @@
     "marked": "^0.3.3",
     "masonry-layout": "^3.3.1",
     "photoswipe": "^4.1.0",
+    "promise": "^7.0.4",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "susy": "^2.2.5"

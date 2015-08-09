@@ -1,3 +1,5 @@
+import Promise from 'promise';
+
 export default function(url) {
     const xhr = new XMLHttpRequest();
 
