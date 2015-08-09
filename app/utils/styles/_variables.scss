@@ -15,22 +15,26 @@ $hamburger-width: 3rem;
 //  --  BREAKPOINTS  --  //
 $small-med-breakpoint: 30rem; // 480px
 $med-large-breakpoint: 55rem; // 880px
-$large-jumbo-breakpoint: 70rem; // 1120px
+$large-vlarge-breakpoint: 70rem; // 1120px
+$vlarge-jumbo-breakpoint: 100rem; // 1600px
 $one-px: 1 / 16;
 
 //  --  RAW BREAKPOINTS  --  //
 $small-only: 0 $small-med-breakpoint;
 $medium-only: ($small-med-breakpoint + $one-px) $med-large-breakpoint;
-$large-only: ($med-large-breakpoint + $one-px) $large-jumbo-breakpoint;
-$jumbo-only: ($large-jumbo-breakpoint + $one-px);
+$large-only: ($med-large-breakpoint + $one-px) $large-vlarge-breakpoint;
+$vlarge-only: ($large-vlarge-breakpoint + $one-px) $vlarge-jumbo-breakpoint;
+$jumbo-only: ($vlarge-jumbo-breakpoint + $one-px);
 
 // $small-up is implied in any rule
 $medium-up: ($small-med-breakpoint + $one-px);
 $large-up: ($med-large-breakpoint + $one-px);
+$vlarge-up: ($large-vlarge-breakpoint + $one-px);
 $jumbo-up: $jumbo-only; // Same thing, right?
 
 $medium-down: 0 $med-large-breakpoint;
-$large-down: 0 $large-jumbo-breakpoint;
+$large-down: 0 $large-vlarge-breakpoint;
+$vlarge-down: 0 $vlarge-jumbo-breakpoint;
 
 //  --  NAMED BREAKPOINTS  --  //
 $hover-nav: $medium-down;
