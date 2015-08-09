@@ -34,6 +34,12 @@ $vertical-height-overflow: 1rem;
     }
 
     @include for-size($hover-nav) {
+        &:after {
+            content: none;
+        }
+
+        @include shade(2, 0, 10, .8);
+
         .app__wrapper--nav-visible--init & {
             display: none;
         }
