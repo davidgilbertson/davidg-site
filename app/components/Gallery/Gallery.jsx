@@ -61,13 +61,16 @@ class Gallery extends Component {
     }
 
     componentWillMount() { // client and server
-        if (isOnServer) return; // No point doing this when server-side rendering
 
         // On mount, set the thumbnail version to medium or large
         // imgur uses the syntax of adding an 'l' or 'm' at the end to denote a large or medium thumbnail version of an image
         // I haven't been able to find what they use for 'small'
+
+        // when generating the HTML on the server, assume smallest screen so set thumbnails to small
+        const windowWidth = isOnServer ? 1 : window.innerWidth;
+
         this.photos.forEach((photo) => {
-            if (window.innerWidth >= 1300 || photo.doubleWidth) {
+            if (windowWidth >= 1300 || photo.doubleWidth) {
                 photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each;  640px
             } else {
                 photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each;  320px
@@ -76,8 +79,8 @@ class Gallery extends Component {
     }
 
     componentDidMount() { // client side only
-        const Masonry = require('masonry-layout');
-        const imagesLoaded = require('imagesloaded');
+        const Masonry = Masonry || require('masonry-layout');
+        const imagesLoaded = imagesLoaded || require('imagesloaded');
 
         const gridEl = document.querySelector('.gallery__wrapper');
 
