@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {isOnClient, isProd} from '../../utils';
 import debounce from 'lodash/function/debounce';
+import {isProd} from '../../utils';
+import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 
 if (!isProd) require('./iframe.scss');
 
@@ -21,17 +22,17 @@ class IFrame extends Component {
     }
 
     componentDidMount() {
-        if (isOnClient) {
-            setTimeout(() => {
-                document.body.classList.add('hosting-iframe');
-            }, 301); // So hacky, but because of the cross fade, the unmounting of the previous component will remove the 'hosting-iframe' class
-
+        setTimeout(() => {
             document.body.classList.add('hosting-iframe');
+        }, ANIMATION_DURATION_MS + 1); // So hacky, but because of the cross fade, the unmounting of the previous component will remove the 'hosting-iframe' class
 
-            this.setState({frameHeight: window.innerHeight});
+        document.body.classList.add('hosting-iframe');
 
-            window.addEventListener('resize', this.onResize, false);
-        }
+        const windowHeight = window.innerHeight - document.querySelector('.header').offsetHeight;
+
+        this.setState({frameHeight: windowHeight});
+
+        window.addEventListener('resize', this.onResize, false);
     }
 
     componentWillUnmount() {
