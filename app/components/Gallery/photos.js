@@ -16,17 +16,13 @@ export default [
         title: 'How a piano feels'
     },
     {
-        w: 2048, h: 1365,
-        src: 'http://i.imgur.com/WRZ4mZU.jpg', // B&W photo
-        title: 'Up close and personal with pepper'
-    },
-    {
         w: 1347, h: 2048,
         src: 'http://i.imgur.com/ejhpKJN.jpg', // B&W photo
         title: 'Woke up, took a photo'
     },
     {
         w: 2048, h: 1365,
+        //doubleWidth: true,
         src: 'http://i.imgur.com/B0POaib.jpg', // B&W photo
         title: 'The lesser-known Venice'
     },
@@ -39,6 +35,12 @@ export default [
         w: 2048, h: 1365,
         src: 'http://i.imgur.com/tk3TiWF.jpg', // B&W photo
         title: 'Snow on Venetian gondolas'
+    },
+    {
+        w: 2048, h: 1365,
+        doubleWidth: true,
+        src: 'http://i.imgur.com/WRZ4mZU.jpg', // B&W photo
+        title: 'Up close and personal with pepper'
     },
     {
         w: 3456, h: 2304,
@@ -73,6 +75,7 @@ export default [
     },
     {
         w: 1680, h: 1050,
+        //doubleWidth: true,
         src: 'http://i.imgur.com/l8rKllq.jpg', // Photo
         title: 'Curious little thing'
     },
@@ -113,6 +116,7 @@ export default [
     },
     {
         w: 1280, h: 800,
+        //doubleWidth: true,
         src: 'http://i.imgur.com/kK92oRQ.jpg', // Photo
         title: 'There was a cheese factory just over the hill, it smelled awful'
     },
@@ -133,6 +137,7 @@ export default [
     },
     {
         w: 2048, h: 1365,
+        doubleWidth: true,
         src: 'http://i.imgur.com/mZo9kYP.jpg', // Carving
         title: 'Three legged carving'
     },

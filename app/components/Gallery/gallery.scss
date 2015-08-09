@@ -19,14 +19,16 @@
 
         @include for-size($medium-up) {width: $four-col;}
         //@include for-size($large-up) {width: $five-col;}
+        @include for-size($vlarge-up) {width: $five-col;}
         @include for-size($jumbo-up) {width: $six-col;}
 
-        //&--double {
-        //    @include for-size($small-only) {width: $three-col * 2 + 1;}
-        //    @include for-size($medium-only) {width: $four-col * 2 + 1;}
-        //    @include for-size($large-only) {width: $five-col * 2 + 1;}
+        &--double {
+            @include for-size($small-only) {width: $three-col * 2 + 1;}
+            @include for-size($medium-only) {width: $four-col * 2 + 1;}
+            @include for-size($large-only) {width: $four-col * 2 + 1;}
+            @include for-size($vlarge-only) {width: $five-col * 2 + 1;}
         //    //@include for-size($jumbo-up) {width: $sixCol * 2 + 1;}
-        //}
+        }
 
         img {
             display: block;
