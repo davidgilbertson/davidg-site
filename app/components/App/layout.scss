@@ -1,9 +1,6 @@
 body {
     overflow-x: hidden;
-
-    &:not(.hosting-iframe) {
-        overflow-y: scroll;
-    }
+    overflow-y: scroll;
 }
 
 .hide {
