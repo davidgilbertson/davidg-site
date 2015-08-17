@@ -16,6 +16,8 @@ class PageWrapper extends Component {
 
         return (
             <div className="app__transition-wrapper">
+                <div className="app__blurb">{this.props.blurb}</div>
+
                 <main className={classes}>
                     {this.props.children}
                 </main>
@@ -25,6 +27,7 @@ class PageWrapper extends Component {
 }
 
 PageWrapper.propTypes = {
+    blurb: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
     className: PropTypes.string,
     wide: PropTypes.bool

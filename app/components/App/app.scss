@@ -15,6 +15,15 @@
     }
 }
 
+.app__blurb { // TODO (davidg): for now just copy/pasting hero text style
+    background: $grey--light;
+    padding: 1em;
+    border-bottom: 2px solid $grey--dark;
+    color: $hero-text;
+    font-family: $serif;
+    font-size: 1.1rem;
+}
+
 .app__transition-wrapper {
     position: absolute;
     top: $header-height;

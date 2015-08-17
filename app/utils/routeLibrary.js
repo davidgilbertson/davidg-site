@@ -29,13 +29,19 @@ export const routeLibrary = [
         name: 'aok',
         path: '/aok',
         handler: ShowcaseWrapper,
-        title: 'Assessment of knowledge'
+        title: 'Assessment of knowledge',
+        blurb: `AOK ('Assessment of Knowledge', if you've got the time) is a personal favourite.
+            I think it's a neato way to keep track of how much you know about the facets of a particular subject.
+            It uses lovingly hand-crafted SVG and JavaScript for the interactive charts and BackboneJS for the data models.`
     },
     {
         name: 'colors',
         path: '/colors',
         handler: ShowcaseWrapper,
-        title: 'Colors'
+        title: 'Colors',
+        blurb: `One of the earliest and certainly the most pointless of my creations...
+            Click a color to add it to the swatch at the top of the screen.
+            Who would have known that bisque, chocolate, salmon, mint cream and plum would go so well together.`
     },
     {
         name: 'guam',
@@ -64,5 +70,6 @@ export const routeLibrary = [
 ];
 
 export function getRouteByUrl(url) {
-    return find(routeLibrary, {path: url});
+    const matchingRoute =  find(routeLibrary, {path: url});
+    return matchingRoute || {}; // So I can use the result of this safely, e.g. thisRoute.name ( = undefined)
 }

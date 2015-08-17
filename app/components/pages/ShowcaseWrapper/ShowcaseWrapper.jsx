@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {isProd} from '../../../utils';
+import {getRouteByUrl} from '../../../utils/routeLibrary.js';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 import IFrame from '../../IFrame/IFrame.jsx';
@@ -19,14 +20,17 @@ class ShowcaseWrapper extends Component {
     }
 
     componentDidMount() {
+        const currentRoute = getRouteByUrl(document.location.pathname);
+
         this.setState({
-            frameSrc: 'http://davidg.com.au/showcase' + document.location.pathname
+            frameSrc: 'http://davidg.com.au/showcase' + document.location.pathname,
+            blurb: currentRoute.blurb || null
         });
     }
 
     render() {
         return (
-            <PageWrapper className="showcase-wrapper" wide={true}>
+            <PageWrapper className="showcase-wrapper" wide={true} blurb={this.state.blurb}>
                 <IFrame fullScreen={true} src={this.state.frameSrc} />
             </PageWrapper>
         );

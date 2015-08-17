@@ -28,7 +28,8 @@ class IFrame extends Component {
 
         document.body.classList.add('hosting-iframe');
 
-        const windowHeight = window.innerHeight - document.querySelector('.header').offsetHeight;
+        const blurbHeight = document.querySelector('.app__blurb') ? document.querySelector('.app__blurb').offsetHeight : 0;
+        const windowHeight = window.innerHeight - document.querySelector('.header').offsetHeight - blurbHeight;
 
         this.setState({frameHeight: windowHeight});
 
