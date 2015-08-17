@@ -4,7 +4,7 @@
   "description": "",
   "main": "start.js",
   "engines": {
-    "iojs": "2.5.x"
+    "node": "0.12.x"
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register,.:test/mochaCompiler.js --require ./test/testdom.js app/**/*Spec.js",
