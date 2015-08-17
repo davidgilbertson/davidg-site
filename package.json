@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "set UV_THREADPOOL_SIZE=15&& webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
     "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
     "lint": "eslint ./app --ext .js,.jsx"

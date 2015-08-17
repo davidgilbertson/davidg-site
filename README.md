@@ -43,6 +43,11 @@ not loading on every request (it's not cached if it's inlined).
 My JS is 210kb (most of which is fat React) but that's not so bad because the page is rendered server-side it
 looks finished without the JS.
 
+## Magic Numbers
+Here be a list of funny looking settings that future me may be puzzled by:
+
+* In package.json > tasks, `UV_THREADPOOL_SIZE` in the dev task is because of `https://github.com/sass/node-sass/issues/857`.
+
 ## TODO
 * On each new build I should be clearing out the `dist` directory.
 
