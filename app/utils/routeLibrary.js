@@ -29,7 +29,7 @@ export const routeLibrary = [
         name: 'aok',
         path: '/aok',
         handler: ShowcaseWrapper,
-        title: 'Assessment of knowledge',
+        title: 'AOK',
         blurb: `AOK ('Assessment of Knowledge', if you've got the time) is a personal favourite.
             I think it's a neato way to keep track of how much you know about the facets of a particular subject.
             It uses lovingly hand-crafted SVG and JavaScript for the interactive charts and BackboneJS for the data models.`
