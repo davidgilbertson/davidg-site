@@ -35,7 +35,7 @@ $vertical-height-overflow: 1rem;
             content: none;
         }
 
-        @include shade(2, 0, 10, .8);
+        //@include shade(2, 0, 10, .8); //This slows it right down
 
         .app__wrapper--nav-visible--init & {
             display: none;
