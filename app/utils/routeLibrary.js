@@ -47,25 +47,32 @@ export const routeLibrary = [
         name: 'guam',
         path: '/guam',
         handler: ShowcaseWrapper,
-        title: 'GUAM'
+        title: 'GUAM',
+        blurb: `GUAM (Graphical User Access Management) is a concept exploring
+            better ways to manage user permissions in complex systems. Select a user to see what they have access to
+            or select a folder/file and see which groups and users have what access.`
     },
     {
         name: 'tk',
         path: '/tk',
         handler: ShowcaseWrapper,
-        title: 'Time keeper'
+        title: 'Time keeper',
+        blurb: `Keep track of where you're spending your time one click at a time`
     },
     {
         name: 'all-the-primes',
         path: '/all-the-primes',
         handler: AllThePrimes,
-        title: 'All the primes'
+        title: 'All the primes',
+        blurb: `TODO: add a button to 'sort descending'; call the EFF`
     },
     {
         name: 'not-the-web',
         path: '/not-the-web',
         handler: NotTheWeb,
-        title: 'Not the web'
+        title: 'Not the web',
+        blurb: `On rare occasions I will emerge from behind the keyboard, spread my wings and fly.
+            Here is the output from some of those wing-spreading moments.`
     }
 ];
 
