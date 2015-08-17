@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register,.:test/mochaCompiler.js --require ./test/testdom.js app/**/*Spec.js",
-    "dev": "webpack-dev-server --display-error-details",
+    "dev": "webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
     "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
     "prod1": "set NODE_ENV=production&& iojs start",

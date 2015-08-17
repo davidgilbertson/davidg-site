@@ -4,6 +4,9 @@ var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react-with-addons.min.js');
 
+var entryPoint = path.resolve(__dirname, './app/main.js');
+console.log('  --  >  webpack.config.js:9 >  > entryPoint:', entryPoint);
+
 module.exports = {
     devServer: {
         colors: true,
