@@ -7,7 +7,6 @@ import throttle from 'lodash/function/throttle';
 import {contain, isProd} from '../../utils';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
 
-import Hamburger from '../Hamburger/Hamburger.jsx';
 
 import {ANIMATION_DURATION_MS, MED_LARGE_BREAKPOINT_EMS, NAV_WIDTH_EMS, MAX_NAV_POS, NAV_MASK_OPACITY} from '../../utils/constants';
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
@@ -21,8 +20,9 @@ if (!isProd) {
     require('./typography.scss');
 }
 
-import Nav from '../Nav/Nav.jsx';
+import Hamburger from '../Hamburger/Hamburger.jsx';
 import Header from '../Header/Header.jsx';
+import Nav from '../Nav/Nav.jsx';
 
 class App extends Component {
     constructor(props) {

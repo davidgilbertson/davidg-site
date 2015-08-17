@@ -1,18 +1,26 @@
 var assert = require('assert');
 
-describe('Hamburger', function() {
+describe('App', function() {
     var React = require('react/addons');
     var TestUtils = React.addons.TestUtils;
-    var Hamburger = require('./Hamburger.jsx');
+    var stubContext = require('react-stub-context');
+    var App = require('./App.jsx');
     var domElement;
-
-    var mockOnToggleNav = function() { return null; };
+    function noop() {}
+    var Router = noop;
 
     it('should render the burger', function() {
+        Router.makeHref = noop;
+        Router.isActive = noop;
+        Router.getCurrentPath = noop;
+        Router.getRouteAtDepth = noop;
+        Router.setRouteComponentAtDepth = noop;
+
+        var AppWithContext = stubContext(App, {router: Router});
+
         var reactComponent = TestUtils.renderIntoDocument(
-            <Hamburger
+            <AppWithContext
                 className="some class"
-                onToggleNav={mockOnToggleNav}
                 />
         );
 
@@ -22,14 +30,5 @@ describe('Hamburger', function() {
     it('should have three bars', function() {
         var bars = domElement.querySelectorAll('.hamburger__bar');
         assert.equal(bars.length, 3);
-    });
-});
-
-describe('Array', function() {
-    describe('#indexOf()', function () {
-        it('should return -1 when the value is not present', function () {
-            assert.equal(-1, [1,2,3].indexOf(5));
-            assert.equal(-1, [1,2,3].indexOf(0));
-        });
     });
 });

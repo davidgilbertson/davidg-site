@@ -4,13 +4,14 @@
   "description": "",
   "main": "start.js",
   "engines": {
-    "node": "0.12.x"
+    "iojs": "2.5.x"
   },
   "scripts": {
-    "test": "mocha --compilers jsx:babel/register,scss:test/scssCompiler.js --require ./test/testdom.js app/**/*Spec.js",
-    "dev": "webpack-dev-server",
+    "test": "mocha --compilers js:babel/register,.:test/mochaCompiler.js --require ./test/testdom.js app/**/*Spec.js",
+    "dev": "webpack-dev-server --display-error-details",
     "build": "webpack -p --config webpack.production.config.js",
     "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
+    "prod1": "set NODE_ENV=production&& iojs start",
     "lint": "eslint ./app --ext .js,.jsx"
   },
   "repository": {
@@ -51,18 +52,13 @@
     "file-loader": "^0.8.4",
     "imports-loader": "^0.6.4",
     "jsdom": "^3.0.0",
-    "karma": "^0.13.9",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-cli": "^0.1.0",
-    "karma-mocha": "^0.2.0",
-    "karma-sourcemap-loader": "^0.3.5",
-    "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "node-sass": "^3.2.0",
     "react-hot-loader": "^1.2.8",
+    "react-stub-context": "^0.3.0",
+    "react-tools": "^0.13.3",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
-    "testdom": "^1.1.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
