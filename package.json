@@ -7,7 +7,7 @@
     "iojs": "2.5.x"
   },
   "scripts": {
-    "test": "mocha --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
+    "test": "mocha --watch --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
     "dev": "set UV_THREADPOOL_SIZE=21&& webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
     "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
