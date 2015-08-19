@@ -1,30 +1,40 @@
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
-import stubContext from 'react-stub-context';
+const shallowRenderer = TestUtils.createRenderer();
+
 import App from './App.jsx';
 
-describe('App', function() {
+describe('App', () => {
     let reactComponent;
-    let domElement;
-    function noop() {}
-    const Router = noop;
-    let AppWithContext;
 
-    it('should render the App', () => {
-        Router.makeHref = noop;
-        Router.isActive = noop;
-        Router.getCurrentPath = noop;
-        Router.getRouteAtDepth = noop;
-        Router.setRouteComponentAtDepth = noop;
+    before(() => {
+        shallowRenderer.render(<App className="some class" />);
 
-        AppWithContext = stubContext(App, {router: Router});
+        reactComponent = shallowRenderer.getRenderOutput();
+    });
 
-        reactComponent = TestUtils.renderIntoDocument(
-            <AppWithContext
-                className="some class"
-                />
-        );
+    it('should render the App with the correct class', () => {
+        const appClass = reactComponent.props.className;
+        appClass.should.contain('app__wrapper');
+    });
 
-        domElement = React.findDOMNode(reactComponent);
+    it('should render a mask ', () => {
+        const navMaskClass = reactComponent.props.children[1].props.className;
+        navMaskClass.should.equal('nav__mask');
+    });
+
+    it('should make a burger', () => {
+        const burgerName = reactComponent.props.children[0].type.name;
+        burgerName.should.equal('Hamburger');
+    });
+
+    it('should make a nav', () => {
+        const navName = reactComponent.props.children[2].type.name;
+        navName.should.equal('Nav');
+    });
+
+    it('should render a header', () => {
+        const headerName = reactComponent.props.children[3].type.name;
+        headerName.should.equal('Header');
     });
 });

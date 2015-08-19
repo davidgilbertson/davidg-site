@@ -1,30 +1,35 @@
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
+const shallowRenderer = TestUtils.createRenderer();
+
 import Hamburger from './Hamburger.jsx';
 
 describe('Hamburger', () => {
-    let domElement;
     let reactComponent;
     const mockOnToggleNav = sinon.spy();
 
-    it('should render the burger', () => {
-        reactComponent = TestUtils.renderIntoDocument(
+    before(() => {
+        shallowRenderer.render(
             <Hamburger
                 className="some class"
                 onToggleNav={mockOnToggleNav}
                 />
         );
+        reactComponent = shallowRenderer.getRenderOutput();
+    });
 
-        domElement = React.findDOMNode(reactComponent);
+    it('should render an <a>', () => {
+        const componentType = reactComponent.type;
+        componentType.should.equal('a');
     });
 
     it('should have three bars', () => {
-        const bars = domElement.querySelectorAll('.hamburger__bar');
+        const bars = reactComponent.props.children;
         bars.should.have.length(3);
     });
 
     it('should toggle nav when clicked', () => {
-        TestUtils.Simulate.click(domElement);
+        reactComponent.props.onClick();
         mockOnToggleNav.should.have.been.calledOnce;
     });
 });
