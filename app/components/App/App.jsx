@@ -7,7 +7,6 @@ import throttle from 'lodash/function/throttle';
 import {contain, isProd} from '../../utils';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
 
-
 import {ANIMATION_DURATION_MS, MED_LARGE_BREAKPOINT_EMS, NAV_WIDTH_EMS, MAX_NAV_POS, NAV_MASK_OPACITY} from '../../utils/constants';
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
@@ -132,6 +131,19 @@ class App extends Component {
         window.removeEventListener('touchend', this.onTouchEnd, false);
     }
 
+    getCurrentPath() {
+        let currentPath;
+
+        if (this.context.router) {
+            currentPath = this.context.router.getCurrentPath();
+        } else {
+            //This only occurs during unit tests. I know I know, dodgy.
+            currentPath = '/';
+        }
+
+        return currentPath;
+    }
+
     componentDidMount() {
         // The nav is always in the show position on load (good for desktop)
         // but leave it hidden on mobile, then close it after a while
@@ -152,10 +164,9 @@ class App extends Component {
     }
 
     render() {
-        const key = this.context.router.getCurrentPath();
-        const currentRoute = getRouteByUrl(this.context.router.getCurrentPath());
+        const currentPath = this.getCurrentPath();
+        const currentRoute = getRouteByUrl(currentPath);
         const title = currentRoute ? currentRoute.title : 'DG707';
-
         const appWrapperClasses = classnames(
             'app__wrapper',
             {'app__wrapper--nav-visible--init': this.state.showNavInitial},
@@ -173,7 +184,7 @@ class App extends Component {
                 <Header title={title} />
 
                 <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
-                    <RouteHandler showNav={this.state.showNav} key={key} />
+                    <RouteHandler showNav={this.state.showNav} key={currentPath} />
                 </CSSTransitionGroup>
             </div>
         );
