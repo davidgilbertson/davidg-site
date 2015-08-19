@@ -7,7 +7,7 @@
     "iojs": "2.5.x"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register,.:test/mochaCompiler.js --require ./test/testdom.js app/**/*Spec.js",
+    "test": "mocha --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
     "dev": "set UV_THREADPOOL_SIZE=21&& webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
     "prod": "set NODE_ENV=production&& webpack -p --config webpack.production.config.js && nodemon",
@@ -45,6 +45,7 @@
   "devDependencies": {
     "babel-eslint": "^4.0.5",
     "babel-loader": "^5.3.2",
+    "chai": "^3.2.0",
     "css-loader": "^0.15.5",
     "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.2.1",
@@ -54,10 +55,13 @@
     "jsdom": "^3.0.0",
     "mocha": "^2.2.5",
     "node-sass": "^3.2.0",
+    "proxyquire": "^1.7.0",
     "react-hot-loader": "^1.2.8",
     "react-stub-context": "^0.3.0",
     "react-tools": "^0.13.3",
     "sass-loader": "^2.0.1",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.1",

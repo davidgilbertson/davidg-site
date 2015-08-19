@@ -1,34 +1,30 @@
-var assert = require('assert');
+import React from 'react/addons';
+const TestUtils = React.addons.TestUtils;
+import stubContext from 'react-stub-context';
+import App from './App.jsx';
 
 describe('App', function() {
-    var React = require('react/addons');
-    var TestUtils = React.addons.TestUtils;
-    var stubContext = require('react-stub-context');
-    var App = require('./App.jsx');
-    var domElement;
+    let reactComponent;
+    let domElement;
     function noop() {}
-    var Router = noop;
+    const Router = noop;
+    let AppWithContext;
 
-    it('should render the burger', function() {
+    it('should render the App', () => {
         Router.makeHref = noop;
         Router.isActive = noop;
         Router.getCurrentPath = noop;
         Router.getRouteAtDepth = noop;
         Router.setRouteComponentAtDepth = noop;
 
-        var AppWithContext = stubContext(App, {router: Router});
+        AppWithContext = stubContext(App, {router: Router});
 
-        var reactComponent = TestUtils.renderIntoDocument(
+        reactComponent = TestUtils.renderIntoDocument(
             <AppWithContext
                 className="some class"
                 />
         );
 
         domElement = React.findDOMNode(reactComponent);
-    });
-
-    it('should have three bars', function() {
-        var bars = domElement.querySelectorAll('.hamburger__bar');
-        assert.equal(bars.length, 3);
     });
 });

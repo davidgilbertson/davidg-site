@@ -39,11 +39,11 @@ function transform(filename) {
 }
 
 // Install the compiler.
-require.extensions['.jsx'] = function(module, filename) {
-    // optimization: code in a distribution should never go through JSX compiler.
-    if (filename.indexOf('node_modules/') >= 0) {
-        return (origJs || require.extensions['.jsx'])(module, filename);
-    }
-
-    return module._compile(transform(filename), filename);
-};
+//require.extensions['.jsx'] = function(module, filename) {
+//    // optimization: code in a distribution should never go through JSX compiler.
+//    if (filename.indexOf('node_modules/') >= 0) {
+//        return (origJs || require.extensions['.jsx'])(module, filename);
+//    }
+//
+//    return module._compile(transform(filename), filename);
+//};

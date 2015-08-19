@@ -1,15 +1,14 @@
-var assert = require('assert');
+import React from 'react/addons';
+const TestUtils = React.addons.TestUtils;
+import Hamburger from './Hamburger.jsx';
 
-describe('Hamburger', function() {
-    var React = require('react/addons');
-    var TestUtils = React.addons.TestUtils;
-    var Hamburger = require('./Hamburger.jsx');
-    var domElement;
+describe('Hamburger', () => {
+    let domElement;
+    let reactComponent;
+    const mockOnToggleNav = sinon.spy();
 
-    var mockOnToggleNav = function() { return null; };
-
-    it('should render the burger', function() {
-        var reactComponent = TestUtils.renderIntoDocument(
+    it('should render the burger', () => {
+        reactComponent = TestUtils.renderIntoDocument(
             <Hamburger
                 className="some class"
                 onToggleNav={mockOnToggleNav}
@@ -19,17 +18,13 @@ describe('Hamburger', function() {
         domElement = React.findDOMNode(reactComponent);
     });
 
-    it('should have three bars', function() {
-        var bars = domElement.querySelectorAll('.hamburger__bar');
-        assert.equal(bars.length, 3);
+    it('should have three bars', () => {
+        const bars = domElement.querySelectorAll('.hamburger__bar');
+        bars.should.have.length(3);
     });
-});
 
-describe('Array', function() {
-    describe('#indexOf()', function () {
-        it('should return -1 when the value is not present', function () {
-            assert.equal(-1, [1,2,3].indexOf(5));
-            assert.equal(-1, [1,2,3].indexOf(0));
-        });
+    it('should toggle nav when clicked', () => {
+        TestUtils.Simulate.click(domElement);
+        mockOnToggleNav.should.have.been.calledOnce;
     });
 });
