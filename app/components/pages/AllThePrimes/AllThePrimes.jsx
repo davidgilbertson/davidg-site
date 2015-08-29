@@ -20,13 +20,11 @@ class AllThePrimes extends Component {
 
     getNextPrime() {
         let candidate = this.lastPrime + 2;
-        let testNum = Math.floor(Math.sqrt(candidate));
-        let result = 0;
+        const sqrt = Math.floor(Math.sqrt(candidate));
+        let testNum = 3;
 
-        while (testNum < candidate) {
-            result = (candidate / testNum);
-
-            if (parseInt(result, 10) === result) { // TODO (davidg):  is the 10 required in ES2015?
+        while (testNum < sqrt) {
+            if (candidate % testNum === 0) {
                 candidate += 2;
                 testNum = Math.floor(Math.sqrt(candidate));
             } else {
@@ -35,6 +33,7 @@ class AllThePrimes extends Component {
         }
 
         this.lastPrime = candidate;
+
         return candidate;
     }
 
@@ -58,7 +57,7 @@ class AllThePrimes extends Component {
         const scrollPos = document.body.scrollTop || window.pageYOffset;
         const spaceBelow = listHeight - scrollPos - this.viewportHeight;
 
-        if (spaceBelow < this.viewportHeight * 5) {
+        if (spaceBelow < this.viewportHeight * 10) { // how far to calculate ahead
             this.appendNextPrime();
         } else {
             this.thinking = false;
