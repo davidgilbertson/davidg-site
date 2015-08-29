@@ -28,7 +28,7 @@ class AllThePrimes extends Component {
                 candidate += 2;
                 testNum = Math.floor(Math.sqrt(candidate));
             } else {
-                testNum++;
+                testNum += 2;
             }
         }
 
