@@ -6,7 +6,7 @@ const port = process.env.PORT || 80;
 
 server.use(express.static('public'));
 
-server.use('/fireball-js', express.static(path.resolve(__dirname, '../../../fireball-js')));
+server.use('/fireball-js', express.static(path.resolve(__dirname, '../../node_modules/fireball-js')));
 
 server.get('*', renderApp);
 
