@@ -62,6 +62,7 @@
     "react-stub-context": "^0.3.0",
     "react-tools": "^0.13.3",
     "rimraf": "^2.4.3",
+    "sass-lint": "^1.0.0",
     "sass-loader": "^2.0.1",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",
