@@ -3,7 +3,7 @@ import {isProd} from '../../../utils';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (!isProd) require('./allThePrimes.scss');
+if (process.env.WEBPACK) require('./allThePrimes.scss');
 
 class AllThePrimes extends Component {
     constructor(props) {

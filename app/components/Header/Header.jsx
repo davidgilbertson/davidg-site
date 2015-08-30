@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import isProd from '../../utils/lib/isProd.js';
 
-if (!isProd) require('./header.scss');
+if (process.env.WEBPACK) require('./header.scss');
 
 class Header extends Component {
     constructor(props) {

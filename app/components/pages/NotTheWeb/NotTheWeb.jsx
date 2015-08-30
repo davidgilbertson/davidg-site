@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {isProd} from '../../../utils';
 
-if (!isProd) require('./notTheWeb.scss');
+if (process.env.WEBPACK) require('./notTheWeb.scss');
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 import Gallery from '../../Gallery/Gallery.jsx';

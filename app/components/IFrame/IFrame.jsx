@@ -4,7 +4,7 @@ import debounce from 'lodash/function/debounce';
 import {isProd} from '../../utils';
 import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 
-if (!isProd) require('./iframe.scss');
+if (process.env.WEBPACK) require('./iframe.scss');
 
 class IFrame extends Component {
     constructor(props) {

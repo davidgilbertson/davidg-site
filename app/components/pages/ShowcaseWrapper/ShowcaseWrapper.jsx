@@ -4,7 +4,7 @@ import {isProd} from '../../../utils';
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 import IFrame from '../../IFrame/IFrame.jsx';
 
-if (!isProd) require('./showcaseWrapper.scss');
+if (process.env.WEBPACK) require('./showcaseWrapper.scss');
 
 // This is a special component that wraps up content from
 // davidg.com.au/showcase

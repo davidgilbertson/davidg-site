@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import isProd from '../../utils/lib/isProd.js';
 import {Link} from 'react-router';
 
-if (!isProd) require('./nav.scss');
+if (process.env.WEBPACK) require('./nav.scss');
 
 class Nav extends Component {
     constructor(props) {

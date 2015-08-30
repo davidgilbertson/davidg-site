@@ -4,13 +4,15 @@ import {RouteHandler} from 'react-router';
 import classnames from 'classnames';
 import debounce from 'lodash/function/debounce';
 import throttle from 'lodash/function/throttle';
-import {contain, isProd} from '../../utils';
+import {contain} from '../../utils';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
+
+import Fireball from 'fireball-js';
 
 import {ANIMATION_DURATION_MS, MED_LARGE_BREAKPOINT_EMS, NAV_WIDTH_EMS, MAX_NAV_POS, NAV_MASK_OPACITY} from '../../utils/constants';
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
-if (!isProd) {
+if (process.env.WEBPACK) {
     require('./app.scss');
     require('./fontFace.scss');
     require('./layout.scss');
@@ -145,6 +147,15 @@ class App extends Component {
     }
 
     componentDidMount() {
+        Fireball.run({
+            speedRanges: [
+                {min: 0, className: 'speed-of-sloth'},
+                {min: 4000, className: 'speed-of-tortoise'},
+                {min: 8000, className: 'speed-of-puppy'},
+                {min: 16000, className: 'speed-of-cheetah'}
+            ]
+        });
+
         // The nav is always in the show position on load (good for desktop)
         // but leave it hidden on mobile, then close it after a while
         this.hideNavIfSmall();

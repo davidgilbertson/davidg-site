@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import isProd from '../../../utils/lib/isProd.js';
 
 import MarkDown from '../../MarkDown/MarkDown.jsx';
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (!isProd) require('./isolog.scss');
+if (process.env.WEBPACK) require('./isolog.scss');
 
 class Isolog extends Component {
     constructor(props) {

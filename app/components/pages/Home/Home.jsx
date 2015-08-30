@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import isProd from '../../../utils/lib/isProd.js';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
-if (!isProd) require('./home.scss');
+if (process.env.WEBPACK) require('./home.scss');
 
 class Home extends Component {
     constructor(props) {

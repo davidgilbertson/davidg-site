@@ -20,7 +20,7 @@ import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const photoSwipeUIDefault = require('photoswipe/dist/photoswipe-ui-default.js');
 
-if (!isProd) {
+if (process.env.WEBPACK) {
     require('./gallery.scss');
     require('./photoswipe/photoswipe.css');
     require('./photoswipe/default-skin/default-skin.css');

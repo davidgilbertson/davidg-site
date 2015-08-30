@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import isProd from '../../utils/lib/isProd.js';
 
-if (!isProd) require('./hamburger.scss');
+if (process.env.WEBPACK) require('./hamburger.scss');
 
 class Hamburger extends Component {
     render() {

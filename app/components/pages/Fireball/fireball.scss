@@ -1,6 +1,38 @@
 @import '../../../utils/styles';
 
-.fireball__title {
-    @extend %heading-1;
-    color: firebrick;
+.fireball {
+    &__title {
+        @extend %heading-1;
+        color: $heading-color;
+    }
+
+    &__sub-title {
+        padding-bottom: 1rem;
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+
+    .speed-text {
+        color: $color-grey-30;
+    }
+}
+
+body.speed-of-sloth .speed-text.show-for-sloth {
+    color: $color-grey-10;
+    font-weight: 700;
+}
+
+body.speed-of-tortoise .speed-text.show-for-tortoise {
+    color: $color-grey-10;
+    font-weight: 700;
+}
+
+body.speed-of-puppy .speed-text.show-for-puppy {
+    color: $color-grey-10;
+    font-weight: 700;
+}
+
+body.speed-of-cheetah .speed-text.show-for-cheetah {
+    color: $color-grey-10;
+    font-weight: 700;
 }

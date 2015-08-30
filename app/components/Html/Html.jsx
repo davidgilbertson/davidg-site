@@ -14,6 +14,12 @@ class Html extends Component {
     }
 
     render() {
+        const cssFile = this.props.cssFile ? (
+            <link rel="stylesheet" href={this.props.cssFile} />
+        ) : (
+            null
+        );
+
         return (
             <html lang="en">
                 <head>
@@ -21,7 +27,7 @@ class Html extends Component {
                     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
                     <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700,300italic" rel="stylesheet" type="text/css" />
                     <title>{this.props.title || 'DG | 707'}</title>
-                    <style dangerouslySetInnerHTML={{__html: this.props.cssString}}></style>
+                    {cssFile}
                 </head>
 
                 <body>
@@ -31,7 +37,7 @@ class Html extends Component {
                         dangerouslySetInnerHTML={{__html: this.props.innerContent}}
                         />
 
-                    <script src={this.props.scriptFileName}></script>
+                    <script src={this.props.jsFile}></script>
 
                     <script dangerouslySetInnerHTML={{__html: analyticsSnippet}}></script>
                 </body>
@@ -41,9 +47,9 @@ class Html extends Component {
 }
 
 Html.propTypes = {
-    cssString: PropTypes.string.isRequired,
     innerContent: PropTypes.string.isRequired,
-    scriptFileName: PropTypes.string.isRequired,
+    cssFile: PropTypes.string,
+    jsFile: PropTypes.string.isRequired,
     title: PropTypes.string
 };
 
