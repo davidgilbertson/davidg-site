@@ -32,6 +32,7 @@ class App extends Component {
         this.hideNav = this.hideNav.bind(this);
         this.toggleNav = this.toggleNav.bind(this);
         this.onResize = debounce(this.onResize.bind(this), 50);
+        this.handleNav = this.handleNav.bind(this);
         this.hideNavIfSmall = this.hideNavIfSmall.bind(this);
         this.onTouchStart = this.onTouchStart.bind(this);
         this.onTouchMove = throttle(this.onTouchMove.bind(this), 16);
@@ -70,6 +71,12 @@ class App extends Component {
         this.setState({showNav: false});
 
         window.removeEventListener('touchstart', this.onTouchStart, false);
+    }
+
+    handleNav(path) {
+        if (!!window.ga) ga('send', 'pageview', path);
+
+        this.hideNavIfSmall();
     }
 
     hideNavIfSmall() {
@@ -190,7 +197,7 @@ class App extends Component {
 
                 <div className="nav__mask" onClick={this.hideNav}></div>
 
-                <Nav hideNavIfSmall={this.hideNavIfSmall}/>
+                <Nav handleNav={this.handleNav}/>
 
                 <Header title={title} />
 
