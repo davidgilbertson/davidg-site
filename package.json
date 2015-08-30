@@ -2,13 +2,13 @@
   "name": "davidg-site",
   "version": "1.1.2",
   "description": "",
-  "main": "start.js",
+  "main": "index.js",
   "engines": {
     "iojs": "2.5.x"
   },
   "scripts": {
     "test": "mocha --watch --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
-    "dev": "set UV_THREADPOOL_SIZE=21&& node index --env=development",
+    "dev": "set UV_THREADPOOL_SIZE=21&& nodemon index --env=development",
     "build": "node buildTools/build",
     "prod": "node index",
     "lint": "eslint ./app --ext .js,.jsx"
@@ -56,6 +56,7 @@
     "jsdom": "^3.0.0",
     "mocha": "^2.2.5",
     "node-sass": "^3.2.0",
+    "nodemon": "^1.4.1",
     "proxyquire": "^1.7.0",
     "react-hot-loader": "^1.2.8",
     "react-stub-context": "^0.3.0",
