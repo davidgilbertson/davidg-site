@@ -51,7 +51,8 @@ $vertical-height-overflow: 1rem;
 .nav__link {
     @include no-tap-highlight();
     display: block;
-    padding: 15px;
+    margin: .4em 0;
+    padding: .6em 1em;
     transition: $animation-duration;
     color: $nav-text-color;
     font-size: 120%;
