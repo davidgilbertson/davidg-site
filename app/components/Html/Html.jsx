@@ -32,8 +32,8 @@ class Html extends Component {
     }
 
     render() {
-        const cssFile = this.props.cssFile ? (
-            <link rel="stylesheet" href={this.props.cssFile} />
+        const styleString = this.props.styleString ? (
+            <style dangerouslySetInnerHTML={{__html: this.props.styleString}}></style>
         ) : (
             null
         );
@@ -41,12 +41,13 @@ class Html extends Component {
         return (
             <html lang="en">
                 <head>
-                    <meta charSet="UTF-8" />
+                    <meta charSet="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
 
-                    <title>{this.props.title}</title>
+                    <title>DG707</title>
 
-                    {cssFile}
+                    {styleString}
+
                 </head>
 
                 <body>
@@ -68,9 +69,8 @@ class Html extends Component {
 
 Html.propTypes = {
     innerContent: PropTypes.string.isRequired,
-    cssFile: PropTypes.string,
-    jsFile: PropTypes.string.isRequired,
-    title: PropTypes.string
+    styleString: PropTypes.string,
+    jsFile: PropTypes.string.isRequired
 };
 
 export default Html;
