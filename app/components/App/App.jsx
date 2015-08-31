@@ -184,7 +184,7 @@ class App extends Component {
     render() {
         const currentPath = this.getCurrentPath();
         const currentRoute = getRouteByUrl(currentPath);
-        const title = currentRoute ? currentRoute.title : 'DG707';
+        const title = currentRoute.title || 'DG707';
         const appWrapperClasses = classnames(
             'app__wrapper',
             {'app__wrapper--nav-visible--init': this.state.showNavInitial},
