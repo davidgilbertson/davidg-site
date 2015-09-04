@@ -14,7 +14,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {isOnServer, isProd} from '../../utils';
+import {isOnServer} from '../../utils';
 import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');

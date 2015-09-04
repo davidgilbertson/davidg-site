@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {isProd} from '../../../utils';
 
 import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 

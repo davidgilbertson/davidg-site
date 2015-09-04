@@ -13,7 +13,7 @@ server.use('/fireball-js', express.static(path.resolve(__dirname, '../../node_mo
 server.get('*', renderApp);
 
 server.listen(port, () => {
-    console.log('Node running on port', port);
+    console.log('Node running on port', port); // eslint-disable-line no-console
 });
 
 if (process.env.NODE_ENV !== 'production') {

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {isProd} from '../../../utils';
 
 if (process.env.WEBPACK) require('./notTheWeb.scss');
 
