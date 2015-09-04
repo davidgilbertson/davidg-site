@@ -21,10 +21,12 @@ class Nav extends Component {
                     <li><Link onClick={this.handleNav} className="nav__link" to="/">Home</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="isolog">Isolog</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="fireball">Fireball</Link></li>
+                    {/*
                     <li><Link onClick={this.handleNav} className="nav__link" to="aok">AOK</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="colors">Colours</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="guam">GUAM</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="tk">Time Keeper</Link></li>
+                    */}
                     <li><Link onClick={this.handleNav} className="nav__link" to="all-the-primes">All the primes</Link></li>
                     <li><Link onClick={this.handleNav} className="nav__link" to="not-the-web">Not the web</Link></li>
                 </ul>
