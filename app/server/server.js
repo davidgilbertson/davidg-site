@@ -6,7 +6,7 @@ const server = express();
 const port = process.env.PORT || 80;
 
 server.use(compression());
-server.use(express.static('public'));
+server.use(express.static('public', {maxAge: 31536000})); // 31536000 = one year
 
 server.use('/fireball-js', express.static(path.resolve(__dirname, '../../node_modules/fireball-js')));
 
