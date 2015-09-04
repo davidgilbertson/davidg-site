@@ -26,7 +26,7 @@ var config = {
             },
             {
                 test: /\.s?css$/,
-                loader: ExtractTextPlugin.extract('style', 'css!sass')
+                loader: ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
 
             },
             {
