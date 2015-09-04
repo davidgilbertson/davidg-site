@@ -9,9 +9,10 @@
   "scripts": {
     "test": "mocha --watch --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
     "dev": "set UV_THREADPOOL_SIZE=21&& nodemon index --env=development",
+    "lint": "eslint ./app --ext .js,.jsx",
+    "prebuild": "npm run lint",
     "build": "node buildTools/build",
-    "prod": "node index",
-    "lint": "eslint ./app --ext .js,.jsx"
+    "prod": "node index"
   },
   "repository": {
     "type": "git",
