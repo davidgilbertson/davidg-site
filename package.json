@@ -10,6 +10,7 @@
     "test": "mocha --watch --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
     "dev": "set UV_THREADPOOL_SIZE=21&& nodemon index --env=development --log-level=info",
     "lint": "eslint ./app --ext .js,.jsx",
+    "lint-sass": "sass-lint --no-exit --verbose",
     "prebuild": "npm run lint",
     "build": "node buildTools/build",
     "prod": "node index"
@@ -66,7 +67,7 @@
     "react-stub-context": "^0.3.0",
     "react-tools": "^0.13.3",
     "rimraf": "^2.4.3",
-    "sass-lint": "^1.0.0",
+    "sass-lint": "^1.2.0",
     "sass-loader": "^2.0.1",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",

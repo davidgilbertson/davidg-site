@@ -1,6 +1,6 @@
 files:
-  include: '**/*.s+(a|c)ss'
-  ignore:
+  include: 'app/**/*.scss'
+  ignore: ['node_modules', 'app/components/Gallery/photoswipe.*']
 rules:
   # Extends
   extends-before-mixins: 1
@@ -24,10 +24,12 @@ rules:
   no-warn: 1
 
   # Style Guide
-  indentation: 1
-  leading-zero: 1
+  # indentation has a bug in v1.2 so not testing for it
+  # https://github.com/sasstools/sass-lint/issues/62
+  indentation: 0
+  leading-zero: 0
   nesting-depth: 1
-  property-sort-order: 1
+  property-sort-order: 0
   quotes: 1
 
   # Inner Spacing
