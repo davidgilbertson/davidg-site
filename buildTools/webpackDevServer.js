@@ -1,6 +1,7 @@
 import path from 'path';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
+const log = require('../app/utils/log.js')('webpack:dev');
 
 const nodeModulesPath = path.resolve(__dirname, '../node_modules');
 const reactPath = path.resolve(nodeModulesPath, 'react/dist/react-with-addons.min.js');
@@ -67,10 +68,15 @@ const config = {
 
         new webpack.DefinePlugin({
             'process.env': {
-                WEBPACK: JSON.stringify(true)
+                WEBPACK: JSON.stringify(true),
+                LOG_LEVEL: JSON.stringify(process.env.LOG_LEVEL),
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         })
-    ]
+    ],
+    node: {
+        fs: 'empty'
+    }
 };
 
 const serverOptions = {
@@ -86,5 +92,5 @@ const webpackDevServer = new WebpackDevServer(compiler, serverOptions);
 
 // TODO (davidg): remove hostname. listen signature?
 webpackDevServer.listen(port, hostname, () => {
-    console.log(`Webpack serving updates at ${webpackBase}`);
+    log.info(`Webpack serving updates at ${webpackBase}, remember to build before pushing.`);
 });

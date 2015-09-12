@@ -6,6 +6,7 @@ import debounce from 'lodash/function/debounce';
 import throttle from 'lodash/function/throttle';
 import {contain} from '../../utils';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
+const log = require('../../utils/log.js')('component:App');
 
 import Fireball from 'fireball-js';
 
