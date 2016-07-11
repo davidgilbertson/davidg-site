@@ -5,6 +5,7 @@
         "react"                          // https://github.com/yannickcr/eslint-plugin-react
     ],
     "env": {                           // http://eslint.org/docs/user-guide/configuring.html#specifying-environments
+        "mocha": true,
         "browser": true,                 // browser global variables
         "node": true                     // Node.js global variables and Node.js-specific rules
     },
@@ -42,5 +43,12 @@
         "max-len": 0,
         "space-before-function-paren": 0,
         "object-curly-spacing": [2, "never"]
+    },
+    "globals": {
+        "expect": true,
+        "sinon": true,
+        "fetch": true,
+        "performance": true,
+        "ga": true
     }
 }

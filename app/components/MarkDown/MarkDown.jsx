@@ -9,15 +9,15 @@ if (isOnClient) {
 class MarkDown extends Component {
     constructor(props) {
         super(props);
-        this.state = {markdown: ''};
+        this.state = {
+            markdown: props.markdown || ''
+        };
     }
 
     componentDidMount() {
         if (this.state.markdown) return;
 
-        if (this.props.markdown) {
-            this.setState({markdown: this.props.markdown});
-        } else if (this.props.url && isOnClient) {
+        if (!this.props.markdown && this.props.url) {
             xhr(this.props.url).then((markdown) => {
                 this.setState({markdown});
             });
@@ -29,7 +29,7 @@ class MarkDown extends Component {
             <div
                 className="markdown"
                 dangerouslySetInnerHTML={{__html: marked(this.state.markdown)}}
-            />
+            ></div>
         );
     }
 }

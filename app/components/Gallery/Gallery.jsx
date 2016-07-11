@@ -32,38 +32,14 @@ class Gallery extends Component {
         super(props);
 
         this.calcThumbBoundsFn = this.calcThumbBoundsFn.bind(this);
+        this.showGallery = this.showGallery.bind(this);
 
-        this.photos = photos;
+        this.photos = [];
         this.msnry = undefined;
         this.imageEls = {};
     }
 
-    calcThumbBoundsFn(i) {
-        const photoEl = this.imageEls[`img-${i}`];
-        const dims = photoEl.getBoundingClientRect();
-
-        const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        return {x: dims.left, y: dims.top + pageYScroll, w: dims.width};
-    }
-
-    showGallery(i) {
-        const pswpElement = document.querySelector('.pswp');
-
-        const options = {
-            index: i,
-            getThumbBoundsFn: this.calcThumbBoundsFn,
-            shareEl: false,
-            zoomEl: false
-        };
-
-        // Initializes and opens PhotoSwipe
-        const gallery = new PhotoSwipe(pswpElement, photoSwipeUIDefault, this.photos, options);
-        gallery.init();
-    }
-
     componentWillMount() { // client and server
-
         // On mount, set the thumbnail version to medium or large
         // imgur uses the syntax of adding an 'l' or 'm' at the end to denote a large or medium thumbnail version of an image
         // I haven't been able to find what they use for 'small'
@@ -71,12 +47,16 @@ class Gallery extends Component {
         // when generating the HTML on the server, assume smallest screen so set thumbnails to small
         const windowWidth = isOnServer ? 1 : window.innerWidth;
 
-        this.photos.forEach((photo) => {
+        this.photos = photos.map(photo => {
+            const newPhoto = {...photo};
+
             if (windowWidth >= 1300 || photo.doubleWidth) {
-                photo.msrc = photo.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each;  640px
+                newPhoto.msrc = newPhoto.src.replace(/\.jpg$/, 'l.jpg'); // large thumbnail ~20 - 50kb each;  640px
             } else {
-                photo.msrc = photo.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each;  320px
+                newPhoto.msrc = newPhoto.src.replace(/\.jpg$/, 'm.jpg'); // medium thumbnail ~15 - 25kb each;  320px
             }
+
+            return newPhoto;
         });
     }
 
@@ -105,6 +85,30 @@ class Gallery extends Component {
         return false;
     }
 
+    calcThumbBoundsFn(i) {
+        const photoEl = this.imageEls[`img-${i}`];
+        const dims = photoEl.getBoundingClientRect();
+
+        const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        return {x: dims.left, y: dims.top + pageYScroll, w: dims.width};
+    }
+
+    showGallery(i) {
+        const pswpElement = document.querySelector('.pswp');
+
+        const options = {
+            index: i,
+            getThumbBoundsFn: this.calcThumbBoundsFn,
+            shareEl: false,
+            zoomEl: false
+        };
+
+        // Initializes and opens PhotoSwipe
+        const gallery = new PhotoSwipe(pswpElement, photoSwipeUIDefault, this.photos, options);
+        gallery.init();
+    }
+
     render() {
         const classes = classnames(
             'gallery',
@@ -124,7 +128,8 @@ class Gallery extends Component {
                     <img
                         ref={el => this.imageEls[`img-${i}`] = el}
                         src={img.msrc}
-                        onClick={this.showGallery.bind(this, i)}
+                        alt={img.title}
+                        onClick={() => this.showGallery(i)}
                     />
                 </div>
             );

@@ -22,7 +22,6 @@ export default [
     },
     {
         w: 2048, h: 1365,
-        //doubleWidth: true,
         src: 'http://i.imgur.com/B0POaib.jpg', // B&W photo
         title: 'The lesser-known Venice'
     },
@@ -75,7 +74,6 @@ export default [
     },
     {
         w: 1680, h: 1050,
-        //doubleWidth: true,
         src: 'http://i.imgur.com/l8rKllq.jpg', // Photo
         title: 'Curious little thing'
     },
@@ -116,7 +114,6 @@ export default [
     },
     {
         w: 1280, h: 800,
-        //doubleWidth: true,
         src: 'http://i.imgur.com/kK92oRQ.jpg', // Photo
         title: 'There was a cheese factory just over the hill, it smelled awful'
     },

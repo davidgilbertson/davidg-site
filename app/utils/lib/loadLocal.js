@@ -5,7 +5,7 @@ export function loadLocal(key) {
 
     try {
         result = JSON.parse(localStorage.getItem(key));
-    } catch(e) {
+    } catch (e) {
         result = false;
     }
 

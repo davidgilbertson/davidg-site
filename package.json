@@ -7,17 +7,17 @@
     "node": "^6.3.0",
     "npm": "^3.8.0"
   },
-    "babel": {
-        "presets": [
-            "es2015",
-            "stage-2",
-            "react"
-        ]
-    },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2",
+      "react"
+    ]
+  },
   "scripts": {
-    "test": "mocha --watch --compilers jsx:babel/register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
+    "test": "mocha --watch --compilers jsx:babel-register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
     "dev": "set UV_THREADPOOL_SIZE=21&& nodemon index --env=development --log-level=info",
-    "lint": "eslint ./app --ext .js,.jsx",
+    "lint": "eslint ./app --ext .js,.jsx --color",
     "lint-sass": "sass-lint --no-exit --verbose",
     "prebuild": "npm run lint",
     "build": "node buildTools/build",
@@ -74,7 +74,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "imports-loader": "^0.6.4",
-    "jsdom": "^3.0.0",
+    "jsdom": "^9.4.1",
     "mocha": "^2.2.5",
     "node-sass": "^3.8.0",
     "nodemon": "^1.4.1",

@@ -18,9 +18,9 @@ class Home extends Component {
     componentDidMount() {
         Fireball.getScore();
 
-        Fireball.onSuccess((score) => {
+        Fireball.onSuccess(score => {
             this.setState({
-                score: score,
+                score,
                 fireballDone: true
             });
         });

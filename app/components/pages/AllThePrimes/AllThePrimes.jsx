@@ -17,6 +17,27 @@ class AllThePrimes extends Component {
         this.lastPrime = 293;
     }
 
+    componentDidMount() {
+        this.viewportHeight = window.innerHeight;
+
+        setTimeout(() => {
+            document.body.scrollTop = 0; // going back/forward might start already scrolled down
+            this.appendNextPrime({andTryAgain: true});
+        }, 50); // react-router or the browser will do some clever scrolling jazz. Hack away at that.
+
+        window.addEventListener('scroll', this.onScroll, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll, false);
+    }
+
+    onScroll() {
+        if (this.thinking) return;
+        this.thinking = true;
+        this.maybeAppendNextPrime();
+    }
+
     getNextPrime() {
         let candidate = this.lastPrime + 2;
         const sqrt = Math.floor(Math.sqrt(candidate));
@@ -45,12 +66,6 @@ class AllThePrimes extends Component {
         this.maybeAppendNextPrime();
     }
 
-    onScroll() {
-        if (this.thinking) return;
-        this.thinking = true;
-        this.maybeAppendNextPrime();
-    }
-
     maybeAppendNextPrime() {
         const listHeight = this.primeListEl.offsetHeight;
         const scrollPos = document.body.scrollTop || window.pageYOffset;
@@ -61,21 +76,6 @@ class AllThePrimes extends Component {
         } else {
             this.thinking = false;
         }
-    }
-
-    componentDidMount() {
-        this.viewportHeight = window.innerHeight;
-
-        setTimeout(() => {
-            document.body.scrollTop = 0; // going back/forward might start already scrolled down
-            this.appendNextPrime({andTryAgain: true});
-        }, 50); // react-router or the browser will do some clever scrolling jazz. Hack away at that.
-
-        window.addEventListener('scroll', this.onScroll, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll, false);
     }
 
     render() {

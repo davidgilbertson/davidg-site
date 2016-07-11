@@ -13,7 +13,7 @@ describe('Hamburger', () => {
             <Hamburger
                 className="some class"
                 onToggleNav={mockOnToggleNav}
-                />
+            />
         );
         reactComponent = shallowRenderer.getRenderOutput();
     });

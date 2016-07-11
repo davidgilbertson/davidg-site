@@ -1,52 +1,38 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
 
-class PageWrapper extends Component {
-    constructor(props) {
-        super(props);
+const PageWrapper = props => {
+    const url = props.location ? props.location.pathname : '/';
+    const currentRoute = getRouteByUrl(url);
 
-        this.state = {
-            blurb: null
-        };
-    }
+    const classes = classnames(
+        props.className,
+        'app__content',
+        {'app__content--narrow': !props.wide},
+        {'app__content--wide': props.wide}
+    );
 
-    componentDidMount() {
-        const currentRoute = getRouteByUrl(document.location.pathname);
+    const blurb = currentRoute.blurb
+        ? <div className="app__blurb">{currentRoute.blurb}</div>
+        : null;
 
-        if (currentRoute.blurb) this.setState({blurb: currentRoute.blurb});
-    }
+    return (
+        <div className="app__transition-wrapper">
+            {blurb}
 
-    render() {
-        const classes = classnames(
-            this.props.className,
-            'app__content',
-            {'app__content--narrow': !this.props.wide},
-            {'app__content--wide': this.props.wide}
-        );
-
-        const blurb = this.state.blurb ? (
-            <div className="app__blurb">{this.state.blurb}</div>
-        ) : (
-            null
-        );
-
-        return (
-            <div className="app__transition-wrapper">
-                {blurb}
-
-                <main className={classes}>
-                    {this.props.children}
-                </main>
-            </div>
-        );
-    }
-}
+            <main className={classes}>
+                {props.children}
+            </main>
+        </div>
+    );
+};
 
 PageWrapper.propTypes = {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
     className: PropTypes.string,
-    wide: PropTypes.bool
+    wide: PropTypes.bool,
+    location: PropTypes.object
 };
 
 export default PageWrapper;

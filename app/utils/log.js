@@ -27,7 +27,7 @@ class Logger {
         if (withDate) result += new Date().toISOString();
         if (level) result += ` ${level.toUpperCase()} `;
         result += this.namespace;
-        result += ` >`;
+        result += ' >';
 
         return result;
     }
@@ -38,7 +38,7 @@ class Logger {
             window.MAH_LOGS.push({
                 level: method,
                 namespace: this.namespace,
-                args: args
+                args
             });
         } else {
             console[method](this.getPrefix(null, false), ...args); // eslint-disable-line no-console

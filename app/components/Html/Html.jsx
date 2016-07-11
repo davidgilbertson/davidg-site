@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 
 const analyticsSnippet = (
     `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,46 +26,40 @@ const fontSnippet = (
 );
 
 
-class Html extends Component {
-    constructor(props) {
-        super(props);
-    }
+const Html = props => {
+    const styleString = props.styleString ? (
+        <style dangerouslySetInnerHTML={{__html: props.styleString}}></style>
+    ) : (
+        null
+    );
 
-    render() {
-        const styleString = this.props.styleString ? (
-            <style dangerouslySetInnerHTML={{__html: this.props.styleString}}></style>
-        ) : (
-            null
-        );
+    return (
+        <html lang="en">
+            <head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
 
-        return (
-            <html lang="en">
-                <head>
-                    <meta charSet="utf-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
+                <title>DG707</title>
 
-                    <title>DG707</title>
+                {styleString}
 
-                    {styleString}
+            </head>
 
-                </head>
+            <body>
+                <div
+                    id="app"
+                    className="app"
+                    dangerouslySetInnerHTML={{__html: props.innerContent}}
+                />
 
-                <body>
-                    <div
-                        id="app"
-                        className="app"
-                        dangerouslySetInnerHTML={{__html: this.props.innerContent}}
-                        />
+                <script src={props.jsFile}></script>
 
-                    <script src={this.props.jsFile}></script>
-
-                    <script dangerouslySetInnerHTML={{__html: fontSnippet}}></script>
-                    <script dangerouslySetInnerHTML={{__html: analyticsSnippet}}></script>
-                </body>
-            </html>
-        );
-    }
-}
+                <script dangerouslySetInnerHTML={{__html: fontSnippet}}></script>
+                <script dangerouslySetInnerHTML={{__html: analyticsSnippet}}></script>
+            </body>
+        </html>
+    );
+};
 
 Html.propTypes = {
     innerContent: PropTypes.string.isRequired,

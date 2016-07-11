@@ -1,15 +1,15 @@
-var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const fs = require('fs');
+const path = require('path');
+const rimraf = require('rimraf');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.WEBPACK = true;
 
 rimraf.sync(path.resolve(__dirname, '../public/js'));
 rimraf.sync(path.resolve(__dirname, '../public/css'));
 
-var config = {
+const config = {
     entry: [
         path.resolve(__dirname, '../app/main.js')
     ],
@@ -50,18 +50,21 @@ var config = {
         new ExtractTextPlugin('../css/main.[hash].css'),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production'),
-            },
-        }),
+                NODE_ENV: JSON.stringify('production')
+            }
+        })
     ]
 };
 
 function handleResults(err, stats) {
-    if (err) return console.log('Error compiling:', err);
+    if (err) {
+        console.log('Error compiling:', err);
+        return;
+    }
 
-    var statsFilepath = path.resolve(__dirname, '../app/server/assetsHash.json');
+    const statsFilepath = path.resolve(__dirname, '../app/server/assetsHash.json');
 
-    var jsonStats = stats.toJson({
+    const jsonStats = stats.toJson({
         modules: false,
         chunks: false
     });

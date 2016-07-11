@@ -56,38 +56,32 @@ class App extends Component {
         this.movingNav = false;
     }
 
-    toggleNav() {
-        if (this.state.showNav) {
-            this.hideNav();
-        } else {
-            this.showNav();
-        }
-    }
+    componentDidMount() {
+        Fireball.run({
+            speedRanges: [
+                {min: 0, className: 'speed-of-sloth'},
+                {min: 4000, className: 'speed-of-tortoise'},
+                {min: 8000, className: 'speed-of-puppy'},
+                {min: 16000, className: 'speed-of-cheetah'}
+            ]
+        });
 
-    showNav() {
-        this.setState({showNav: true});
-
-        if (window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
-            window.addEventListener('touchstart', this.onTouchStart, false);
-        }
-    }
-
-    hideNav() {
-        this.setState({showNav: false});
-
-        window.removeEventListener('touchstart', this.onTouchStart, false);
-    }
-
-    handleNav(path) {
-        if (!!window.ga) ga('send', 'pageview', path);
-
+        // The nav is always in the show position on load (good for desktop)
+        // but leave it hidden on mobile, then close it after a while
         this.hideNavIfSmall();
+
+        setTimeout(() => {
+            this.setState({showNavInitial: false});
+        }, ANIMATION_DURATION_MS);
+
+        this.navEl = document.querySelector('.nav');
+        this.navMaskEl = document.querySelector('.nav__mask');
+
+        window.addEventListener('resize', this.onResize, false);
     }
 
-    hideNavIfSmall() {
-        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
-            this.hideNav();
-        }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize, false);
     }
 
     onResize() {
@@ -147,32 +141,38 @@ class App extends Component {
         window.removeEventListener('touchend', this.onTouchEnd, false);
     }
 
-    componentDidMount() {
-        Fireball.run({
-            speedRanges: [
-                {min: 0, className: 'speed-of-sloth'},
-                {min: 4000, className: 'speed-of-tortoise'},
-                {min: 8000, className: 'speed-of-puppy'},
-                {min: 16000, className: 'speed-of-cheetah'}
-            ]
-        });
-
-        // The nav is always in the show position on load (good for desktop)
-        // but leave it hidden on mobile, then close it after a while
-        this.hideNavIfSmall();
-
-        setTimeout(() => {
-            this.setState({showNavInitial: false});
-        }, ANIMATION_DURATION_MS);
-
-        this.navEl = document.querySelector('.nav');
-        this.navMaskEl = document.querySelector('.nav__mask');
-
-        window.addEventListener('resize', this.onResize, false);
+    toggleNav() {
+        if (this.state.showNav) {
+            this.hideNav();
+        } else {
+            this.showNav();
+        }
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.onResize, false);
+    showNav() {
+        this.setState({showNav: true});
+
+        if (window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
+            window.addEventListener('touchstart', this.onTouchStart, false);
+        }
+    }
+
+    hideNav() {
+        this.setState({showNav: false});
+
+        window.removeEventListener('touchstart', this.onTouchStart, false);
+    }
+
+    handleNav(path) {
+        if (!!window.ga) ga('send', 'pageview', path);
+
+        this.hideNavIfSmall();
+    }
+
+    hideNavIfSmall() {
+        if (this.state.showNav && window.innerWidth < (MED_LARGE_BREAKPOINT_EMS * 16)) {
+            this.hideNav();
+        }
     }
 
     render() {
@@ -217,7 +217,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    children: React.PropTypes.any, // TODO (davidg): fix up
+    children: React.PropTypes.element,
     location: React.PropTypes.object.isRequired,
 };
 
