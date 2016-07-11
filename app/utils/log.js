@@ -17,7 +17,7 @@ const logLevel = logLevels[logLevelName];
 
 if (!isServer) window.MAH_LOGS = [];
 
-export default class Logger {
+class Logger {
     constructor(namespace = '') {
         this.namespace = namespace;
     }
@@ -97,6 +97,6 @@ export default class Logger {
     }
 }
 
-export default function(namespace) {
+export function init(namespace) {
     return new Logger(namespace);
 }

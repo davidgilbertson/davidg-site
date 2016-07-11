@@ -1,3 +1,3 @@
-export default function(num, min, max) {
+export function contain(num, min, max) {
     return Math.min(Math.max(min, num), max);
 }

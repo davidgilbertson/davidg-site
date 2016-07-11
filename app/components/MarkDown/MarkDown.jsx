@@ -29,7 +29,7 @@ class MarkDown extends Component {
             <div
                 className="markdown"
                 dangerouslySetInnerHTML={{__html: marked(this.state.markdown)}}
-                />
+            />
         );
     }
 }

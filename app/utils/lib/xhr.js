@@ -1,17 +1,17 @@
 import Promise from 'promise';
 
-export default function(url) {
-    const xhr = new XMLHttpRequest();
+export function xhr(url) {
+    const xhrRequest = new XMLHttpRequest();
 
     return new Promise((resolve) => {
-        xhr.open('GET', url, true);
+        xhrRequest.open('GET', url, true);
 
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState !== 4 || xhr.status !== 200) return;
+        xhrRequest.onreadystatechange = () => {
+            if (xhrRequest.readyState !== 4 || xhrRequest.status !== 200) return;
 
-            resolve(xhr.responseText);
+            resolve(xhrRequest.responseText);
         };
 
-        xhr.send();
+        xhrRequest.send();
     });
 }

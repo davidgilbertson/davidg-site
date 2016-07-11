@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import debounce from 'lodash/function/debounce';
+import debounce from 'lodash/debounce';
 import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
 
 if (process.env.WEBPACK) require('./iframe.scss');

@@ -16,6 +16,7 @@ import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {isOnServer} from '../../utils';
 import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
+import photos from './photos';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
 const photoSwipeUIDefault = require('photoswipe/dist/photoswipe-ui-default.js');
@@ -32,12 +33,13 @@ class Gallery extends Component {
 
         this.calcThumbBoundsFn = this.calcThumbBoundsFn.bind(this);
 
-        this.photos = require('./photos');
+        this.photos = photos;
         this.msnry = undefined;
+        this.imageEls = {};
     }
 
     calcThumbBoundsFn(i) {
-        const photoEl = React.findDOMNode(this.refs[`img-${i}`]);
+        const photoEl = this.imageEls[`img-${i}`];
         const dims = photoEl.getBoundingClientRect();
 
         const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -119,7 +121,11 @@ class Gallery extends Component {
 
             return (
                 <div key={i} className={thumbClasses}>
-                    <img ref={`img-${i}`} src={img.msrc} onClick={this.showGallery.bind(this, i)} />
+                    <img
+                        ref={el => this.imageEls[`img-${i}`] = el}
+                        src={img.msrc}
+                        onClick={this.showGallery.bind(this, i)}
+                    />
                 </div>
             );
         });

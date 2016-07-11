@@ -1,15 +1,12 @@
-import path from 'path';
 import renderApp from './renderApp.js';
 import express from 'express';
 import compression from 'compression';
-const log = require('../utils/log.js')('server:routes');
+const log = require('../utils/log.js').init('server:routes');
 const server = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 
 server.use(compression());
 server.use(express.static('public', {maxAge: 31536000})); // 31536000 = one year
-
-server.use('/fireball-js', express.static(path.resolve(__dirname, '../../node_modules/fireball-js')));
 
 server.get('*', renderApp);
 

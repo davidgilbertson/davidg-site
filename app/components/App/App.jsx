@@ -1,16 +1,20 @@
-import React, {Component} from 'react/addons';
-const CSSTransitionGroup = React.addons.CSSTransitionGroup; // This needs to be separate from the React import
-import {RouteHandler} from 'react-router';
+import React, {Component} from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
-import debounce from 'lodash/function/debounce';
-import throttle from 'lodash/function/throttle';
+import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 import {contain} from '../../utils';
 import {getRouteByUrl} from '../../utils/routeLibrary.js';
-const log = require('../../utils/log.js')('component:App');
 
 import Fireball from 'fireball-js';
 
-import {ANIMATION_DURATION_MS, MED_LARGE_BREAKPOINT_EMS, NAV_WIDTH_EMS, MAX_NAV_POS, NAV_MASK_OPACITY} from '../../utils/constants';
+import {
+    ANIMATION_DURATION_MS,
+    MED_LARGE_BREAKPOINT_EMS,
+    NAV_WIDTH_EMS,
+    MAX_NAV_POS,
+    NAV_MASK_OPACITY
+} from '../../utils/constants';
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
 if (process.env.WEBPACK) {
@@ -112,8 +116,9 @@ class App extends Component {
         const distanceMoved = (currentLeft - this.touchStartPos) / 16; // in ems now
 
         this.navTranslate = contain(distanceMoved, MIN_NAV_POS, MAX_NAV_POS);
-
-        this.navEl.style.transform = `translateX(${this.navTranslate}rem)`;
+        const transformVal = `translateX(${this.navTranslate}rem)`;
+        this.navEl.style.transform = transformVal;
+        this.navEl.style.webkitTransform = transformVal;
 
         let navMaskOpacity = NAV_MASK_OPACITY * (1 - (this.navTranslate / MIN_NAV_POS));
 
@@ -127,6 +132,7 @@ class App extends Component {
 
         this.navEl.style.transition = '';
         this.navEl.style.transform = '';
+        this.navEl.style.webkitTransform = '';
 
         this.navMaskEl.style.transition = '';
         this.navMaskEl.style.opacity = '';
@@ -139,19 +145,6 @@ class App extends Component {
 
         window.removeEventListener('touchmove', this.onTouchMove, false);
         window.removeEventListener('touchend', this.onTouchEnd, false);
-    }
-
-    getCurrentPath() {
-        let currentPath;
-
-        if (this.context.router) {
-            currentPath = this.context.router.getCurrentPath();
-        } else {
-            //This only occurs during unit tests. I know I know, dodgy.
-            currentPath = '/';
-        }
-
-        return currentPath;
     }
 
     componentDidMount() {
@@ -183,8 +176,9 @@ class App extends Component {
     }
 
     render() {
-        const currentPath = this.getCurrentPath();
-        const currentRoute = getRouteByUrl(currentPath);
+        const {location} = this.props;
+        const {state} = this;
+        const currentRoute = getRouteByUrl(location.pathname);
         const title = currentRoute.title || 'DG707';
         const appWrapperClasses = classnames(
             'app__wrapper',
@@ -198,20 +192,33 @@ class App extends Component {
 
                 <div className="nav__mask" onClick={this.hideNav}></div>
 
-                <Nav handleNav={this.handleNav}/>
+                <Nav handleNav={this.handleNav} />
 
                 <Header title={title} />
+                <h1>Hello</h1>
 
-                <CSSTransitionGroup component="div" transitionName="app__transition-wrapper">
-                    <RouteHandler showNav={this.state.showNav} key={currentPath} />
+                <CSSTransitionGroup
+                    component="div"
+                    transitionName="app__transition-wrapper"
+                    transitionEnterTimeout={ANIMATION_DURATION_MS}
+                    transitionLeaveTimeout={ANIMATION_DURATION_MS}
+                >
+                    {React.cloneElement(
+                        this.props.children,
+                        {
+                            showNav: state.showNav,
+                            key: location.pathname // required for the transition
+                        }
+                    )}
                 </CSSTransitionGroup>
             </div>
         );
     }
 }
 
-App.contextTypes = {
-    router: React.PropTypes.func.isRequired
+App.propTypes = {
+    children: React.PropTypes.any, // TODO (davidg): fix up
+    location: React.PropTypes.object.isRequired,
 };
 
 export default App;

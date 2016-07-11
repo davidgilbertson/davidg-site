@@ -1,5 +1,5 @@
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 const shallowRenderer = TestUtils.createRenderer();
 
 import App from './App.jsx';

@@ -1,19 +1,19 @@
 import React from 'react';
-import {Route, NotFoundRoute} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 
 import App from '../components/App/App.jsx';
 import Home from '../components/pages/Home/Home.jsx';
 import {routeLibrary} from '../utils/routeLibrary.js';
 
-const routeComponents = routeLibrary.map((routeDef, i) => {
-    return <Route key={i} name={routeDef.name} path={routeDef.path} handler={routeDef.handler} />;
-});
+const routeComponents = routeLibrary.map((routeDef, i) => (
+    <Route key={i} path={routeDef.path} component={routeDef.handler} />
+));
 
 const routes = (
-    <Route path="/" handler={App}>
-        {routeComponents}
+    <Route path="/" component={App}>
+        <IndexRoute component={Home} />
 
-        <NotFoundRoute handler={Home} />
+        {routeComponents}
     </Route>
 );
 

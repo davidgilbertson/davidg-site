@@ -26,7 +26,7 @@ var config = {
             },
             {
                 test: /\.s?css$/,
-                loader: ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
+                loader: ExtractTextPlugin.extract('style', 'css!sass')
 
             },
             {
@@ -36,18 +36,23 @@ var config = {
             {
                 test: /\.gif|svg|png$/,
                 loader: 'file'
-            },
-            {
-                test: /masonry-layout|imagesloaded/,
-                loader: 'imports?define=>false&this=>window'
             }
+            // {
+            //     test: /masonry-layout|imagesloaded/,
+            //     loader: 'imports?define=>false&this=>window'
+            // }
         ]
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin('../css/main.[hash].css')
+        new ExtractTextPlugin('../css/main.[hash].css'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production'),
+            },
+        }),
     ]
 };
 

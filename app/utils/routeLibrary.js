@@ -1,11 +1,13 @@
-import find from 'lodash/collection/find';
+import find from 'lodash/find';
 import Home from '../components/pages/Home/Home.jsx';
 import Isolog from '../components/pages/Isolog/Isolog.jsx';
 import Fireball from '../components/pages/Fireball/Fireball.jsx';
 import AllThePrimes from '../components/pages/AllThePrimes/AllThePrimes.jsx';
-//import ShowcaseWrapper from '../components/pages/ShowcaseWrapper/ShowcaseWrapper.jsx';
+// import ShowcaseWrapper from '../components/pages/ShowcaseWrapper/ShowcaseWrapper.jsx';
 import NotTheWeb from '../components/pages/NotTheWeb/NotTheWeb.jsx';
 
+// TODO (davidg): all names can go?
+// named routes in the new react-router
 export const routeLibrary = [
     {
         name: 'home',
@@ -77,6 +79,6 @@ export const routeLibrary = [
 ];
 
 export function getRouteByUrl(url) {
-    const matchingRoute =  find(routeLibrary, {path: url});
+    const matchingRoute = find(routeLibrary, {path: url});
     return matchingRoute || {}; // So I can use the result of this safely, e.g. thisRoute.name ( = undefined)
 }

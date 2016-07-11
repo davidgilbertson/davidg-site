@@ -57,7 +57,7 @@ class Html extends Component {
                         dangerouslySetInnerHTML={{__html: this.props.innerContent}}
                         />
 
-                    <script src={this.props.jsFile} async></script>
+                    <script src={this.props.jsFile}></script>
 
                     <script dangerouslySetInnerHTML={{__html: fontSnippet}}></script>
                     <script dangerouslySetInnerHTML={{__html: analyticsSnippet}}></script>

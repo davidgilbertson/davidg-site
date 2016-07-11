@@ -41,7 +41,7 @@ class Isolog extends Component {
                 <hr />
 
                 <p>
-                    View the source on <a href="https://github.com/davidgilbertson/isolog" className="link" targt="_blank">GitHub</a>
+                    View the source on <a href="https://github.com/davidgilbertson/isolog" className="link" target="_blank">GitHub</a>
                 </p>
             </PageWrapper>
         );

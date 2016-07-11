@@ -16,13 +16,13 @@ During the build for production, all references to `scss` files from within comp
 into a single `main.css` file which is hashed and then loaded into `index.html`.
 
 ## Server
-The entry point for the server is `index.js` which does nothing more than require `babel/register` and call `server.js`.
+The entry point for the server is `index.js` which does nothing more than require `babel-register` and call `server.js`.
 Then it's ES2015 all the way down.
 
 ## Webpack Magic
 In production, `index.js` looks at this file to get the hash that it needs to reference the JS and CSS files.
 
-When `server.js` first responds, it gets a reference to the correct JS/CSS files and sends that to the HTML template. 
+When `server.js` first responds, it gets a reference to the correct JS/CSS files and sends that to the HTML template.
 
 ## Magic Numbers
 Here be a list of funny looking settings that future me may be puzzled by:

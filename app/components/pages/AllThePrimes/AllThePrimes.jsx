@@ -64,8 +64,6 @@ class AllThePrimes extends Component {
     }
 
     componentDidMount() {
-        this.primeListEl = React.findDOMNode(this.refs.primeList);
-
         this.viewportHeight = window.innerHeight;
 
         setTimeout(() => {
@@ -83,7 +81,7 @@ class AllThePrimes extends Component {
     render() {
         return (
             <PageWrapper className="all-the-primes">
-                <ul ref="primeList" className="all-the-primes__list">
+                <ul ref={el => this.primeListEl = el} className="all-the-primes__list">
                     <li>2</li>
                     <li>3</li>
                     <li>5</li>
