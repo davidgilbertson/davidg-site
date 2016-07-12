@@ -1,1 +1,1 @@
-web: iojs index
+web: node index
