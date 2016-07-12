@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "mocha --watch --compilers jsx:babel-register,.:test/mochaCompiler.js --require ./test/testSetup.js app/**/*Spec.js",
-    "dev": "set UV_THREADPOOL_SIZE=21&& nodemon index --env=development --log-level=info",
+    "dev": "nodemon index --env=development --log-level=info",
     "lint": "eslint ./app --ext .js,.jsx --color",
     "lint-sass": "sass-lint --no-exit --verbose",
     "prebuild": "npm run lint",
