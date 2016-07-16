@@ -77,29 +77,29 @@ class RadioAndCheckboxes extends React.Component {
                     <div className="radio-and-checkboxes__size-set">
                         <p><code>transform: scale(1);</code></p>
 
-                        <input type="radio" style={{transform: 'scale(1)'}} />
-                        <input type="radio" style={{transform: 'scale(1)'}} checked />
-                        <input type="checkbox" style={{transform: 'scale(1)'}} />
-                        <input type="checkbox" style={{transform: 'scale(1)'}} checked />
+                        <input type="radio" style={{transform: 'scale(1)', WebkitTransform: 'scale(1)'}} />
+                        <input type="radio" style={{transform: 'scale(1)', WebkitTransform: 'scale(1)'}} checked />
+                        <input type="checkbox" style={{transform: 'scale(1)', WebkitTransform: 'scale(1)'}} />
+                        <input type="checkbox" style={{transform: 'scale(1)', WebkitTransform: 'scale(1)'}} checked />
                     </div>
 
 
                     <div className="radio-and-checkboxes__size-set">
                         <p><code>transform: scale(1.3);</code></p>
 
-                        <input type="radio" style={{transform: 'scale(1.3)'}} />
-                        <input type="radio" style={{transform: 'scale(1.3)'}} checked />
-                        <input type="checkbox" style={{transform: 'scale(1.3)'}} />
-                        <input type="checkbox" style={{transform: 'scale(1.3)'}} checked />
+                        <input type="radio" style={{transform: 'scale(1.3)', WebkitTransform: 'scale(1.3)'}} />
+                        <input type="radio" style={{transform: 'scale(1.3)', WebkitTransform: 'scale(1.3)'}} checked />
+                        <input type="checkbox" style={{transform: 'scale(1.3)', WebkitTransform: 'scale(1.3)'}} />
+                        <input type="checkbox" style={{transform: 'scale(1.3)', WebkitTransform: 'scale(1.3)'}} checked />
                     </div>
 
                     <div className="radio-and-checkboxes__size-set">
                         <p><code>transform: scale(2);</code></p>
 
-                        <input type="radio" style={{transform: 'scale(2)'}} />
-                        <input type="radio" style={{transform: 'scale(2)'}} checked />
-                        <input type="checkbox" style={{transform: 'scale(2)'}} />
-                        <input type="checkbox" style={{transform: 'scale(2)'}} checked />
+                        <input type="radio" style={{transform: 'scale(2)', WebkitTransform: 'scale(2)'}} />
+                        <input type="radio" style={{transform: 'scale(2)', WebkitTransform: 'scale(2)'}} checked />
+                        <input type="checkbox" style={{transform: 'scale(2)', WebkitTransform: 'scale(2)'}} />
+                        <input type="checkbox" style={{transform: 'scale(2)', WebkitTransform: 'scale(2)'}} checked />
                     </div>
                 </div>
 
