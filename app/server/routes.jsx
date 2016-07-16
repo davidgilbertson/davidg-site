@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
 import App from '../components/App/App.jsx';
+import RadioAndCheckboxes from '../components/pages/RadioAndCheckboxes/RadioAndCheckboxes.jsx';
 import Home from '../components/pages/Home/Home.jsx';
 import {routeLibrary} from '../utils/routeLibrary.js';
 
@@ -14,6 +15,7 @@ const routes = (
         <IndexRoute component={Home} />
 
         {routeComponents}
+        <Route path="radio-and-checkboxes" component={RadioAndCheckboxes} />
     </Route>
 );
 

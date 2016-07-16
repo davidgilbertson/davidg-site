@@ -11,6 +11,7 @@ $vertical-height-overflow: 1rem;
     height: 120%; // Allow for user scrolling an mobile browser nav disappearing
     padding-top: $header-height;
     transform: translateX(-$sidebar-width * 1.1);
+    -webkit-transform: translateX(-$sidebar-width * 1.1);
     transition: $animation-duration;
     background: $nav-color;
     z-index: $z-index-menu;
