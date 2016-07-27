@@ -40,14 +40,17 @@ class AllThePrimes extends Component {
 
     getNextPrime() {
         let candidate = this.lastPrime + 2;
-        const sqrt = Math.floor(Math.sqrt(candidate));
+        let sqrt = Math.floor(Math.sqrt(candidate));
         let testNum = 3;
 
-        while (testNum < sqrt) {
+        while (testNum <= sqrt) {
             if (candidate % testNum === 0) {
+                // this candidate is divisible, so not a prime. Reset counters and try again
                 candidate += 2;
-                testNum = Math.floor(Math.sqrt(candidate));
+                sqrt = Math.floor(Math.sqrt(candidate));
+                testNum = 3;
             } else {
+                // candidate wasn't divisible by this test number, try the next test number
                 testNum += 2;
             }
         }
