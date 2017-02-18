@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-if (process.env.WEBPACK) require('./fireball.scss');
 import Fireball from 'fireball-js';
+import PageWrapper from '../../PageWrapper/PageWrapper';
+import MarkDown from '../../MarkDown/MarkDown';
 
-import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
-import MarkDown from '../../MarkDown/MarkDown.jsx';
+if (process.env.WEBPACK) require('./fireball.scss');
 
 class Home extends Component {
     constructor(props) {
@@ -11,17 +11,17 @@ class Home extends Component {
 
         this.state = {
             score: 0,
-            fireballDone: false
+            fireballDone: false,
         };
     }
 
     componentDidMount() {
         Fireball.getScore();
 
-        Fireball.onSuccess(score => {
+        Fireball.onSuccess((score) => {
             this.setState({
                 score,
-                fireballDone: true
+                fireballDone: true,
             });
         });
     }
@@ -47,7 +47,12 @@ class Home extends Component {
                 <hr />
 
                 <p>
-                    View the source on <a href="https://github.com/davidgilbertson/fireball" className="link" target="_blank">GitHub</a>
+                    View the source on <a
+                        href="https://github.com/davidgilbertson/fireball"
+                        className="link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >GitHub</a>
                 </p>
             </PageWrapper>
         );

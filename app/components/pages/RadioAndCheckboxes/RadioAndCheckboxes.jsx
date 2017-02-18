@@ -1,9 +1,8 @@
 import React from 'react';
 import {xhr} from '../../../utils';
+import PageWrapper from '../../PageWrapper/PageWrapper';
 
 if (process.env.WEBPACK) require('./radioAndCheckboxes.scss');
-
-import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
 
 function getSafariVersion(webkitVersion) {
     const versionNumber = parseFloat(webkitVersion.match(/(\d*\.\d*)/)[0]);
@@ -23,27 +22,6 @@ function getBrowserString(data) {
     return `${data.browser_name} ${version} on ${data.platform_name}`;
 }
 
-// function runTests() {
-//     const tests = [
-//         {
-//             actual: getSafariVersion('1.1'),
-//             expected: '',
-//         },
-//         {
-//             actual: getSafariVersion('602.0.5.123'),
-//             expected: '9.1',
-//         },
-//         {
-//             actual: 'false',
-//             expected: 'true',
-//         },
-//     ];
-//
-//     tests.forEach(test => {
-//         console.assert(test.actual === test.expected, `${test.actual} should be ${test.expected}`);
-//     });
-// }
-
 class RadioAndCheckboxes extends React.Component {
     constructor(props) {
         super(props);
@@ -60,7 +38,7 @@ class RadioAndCheckboxes extends React.Component {
 
         const URL = `https://useragentapi.com/api/v3/json/${API_KEY}/${USER_AGENT}`;
 
-        xhr(URL).then(data => {
+        xhr(URL).then((data) => {
             const browserData = JSON.parse(data).data;
             this.setState({
                 browserData,

@@ -36,7 +36,7 @@ class Nav extends Component {
 }
 
 Nav.propTypes = {
-    handleNav: PropTypes.func
+    handleNav: PropTypes.func.isRequired,
 };
 
 export default Nav;

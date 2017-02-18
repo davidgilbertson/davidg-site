@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {isOnClient, xhr} from '../../utils';
 import marked from 'marked';
+import {isOnClient, xhr} from '../../utils';
 
 if (isOnClient) {
     require('./markdown.scss');
@@ -10,7 +10,7 @@ class MarkDown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            markdown: props.markdown || ''
+            markdown: props.markdown || '',
         };
     }
 
@@ -29,14 +29,19 @@ class MarkDown extends Component {
             <div
                 className="markdown"
                 dangerouslySetInnerHTML={{__html: marked(this.state.markdown)}}
-            ></div>
+            />
         );
     }
 }
 
 MarkDown.propTypes = {
     url: PropTypes.string,
-    markdown: PropTypes.string
+    markdown: PropTypes.string,
+};
+
+MarkDown.defaultProps = {
+    url: '',
+    markdown: '',
 };
 
 export default MarkDown;

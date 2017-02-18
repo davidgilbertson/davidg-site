@@ -1,4 +1,4 @@
-export function loadLocal(key) {
+export default function loadLocal(key) {
     if (typeof localStorage === 'undefined') return false;
 
     let result;

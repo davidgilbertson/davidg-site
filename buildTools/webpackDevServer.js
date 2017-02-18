@@ -1,83 +1,85 @@
 import path from 'path';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
-const log = require('../app/utils/log.js').init('webpack:dev');
 
-const nodeModulesPath = path.resolve(__dirname, '../node_modules');
-
-const hostname = '10.1.1.6';
+const hostname = 'localhost';
 const port = 8081;
 const webpackBase = `http://${hostname}:${port}`;
 
-// TODO (davidg): can I just set WEBPACK like this rather than plugin?
-// process.env.WEBPACK = true;
-
 const config = {
+    devtool: 'eval-source-map',
     entry: [
         `webpack-dev-server/client?${webpackBase}`,
-        'webpack/hot/only-dev-server',
-        './app/main.js'
+        // 'webpack/hot/only-dev-server',
+        './app/client.jsx',
     ],
     output: {
         path: path.resolve(__dirname, '../public'),
         publicPath: `${webpackBase}/`, // trailing slash is required
-        filename: 'dev-bundle.js'
+        filename: 'dev-bundle.js',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                exclude: [nodeModulesPath],
-                loaders: ['react-hot', 'babel']
+                exclude: /node_modules/,
+                use: [
+                    'react-hot-loader',
+                    'babel-loader',
+                ],
 
             },
             {
                 test: /\.s?css$/,
-                loaders: ['style', 'css', 'sass']
+                loaders: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
 
             },
             {
                 test: /\.woff$/,
-                loader: 'url?limit=100000'
+                use: 'url-loader?limit=100000',
             },
             {
                 test: /\.gif|svg|png$/,
-                loader: 'file'
-            }
+                use: 'file-loader',
+            },
         ],
-        noParse: [
-            /react\.min\.js$/,
-            /react-with-addons\.min\.js$/
-        ]
+    },
+    resolve: {
+        extensions: [
+            '.js',
+            '.jsx',
+        ],
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
 
         new webpack.DefinePlugin({
             'process.env': {
                 WEBPACK: JSON.stringify(true),
-                LOG_LEVEL: JSON.stringify(process.env.LOG_LEVEL),
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-        })
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
+        }),
     ],
     node: {
-        fs: 'empty'
-    }
+        fs: 'empty',
+    },
 };
 
 const serverOptions = {
-    contentBase: webpackBase,
-    quiet: true,
-    noInfo: true,
-    hot: true,
-    publicPath: config.output.publicPath
+    // contentBase: path.join(__dirname, 'dev-bundle.js'),
+    // quiet: true,
+    // noInfo: true,
+    // hot: true,
+    // publicPath: config.output.publicPath,
 };
 
 const compiler = webpack(config);
 const webpackDevServer = new WebpackDevServer(compiler, serverOptions);
 
-// TODO (davidg): remove hostname. listen signature?
 webpackDevServer.listen(port, hostname, () => {
-    log.info(`Webpack serving updates at ${webpackBase}, remember to build before pushing.`);
+    console.info(`Webpack serving updates at ${webpackBase}, remember to build before pushing.`);
 });

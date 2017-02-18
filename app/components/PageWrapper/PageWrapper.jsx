@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
-import {getRouteByUrl} from '../../utils/routeLibrary.js';
+import {getRouteByUrl} from '../../utils/routeLibrary';
 
-const PageWrapper = props => {
+const PageWrapper = (props) => {
+    // TODO (davidg): just use location now that it's got default props
     const url = props.location ? props.location.pathname : '/';
     const currentRoute = getRouteByUrl(url);
 
@@ -10,7 +11,7 @@ const PageWrapper = props => {
         props.className,
         'app__content',
         {'app__content--narrow': !props.wide},
-        {'app__content--wide': props.wide}
+        {'app__content--wide': props.wide},
     );
 
     const blurb = currentRoute.blurb
@@ -29,10 +30,20 @@ const PageWrapper = props => {
 };
 
 PageWrapper.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]).isRequired,
     className: PropTypes.string,
     wide: PropTypes.bool,
-    location: PropTypes.object
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }),
+};
+
+PageWrapper.defaultProps = {
+    className: '',
+    wide: false,
+    location: {
+        pathname: '/',
+    },
 };
 
 export default PageWrapper;

@@ -11,49 +11,53 @@ rimraf.sync(path.resolve(__dirname, '../public/css'));
 
 const config = {
     entry: [
-        path.resolve(__dirname, '../app/main.js')
+        path.resolve(__dirname, '../app/client.jsx'),
     ],
     output: {
         path: path.resolve(__dirname, '../public/js'),
-        filename: 'main.[hash].js'
+        filename: 'main.[hash].js',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                exclude: [path.resolve(__dirname, 'node_modules')],
-                loader: 'babel'
+                exclude: /node_modules/,
+                use: 'babel-loader',
             },
             {
                 test: /\.s?css$/,
-                loader: ExtractTextPlugin.extract('style', 'css!sass')
-
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        'css-loader',
+                        'sass-loader',
+                    ],
+                }),
             },
             {
                 test: /\.woff$/,
-                loader: 'url?limit=100000'
+                use: 'url-loader?limit=100000',
             },
             {
                 test: /\.gif|svg|png$/,
-                loader: 'file'
-            }
-            // {
-            //     test: /masonry-layout|imagesloaded/,
-            //     loader: 'imports?define=>false&this=>window'
-            // }
-        ]
+                use: 'file-loader',
+            },
+        ],
+    },
+    resolve: {
+        extensions: [
+            '.js',
+            '.jsx',
+        ],
     },
     plugins: [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin('../css/main.[hash].css'),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        })
-    ]
+                NODE_ENV: JSON.stringify('production'),
+            },
+        }),
+    ],
 };
 
 function handleResults(err, stats) {
@@ -62,14 +66,14 @@ function handleResults(err, stats) {
         return;
     }
 
-    const statsFilepath = path.resolve(__dirname, '../app/server/assetsHash.json');
+    const statsFilePath = path.resolve(__dirname, '../app/server/assetsHash.json');
 
     const jsonStats = stats.toJson({
         modules: false,
-        chunks: false
+        chunks: false,
     });
 
-    fs.writeFileSync(statsFilepath, JSON.stringify(jsonStats.hash));
+    fs.writeFileSync(statsFilePath, JSON.stringify(jsonStats.hash));
     console.timeEnd('build');
 }
 

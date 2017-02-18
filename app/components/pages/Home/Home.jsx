@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+import PageWrapper from '../../PageWrapper/PageWrapper';
 
 if (process.env.WEBPACK) require('./home.scss');
 

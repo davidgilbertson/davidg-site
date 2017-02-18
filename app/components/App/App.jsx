@@ -3,19 +3,21 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
-import {contain} from '../../utils';
-import {getRouteByUrl} from '../../utils/routeLibrary.js';
-
 import Fireball from 'fireball-js';
 
+import Hamburger from '../Hamburger/Hamburger';
+import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
+
+import {contain} from '../../utils';
+import {getRouteByUrl} from '../../utils/routeLibrary';
 import {
     ANIMATION_DURATION_MS,
     MED_LARGE_BREAKPOINT_EMS,
     NAV_WIDTH_EMS,
     MAX_NAV_POS,
-    NAV_MASK_OPACITY
+    NAV_MASK_OPACITY,
 } from '../../utils/constants';
-const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
 if (process.env.WEBPACK) {
     require('./app.scss');
@@ -26,9 +28,8 @@ if (process.env.WEBPACK) {
     require('./typography.scss');
 }
 
-import Hamburger from '../Hamburger/Hamburger.jsx';
-import Header from '../Header/Header.jsx';
-import Nav from '../Nav/Nav.jsx';
+const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
+
 
 class App extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class App extends Component {
         this.state = {
             showNav: true,
             showNavInitial: true,
-            navTranslate: 0
+            navTranslate: 0,
         };
 
         this.touchStartPos = 0;
@@ -62,8 +63,8 @@ class App extends Component {
                 {min: 0, className: 'speed-of-sloth'},
                 {min: 4000, className: 'speed-of-tortoise'},
                 {min: 8000, className: 'speed-of-puppy'},
-                {min: 16000, className: 'speed-of-cheetah'}
-            ]
+                {min: 16000, className: 'speed-of-cheetah'},
+            ],
         });
 
         // The nav is always in the show position on load (good for desktop)
@@ -164,7 +165,7 @@ class App extends Component {
     }
 
     handleNav(path) {
-        if (!!window.ga) ga('send', 'pageview', path);
+        if (window.ga) ga('send', 'pageview', path);
 
         this.hideNavIfSmall();
     }
@@ -183,14 +184,14 @@ class App extends Component {
         const appWrapperClasses = classnames(
             'app__wrapper',
             {'app__wrapper--nav-visible--init': this.state.showNavInitial},
-            {'app__wrapper--nav-visible': this.state.showNav}
+            {'app__wrapper--nav-visible': this.state.showNav},
         );
 
         return (
             <div className={appWrapperClasses}>
                 <Hamburger onToggleNav={this.toggleNav} className="header__hamburger" />
 
-                <div className="nav__mask" onClick={this.hideNav}></div>
+                <div className="nav__mask" onClick={this.hideNav} />
 
                 <Nav handleNav={this.handleNav} />
 
@@ -207,8 +208,8 @@ class App extends Component {
                         this.props.children,
                         {
                             showNav: state.showNav,
-                            key: location.pathname // required for the transition
-                        }
+                            key: location.pathname, // required for the transition
+                        },
                     )}
                 </CSSTransitionGroup>
             </div>

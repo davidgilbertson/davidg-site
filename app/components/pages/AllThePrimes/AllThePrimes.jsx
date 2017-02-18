@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
+import PageWrapper from '../../PageWrapper/PageWrapper';
 
 if (process.env.WEBPACK) require('./allThePrimes.scss');
 

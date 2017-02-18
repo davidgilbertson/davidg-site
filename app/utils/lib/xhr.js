@@ -1,6 +1,6 @@
 import Promise from 'promise';
 
-export function xhr(url) {
+export default function xhr(url) {
     const xhrRequest = new XMLHttpRequest();
 
     return new Promise((resolve) => {

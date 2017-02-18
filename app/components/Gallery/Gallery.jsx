@@ -15,7 +15,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {isOnServer} from '../../utils';
-import {ANIMATION_DURATION_MS} from '../../utils/constants.js';
+import {ANIMATION_DURATION_MS} from '../../utils/constants';
 import photos from './photos';
 
 const PhotoSwipe = require('photoswipe/dist/photoswipe.js');
@@ -47,7 +47,7 @@ class Gallery extends Component {
         // when generating the HTML on the server, assume smallest screen so set thumbnails to small
         const windowWidth = isOnServer ? 1 : window.innerWidth;
 
-        this.photos = photos.map(photo => {
+        this.photos = photos.map((photo) => {
             const newPhoto = {...photo};
 
             if (windowWidth >= 1300 || photo.doubleWidth) {
@@ -69,7 +69,7 @@ class Gallery extends Component {
         this.msnry = new Masonry(gridEl, {
             itemSelector: '.gallery__thumb',
             columnWidth: '.gallery__thumb-sizer',
-            percentPosition: true
+            percentPosition: true,
         });
 
         imagesLoaded(gridEl).on('progress', () => this.msnry.layout());
@@ -101,7 +101,7 @@ class Gallery extends Component {
             index: i,
             getThumbBoundsFn: this.calcThumbBoundsFn,
             shareEl: false,
-            zoomEl: false
+            zoomEl: false,
         };
 
         // Initializes and opens PhotoSwipe
@@ -112,7 +112,7 @@ class Gallery extends Component {
     render() {
         const classes = classnames(
             'gallery',
-            this.props.className
+            this.props.className,
         );
 
         const photoEls = this.photos.map((img, i) => {
@@ -124,7 +124,7 @@ class Gallery extends Component {
             }
 
             return (
-                <div key={i} className={thumbClasses}>
+                <div key={img.msrc} className={thumbClasses}>
                     <img
                         ref={el => this.imageEls[`img-${i}`] = el}
                         src={img.msrc}
@@ -137,9 +137,9 @@ class Gallery extends Component {
 
         // The below boilerplate and comments are from http://photoswipe.com/documentation/getting-started.html
         return (
-            <section ref="galleryWrapper" className={classes}>
+            <section className={classes}>
                 <div className="gallery__wrapper">
-                    <div className="gallery__thumb-sizer"></div>
+                    <div className="gallery__thumb-sizer" />
                     {photoEls}
                 </div>
                 {/* Root element of PhotoSwipe. Must have class pswp. */}
@@ -147,7 +147,7 @@ class Gallery extends Component {
 
                     {/* Background of PhotoSwipe.
                          It's a separate element as animating opacity is faster than rgba(). */}
-                    <div className="pswp__bg"></div>
+                    <div className="pswp__bg" />
 
                     {/* Slides wrapper with overflow:hidden. */}
                     <div className="pswp__scroll-wrap">
@@ -156,9 +156,9 @@ class Gallery extends Component {
                             PhotoSwipe keeps only 3 of them in the DOM to save memory.
                             Don't modify these 3 pswp__item elements, data is added later on. */}
                         <div className="pswp__container">
-                            <div className="pswp__item"></div>
-                            <div className="pswp__item"></div>
-                            <div className="pswp__item"></div>
+                            <div className="pswp__item" />
+                            <div className="pswp__item" />
+                            <div className="pswp__item" />
                         </div>
 
                         {/* Default (photoSwipeUIDefault) interface on top of sliding area. Can be changed. */}
@@ -168,39 +168,37 @@ class Gallery extends Component {
 
                                 {/*  Controls are self-explanatory. Order can be changed. */}
 
-                                <div className="pswp__counter"></div>
+                                <div className="pswp__counter" />
 
-                                <button className="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                <button className="pswp__button pswp__button--close" title="Close (Esc)" />
 
-                                <button className="pswp__button pswp__button--share" title="Share"></button>
+                                <button className="pswp__button pswp__button--share" title="Share" />
 
-                                <button className="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                <button className="pswp__button pswp__button--fs" title="Toggle fullscreen" />
 
-                                <button className="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                <button className="pswp__button pswp__button--zoom" title="Zoom in/out" />
 
                                 {/* Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR */}
                                 {/* element will get class pswp__preloader--active when preloader is running */}
                                 <div className="pswp__preloader">
                                     <div className="pswp__preloader__icn">
                                         <div className="pswp__preloader__cut">
-                                            <div className="pswp__preloader__donut"></div>
+                                            <div className="pswp__preloader__donut" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                                <div className="pswp__share-tooltip"></div>
+                                <div className="pswp__share-tooltip" />
                             </div>
 
-                            <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-                            </button>
+                            <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)" />
 
-                            <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-                            </button>
+                            <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)" />
 
                             <div className="pswp__caption">
-                                <div className="pswp__caption__center"></div>
+                                <div className="pswp__caption__center" />
                             </div>
                         </div>
                     </div>
@@ -211,8 +209,8 @@ class Gallery extends Component {
 }
 
 Gallery.propTypes = {
-    className: PropTypes.string,
-    showNav: PropTypes.bool
+    className: PropTypes.string.isRequired,
+    showNav: PropTypes.bool.isRequired,
 };
 
 export default Gallery;

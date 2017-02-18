@@ -1,9 +1,8 @@
 import React from 'react';
+import PageWrapper from '../../PageWrapper/PageWrapper';
+import Gallery from '../../Gallery/Gallery';
 
 if (process.env.WEBPACK) require('./notTheWeb.scss');
-
-import PageWrapper from '../../PageWrapper/PageWrapper.jsx';
-import Gallery from '../../Gallery/Gallery.jsx';
 
 const NotTheWeb = props => (
     <PageWrapper

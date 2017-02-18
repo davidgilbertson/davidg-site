@@ -36,8 +36,6 @@ $vertical-height-overflow: 1rem;
             content: none;
         }
 
-        //@include shade(2, 0, 10, .8); //This slows it right down, use fireball...
-
         .app__wrapper--nav-visible--init & {
             display: none;
         }
@@ -51,6 +49,7 @@ $vertical-height-overflow: 1rem;
 
 .nav__link {
     @include no-tap-highlight();
+
     display: block;
     margin: .4em 0;
     padding: .6em 1em;

@@ -1,1 +1,1 @@
-export const isOnServer = (typeof window === 'undefined');
+export default (typeof window === 'undefined');
