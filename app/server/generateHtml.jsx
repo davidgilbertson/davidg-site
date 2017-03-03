@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
-import {RouterContext, match} from 'react-router';
-import routes from './routes';
 import Html from '../components/Html/Html';
+import App from '../components/App/App';
 
 import assetsHash from './assetsHash.json';
 
@@ -22,27 +21,17 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function generateHtml(req, res) {
-    match({routes, location: req.url}, (err, redirect, props) => {
-        if (err) {
-            res.status(500).send(err.message);
-        } else if (redirect) {
-            res.redirect(redirect.pathname + redirect.search);
-        } else if (props) {
-            const innerContent = renderToString(<RouterContext {...props} />);
+    const innerContent = renderToString(<App pathname={req.url} />);
 
-            const html = renderToStaticMarkup(
-                <Html
-                    styleString={styleString}
-                    jsFile={jsFile}
-                    innerContent={innerContent}
-                />,
-            );
+    const html = renderToStaticMarkup(
+        <Html
+            styleString={styleString}
+            jsFile={jsFile}
+            innerContent={innerContent}
+        />,
+    );
 
-            res.send(`<!DOCTYPE html>${html}`);
-        } else {
-            res.status(404).send('Not Found');
-        }
-    });
+    res.send(`<!DOCTYPE html>${html}`);
 }
 
 export default generateHtml;

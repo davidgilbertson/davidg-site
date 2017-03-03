@@ -1,0 +1,17 @@
+@import '../../utils/styles';
+
+.link {
+    border-bottom: 1px dotted $link-color;
+    color: $link-color;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 400;
+
+    &:focus,
+    &:active,
+    &:visited,
+    &:hover {
+        color: $link-color--hover;
+        text-decoration: none;
+    }
+}

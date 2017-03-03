@@ -11,8 +11,4 @@
         @include for-size($large-up) {font-size: 1.4rem;}
         @include for-size($jumbo-up) {font-size: 1.6rem;}
     }
-
-    .link {
-        font-weight: 400;
-    }
 }

@@ -6,6 +6,7 @@ if (process.env.WEBPACK) require('./notTheWeb.scss');
 
 const NotTheWeb = props => (
     <PageWrapper
+        {...props}
         className="not-the-web"
         wide
     >

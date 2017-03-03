@@ -1,4 +1,5 @@
 export const contain = require('./lib/contain.js').default;
+export const history = require('./lib/history.js').default;
 export const isOnClient = require('./lib/isOnClient.js').default;
 export const isOnServer = require('./lib/isOnServer.js').default;
 export const isProd = require('./lib/isProd.js').default;

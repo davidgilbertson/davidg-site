@@ -34,7 +34,7 @@ class Home extends Component {
         );
 
         return (
-            <PageWrapper className="fireball">
+            <PageWrapper className="fireball" {...this.props}>
                 {subTitle}
                 <p className="speed-text show-for-sloth">Your machine would rather be sleeping in a tree than processing this web page.</p>
                 <p className="speed-text show-for-tortoise">Your machine resembles a tortoise that is pretty excited to be somewhere.</p>

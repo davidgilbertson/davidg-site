@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
@@ -9,8 +8,8 @@ import Hamburger from '../Hamburger/Hamburger';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 
-import {contain} from '../../utils';
-import {getRouteByUrl} from '../../utils/routeLibrary';
+import {contain, history} from '../../utils';
+import routeLibrary from '../../utils/routeLibrary';
 import {
     ANIMATION_DURATION_MS,
     MED_LARGE_BREAKPOINT_EMS,
@@ -48,6 +47,7 @@ class App extends Component {
             showNav: true,
             showNavInitial: true,
             navTranslate: 0,
+            pathname: props.pathname,
         };
 
         this.touchStartPos = 0;
@@ -66,6 +66,8 @@ class App extends Component {
                 {min: 16000, className: 'speed-of-cheetah'},
             ],
         });
+
+        history.listen(this.handleNav); // this fires whenever history.push() is used
 
         // The nav is always in the show position on load (good for desktop)
         // but leave it hidden on mobile, then close it after a while
@@ -164,8 +166,10 @@ class App extends Component {
         window.removeEventListener('touchstart', this.onTouchStart, false);
     }
 
-    handleNav(path) {
-        if (window.ga) ga('send', 'pageview', path);
+    handleNav({pathname}) {
+        if (window.ga) ga('send', 'pageview', pathname);
+
+        this.setState({pathname});
 
         this.hideNavIfSmall();
     }
@@ -177,10 +181,13 @@ class App extends Component {
     }
 
     render() {
-        const {location} = this.props;
         const {state} = this;
-        const currentRoute = getRouteByUrl(location.pathname);
-        const title = currentRoute.title || 'DG707';
+        const route = routeLibrary[state.pathname];
+
+        if (!route) return <div className="app__404">Page not found</div>;
+
+        const Handler = route.handler;
+
         const appWrapperClasses = classnames(
             'app__wrapper',
             {'app__wrapper--nav-visible--init': this.state.showNavInitial},
@@ -195,31 +202,16 @@ class App extends Component {
 
                 <Nav handleNav={this.handleNav} />
 
-                <Header title={title} />
-                <h1>Hello</h1>
+                <Header title={route.title} />
 
-                <CSSTransitionGroup
-                    component="div"
-                    transitionName="app__transition-wrapper"
-                    transitionEnterTimeout={ANIMATION_DURATION_MS}
-                    transitionLeaveTimeout={ANIMATION_DURATION_MS}
-                >
-                    {React.cloneElement(
-                        this.props.children,
-                        {
-                            showNav: state.showNav,
-                            key: location.pathname, // required for the transition
-                        },
-                    )}
-                </CSSTransitionGroup>
+                <Handler showNav={state.showNav} route={route} />
             </div>
         );
     }
 }
 
 App.propTypes = {
-    children: React.PropTypes.element,
-    location: React.PropTypes.object.isRequired,
+    pathname: PropTypes.string.isRequired,
 };
 
 export default App;

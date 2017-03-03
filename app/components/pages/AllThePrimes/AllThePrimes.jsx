@@ -83,7 +83,7 @@ class AllThePrimes extends Component {
 
     render() {
         return (
-            <PageWrapper className="all-the-primes">
+            <PageWrapper className="all-the-primes" {...this.props}>
                 <ul ref={el => this.primeListEl = el} className="all-the-primes__list">
                     <li>2</li>
                     <li>3</li>
