@@ -44,6 +44,15 @@
   line-height: 4rem;
   text-align: center;
   text-transform: uppercase; }
+.link {
+  border-bottom: 1px dotted #c0392b;
+  color: #c0392b;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400; }
+  .link:focus, .link:active, .link:visited, .link:hover {
+    color: #e74c3c;
+    text-decoration: none; }
 .nav {
   position: fixed;
   top: 0;
@@ -54,7 +63,7 @@
   transform: translateX(-16.5rem);
   -webkit-transform: translateX(-16.5rem);
   transition: 300ms;
-  background: pink;
+  background: #16a085;
   z-index: 20;
   overflow-x: hidden; }
   .nav:after {
@@ -124,9 +133,6 @@
   @media (min-width: 100.0625rem) {
     .home__hero-text {
       font-size: 1.6rem; } }
-
-.home .link {
-  font-weight: 400; }
 .markdown h1 {
   margin: 1em 0;
   color: #c0392b;
@@ -973,6 +979,12 @@ a.pswp__share--download:hover {
     opacity: 1; }
     .app__transition-wrapper-leave.app__transition-wrapper-leave-active {
       opacity: 0; }
+
+.app__404 {
+  font-family: monospace;
+  font-size: 100px;
+  text-align: center;
+  margin-top: 10vh; }
 body {
   overflow-x: hidden;
   overflow-y: scroll; }
@@ -1070,15 +1082,6 @@ body {
   font-size: 1.2em;
   font-weight: 400; }
 
-.link {
-  border-bottom: 1px dotted #c0392b;
-  color: #c0392b;
-  text-decoration: none;
-  cursor: pointer; }
-  .link:focus, .link:active, .link:visited, .link:hover {
-    color: #e74c3c;
-    text-decoration: none; }
-
 body {
   color: #333;
   font-family: "Roboto", sans-serif;
@@ -1089,41 +1092,3 @@ body {
 @media (min-width: 0) and (max-width: 30rem) {
   .justify-small {
     text-align: justify; } }
-.radio-and-checkboxes {
-  background: white;
-  padding: 20px; }
-  .radio-and-checkboxes input {
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 15px 0 10px;
-    width: 20px; }
-  .radio-and-checkboxes code {
-    display: block;
-    font-size: 15px;
-    margin-bottom: 10px; }
-
-.radio-and-checkboxes__wrapper {
-  width: 340px;
-  margin: 20px auto;
-  padding: 10px;
-  border: 1px solid red; }
-
-.radio-and-checkboxes__title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-transform: none;
-  font-weight: 300; }
-
-.radio-and-checkboxes__size-set {
-  text-align: center;
-  padding: 0 20px;
-  margin-bottom: 30px; }
-
-.radio-and-checkboxes__radio-50-wrapper {
-  padding: 10px; }
-
-.radio-and-checkboxes__radio-100-wrapper {
-  padding: 10px; }
-
-.radio-and-checkboxes__radio-200-wrapper {
-  padding: 10px; }

@@ -9643,7 +9643,7 @@
 
 	var RouteHandler = _reactRouter2['default'].RouteHandler;
 
-	var Nav = __webpack_require__(/*! ../Nav/Nav.jsx */ 66);
+	var Nav = __webpack_require__(/*! ../Nav/Link.jsx */ 66);
 
 	var App = (function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -10046,7 +10046,7 @@
 /***/ },
 /* 66 */
 /*!************************************!*\
-  !*** ./app/components/Nav/Nav.jsx ***!
+  !*** ./app/components/Nav/Link.jsx ***!
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 

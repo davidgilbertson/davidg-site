@@ -190,8 +190,8 @@ class App extends Component {
 
         const appWrapperClasses = classnames(
             'app__wrapper',
-            {'app__wrapper--nav-visible--init': this.state.showNavInitial},
-            {'app__wrapper--nav-visible': this.state.showNav},
+            {'app__wrapper--nav-visible--init': state.showNavInitial},
+            {'app__wrapper--nav-visible': state.showNav},
         );
 
         return (
