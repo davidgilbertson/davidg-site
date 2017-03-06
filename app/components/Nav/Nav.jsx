@@ -8,6 +8,7 @@ const Nav = () => (
     <nav className="nav">
         <ul className="nav__list">
             <li><Link className="nav__link" theme="no" href="/">Home</Link></li>
+            <li><Link className="nav__link" theme="no" href="/malla">Malla</Link></li>
             <li><Link className="nav__link" theme="no" href="/isolog">Isolog</Link></li>
             <li><Link className="nav__link" theme="no" href="/fireball">Fireball</Link></li>
             {/*

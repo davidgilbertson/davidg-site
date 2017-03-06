@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 import Home from '../pages/Home/Home';
 import Isolog from '../pages/Isolog/Isolog';
+import Malla from '../pages/Malla/Malla';
 import Fireball from '../pages/Fireball/Fireball';
 import AllThePrimes from '../pages/AllThePrimes/AllThePrimes';
 import NotTheWeb from '../pages/NotTheWeb/NotTheWeb';
@@ -35,6 +36,7 @@ const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
 const PAGES = {
     '/': Home,
+    '/malla': Malla,
     '/isolog': Isolog,
     '/fireball': Fireball,
     '/all-the-primes': AllThePrimes,
