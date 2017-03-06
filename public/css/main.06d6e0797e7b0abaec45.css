@@ -181,6 +181,20 @@
       float: left;
       margin-left: 0.83333%;
       margin-right: 0.83333%; } }
+.malla__video-iframe {
+  display: block;
+  width: 320px;
+  height: 180px;
+  margin: 40px auto 0;
+  text-align: center; }
+  @media (min-width: 600px) {
+    .malla__video-iframe {
+      width: 426px;
+      height: 240px; } }
+  @media (min-width: 900px) {
+    .malla__video-iframe {
+      width: 640px;
+      height: 360px; } }
 .fireball__title {
   margin: 1em 0;
   color: #c0392b;
