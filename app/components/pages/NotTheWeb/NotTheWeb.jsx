@@ -8,6 +8,9 @@ const NotTheWeb = props => (
     <PageWrapper
         {...props}
         className="not-the-web"
+        title="Not the web"
+        blurb="On rare occasions I will emerge from behind the keyboard, spread my wings and fly.
+            Here is the output from some of those wing-spreading moments."
         wide
     >
         <Gallery

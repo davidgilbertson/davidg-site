@@ -6,12 +6,16 @@ import PageWrapper from '../../PageWrapper/PageWrapper';
 if (process.env.WEBPACK) require('./home.scss');
 
 const Home = props => (
-    <PageWrapper className="home" {...props}>
+    <PageWrapper
+        {...props}
+        className="home"
+        title="DG707"
+    >
         <div className="justify-small">
             <p className="home__hero-text">Hello</p>
 
             <p className="home__hero-text">
-                I am David Gilbertson. This is my site. A haphazard mix of weekend projects I've
+                I'm David Gilbertson. This is my site. A haphazard mix of weekend projects I've
                 worked on over the years, with varying degrees of polish.
             </p>
 

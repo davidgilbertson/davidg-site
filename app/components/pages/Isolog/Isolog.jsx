@@ -6,7 +6,11 @@ import PageWrapper from '../../PageWrapper/PageWrapper';
 if (process.env.WEBPACK) require('./isolog.scss');
 
 const Isolog = props => (
-    <PageWrapper className="isolog" {...props}>
+    <PageWrapper
+        {...props}
+        className="isolog"
+        title="Isolog"
+    >
         <MarkDown url="https://raw.githubusercontent.com/davidgilbertson/isolog/master/README.md" />
 
         <hr />

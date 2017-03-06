@@ -1,15 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import debounce from 'lodash/debounce';
-import throttle from 'lodash/throttle';
-import Fireball from 'fireball-js';
+import FireballJs from 'fireball-js';
 
 import Hamburger from '../Hamburger/Hamburger';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
+import Home from '../pages/Home/Home';
+import Isolog from '../pages/Isolog/Isolog';
+import Fireball from '../pages/Fireball/Fireball';
+import AllThePrimes from '../pages/AllThePrimes/AllThePrimes';
+import NotTheWeb from '../pages/NotTheWeb/NotTheWeb';
 
-import {contain, history} from '../../utils';
-import routeLibrary from '../../utils/routeLibrary';
+import {
+    contain,
+    history,
+} from '../../utils';
 import {
     ANIMATION_DURATION_MS,
     MED_LARGE_BREAKPOINT_EMS,
@@ -20,7 +25,6 @@ import {
 
 if (process.env.WEBPACK) {
     require('./app.scss');
-    require('./fontFace.scss');
     require('./layout.scss');
     require('./resets.scss');
     require('./theme.scss');
@@ -29,6 +33,13 @@ if (process.env.WEBPACK) {
 
 const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
+const PAGES = {
+    '/': Home,
+    '/isolog': Isolog,
+    '/fireball': Fireball,
+    '/all-the-primes': AllThePrimes,
+    '/not-the-web': NotTheWeb,
+};
 
 class App extends Component {
     constructor(props) {
@@ -36,11 +47,11 @@ class App extends Component {
 
         this.hideNav = this.hideNav.bind(this);
         this.toggleNav = this.toggleNav.bind(this);
-        this.onResize = debounce(this.onResize.bind(this), 50);
+        this.onResize = this.onResize.bind(this);
         this.handleNav = this.handleNav.bind(this);
         this.hideNavIfSmall = this.hideNavIfSmall.bind(this);
         this.onTouchStart = this.onTouchStart.bind(this);
-        this.onTouchMove = throttle(this.onTouchMove.bind(this), 16);
+        this.onTouchMove = this.onTouchMove.bind(this);
         this.onTouchEnd = this.onTouchEnd.bind(this);
 
         this.state = {
@@ -58,7 +69,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        Fireball.run({
+        console.info('App loaded in:', Math.round(performance.now()));
+
+        FireballJs.run({
             speedRanges: [
                 {min: 0, className: 'speed-of-sloth'},
                 {min: 4000, className: 'speed-of-tortoise'},
@@ -67,7 +80,7 @@ class App extends Component {
             ],
         });
 
-        history.listen(this.handleNav); // this fires whenever history.push() is used
+        history.onChange(this.handleNav);
 
         // The nav is always in the show position on load (good for desktop)
         // but leave it hidden on mobile, then close it after a while
@@ -166,7 +179,7 @@ class App extends Component {
         window.removeEventListener('touchstart', this.onTouchStart, false);
     }
 
-    handleNav({pathname}) {
+    handleNav(pathname) {
         if (window.ga) ga('send', 'pageview', pathname);
 
         this.setState({pathname});
@@ -182,11 +195,9 @@ class App extends Component {
 
     render() {
         const {state} = this;
-        const route = routeLibrary[state.pathname];
+        const Handler = PAGES[state.pathname];
 
-        if (!route) return <div className="app__404">Page not found</div>;
-
-        const Handler = route.handler;
+        if (!Handler) return <div className="app__404">Page not found</div>;
 
         const appWrapperClasses = classnames(
             'app__wrapper',
@@ -200,18 +211,16 @@ class App extends Component {
 
                 <div className="nav__mask" onClick={this.hideNav} />
 
-                <Nav handleNav={this.handleNav} />
+                <Nav />
 
-                <Header title={route.title} />
-
-                <Handler showNav={state.showNav} route={route} />
+                <Handler showNav={state.showNav} />
             </div>
         );
     }
 }
 
 App.propTypes = {
-    pathname: PropTypes.string.isRequired,
+    pathname: PropTypes.oneOf(Object.keys(PAGES)).isRequired,
 };
 
 export default App;

@@ -1,4 +1,12 @@
-import createHistory from 'history/createBrowserHistory';
-import isOnClient from './isOnClient';
+const onChangeListeners = [];
 
-export default isOnClient ? createHistory() : {};
+function push(pathname) {
+    window.history.pushState({}, '', pathname);
+
+    onChangeListeners.forEach(callback => callback(pathname));
+}
+
+export default {
+    push,
+    onChange: cb => onChangeListeners.push(cb),
+};

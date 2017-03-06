@@ -1,41 +1,51 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import routeLibrary from '../../utils/routeLibrary';
+import Header from '../Header/Header';
 
-const PageWrapper = (props) => {
-    const classes = classnames(
-        props.className,
-        'app__content',
-        {'app__content--narrow': !props.wide},
-        {'app__content--wide': props.wide},
-    );
+class PageWrapper extends Component {
+    componentDidMount() {
+        document.title = this.props.title;
+    }
 
-    const blurb = props.route.blurb
-        ? <div className="app__blurb">{props.route.blurb}</div>
-        : null;
+    render() {
+        const { props } = this;
 
-    return (
-        <div className="app__transition-wrapper">
-            {blurb}
+        const classes = classnames(
+            props.className,
+            'app__content',
+            {'app__content--narrow': !props.wide},
+            {'app__content--wide': props.wide},
+        );
 
-            <main className={classes}>
-                {props.children}
-            </main>
-        </div>
-    );
-};
+        const blurb = props.blurb
+            ? <div className="app__blurb">{props.blurb}</div>
+            : null;
+
+        return (
+            <div className="app__transition-wrapper">
+                <Header title={props.title} />
+
+                {blurb}
+
+                <main className={classes}>
+                    {props.children}
+                </main>
+            </div>
+        );
+    }
+}
 
 PageWrapper.propTypes = {
+    blurb: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]).isRequired,
     className: PropTypes.string,
+    title: PropTypes.string,
     wide: PropTypes.bool,
-    route: PropTypes.shape({
-        blurb: PropTypes.string,
-    })
 };
 
 PageWrapper.defaultProps = {
     className: '',
+    title: 'DG707',
     wide: false,
 };
 

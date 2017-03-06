@@ -11,9 +11,10 @@ const Link = (props) => {
     );
 
     const onClick = (e) => {
-        const newTab = e.metaKey || e.ctrlKey;
+        const aNewTab = e.metaKey || e.ctrlKey;
+        const anExternalLink = props.href.startsWith('http');
 
-        if (!newTab && !props.href.startsWith('http')) {
+        if (!aNewTab && !anExternalLink) {
             // is a relative URL, treat it as a route
             e.preventDefault();
             history.push(props.href); // a history onChange event captures this change in App.jsx

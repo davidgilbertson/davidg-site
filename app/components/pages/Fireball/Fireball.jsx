@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Fireball from 'fireball-js';
+import FireballJs from 'fireball-js';
 import PageWrapper from '../../PageWrapper/PageWrapper';
 import MarkDown from '../../MarkDown/MarkDown';
 
 if (process.env.WEBPACK) require('./fireball.scss');
 
-class Home extends Component {
+class Fireball extends Component {
     constructor(props) {
         super(props);
 
@@ -16,9 +16,9 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        Fireball.getScore();
+        FireballJs.getScore();
 
-        Fireball.onSuccess((score) => {
+        FireballJs.onSuccess((score) => {
             this.setState({
                 score,
                 fireballDone: true,
@@ -34,7 +34,11 @@ class Home extends Component {
         );
 
         return (
-            <PageWrapper className="fireball" {...this.props}>
+            <PageWrapper
+                {...this.props}
+                className="fireball"
+                title="Fireball"
+            >
                 {subTitle}
                 <p className="speed-text show-for-sloth">Your machine would rather be sleeping in a tree than processing this web page.</p>
                 <p className="speed-text show-for-tortoise">Your machine resembles a tortoise that is pretty excited to be somewhere.</p>
@@ -59,4 +63,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Fireball;
