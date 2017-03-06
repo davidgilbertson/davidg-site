@@ -55,7 +55,8 @@ $vertical-height-overflow: 1rem;
     padding: .6em 1em;
     transition: $animation-duration;
     color: $nav-text-color;
-    font-size: 120%;
+    font-size: 140%;
+    font-weight: 300;
     text-decoration: none;
 
     &.focus,

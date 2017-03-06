@@ -10,22 +10,6 @@ const analyticsSnippet = (
     ga('send', 'pageview');`
 );
 
-const fontSnippet = (
-    `WebFontConfig = {
-        google: { families: [ 'Roboto:300,700,400:latin', 'Roboto+Slab:400,300:latin' ] }
-    };
-    (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-    })();`
-);
-
-
 const Html = (props) => {
     const styleString = props.styleString ? (
         <style dangerouslySetInnerHTML={{__html: props.styleString}} />
@@ -54,7 +38,6 @@ const Html = (props) => {
 
                 <script src={props.jsFile} />
 
-                <script dangerouslySetInnerHTML={{__html: fontSnippet}} />
                 <script dangerouslySetInnerHTML={{__html: analyticsSnippet}} />
             </body>
         </html>
