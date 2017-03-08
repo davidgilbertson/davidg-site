@@ -20,13 +20,6 @@ const Malla = props => (
                 place to get started.
             </p>
 
-            <p className="home__hero-text">
-                <p><strong>Designer:</strong> me</p>
-                <p><strong>Developer:</strong> me</p>
-                <p><strong>Technology:</strong> React, CSS in JS, Firebase for the data, Heroku for the hosting</p>
-                <p><strong>Build time:</strong> about 10 weeks</p>
-            </p>
-
             <div>
                 <iframe
                     className="malla__video-iframe"
@@ -35,6 +28,11 @@ const Malla = props => (
                     allowFullScreen=""
                 />
             </div>
+
+            <p><strong>Designer:</strong> me</p>
+            <p><strong>Developer:</strong> me</p>
+            <p><strong>Technology:</strong> React, CSS in JS, Firebase for the data, Heroku for the hosting</p>
+            <p><strong>Build time:</strong> about 10 weeks</p>
         </div>
     </PageWrapper>
 );
