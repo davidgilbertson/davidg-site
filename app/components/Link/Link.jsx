@@ -26,6 +26,7 @@ const Link = (props) => {
             className={className}
             href={props.href}
             onClick={onClick}
+            target={props.target}
         >
             {props.children}
         </a>
@@ -43,6 +44,7 @@ Link.propTypes = {
         PropTypes.element,
     ]).isRequired,
     className: PropTypes.string,
+    target: PropTypes.string,
 };
 
 Link.defaultProps = {
