@@ -1,11 +1,11 @@
 @import '../../../utils/styles';
 
 .malla__video-iframe {
-    display:block;
-    width:320px;
-    height:180px;
-    margin:40px auto 0;
-    text-align:center;
+    display: block;
+    width: 320px;
+    height: 180px;
+    margin: 70px auto;
+    text-align: center;
 
 
     @include for-tablet-portrait-up {

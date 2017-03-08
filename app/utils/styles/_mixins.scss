@@ -27,3 +27,14 @@
 @mixin for-desktop-up {
     @media (min-width: 1200px) { @content; }
 }
+
+@mixin type__hero-text {
+    margin-bottom: 1em;
+    color: $hero-text;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    @include for-size($medium-up) {font-size: 1.3rem;}
+    @include for-size($large-up) {font-size: 1.4rem;}
+    @include for-size($jumbo-up) {font-size: 1.6rem;}
+}

@@ -1,14 +1,5 @@
 @import '../../../utils/styles';
 
-.home {
-    &__hero-text {
-        margin-bottom: 1em;
-        color: $hero-text;
-        font-size: 1.2rem;
-        font-weight: 300;
-
-        @include for-size($medium-up) {font-size: 1.3rem;}
-        @include for-size($large-up) {font-size: 1.4rem;}
-        @include for-size($jumbo-up) {font-size: 1.6rem;}
-    }
+.home__hero-text {
+    @include type__hero-text;
 }
