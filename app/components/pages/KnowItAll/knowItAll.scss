@@ -1,0 +1,11 @@
+@import '../../../utils/styles';
+
+.know-it-all__blurb {
+    @include type__hero-text;
+}
+
+.know-it-all__image {
+    display: block;
+    width: 90%;
+    margin: 70px auto;
+}

@@ -8,6 +8,7 @@ import Nav from '../Nav/Nav';
 import Home from '../pages/Home/Home';
 import Isolog from '../pages/Isolog/Isolog';
 import Malla from '../pages/Malla/Malla';
+import KnowItAll from '../pages/KnowItAll/KnowItAll';
 import Fireball from '../pages/Fireball/Fireball';
 import AllThePrimes from '../pages/AllThePrimes/AllThePrimes';
 import NotTheWeb from '../pages/NotTheWeb/NotTheWeb';
@@ -36,6 +37,7 @@ const MIN_NAV_POS = NAV_WIDTH_EMS * -1;
 
 const PAGES = {
     '/': Home,
+    '/know-it-all': KnowItAll,
     '/malla': Malla,
     '/isolog': Isolog,
     '/fireball': Fireball,

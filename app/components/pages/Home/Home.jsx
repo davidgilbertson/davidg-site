@@ -15,15 +15,23 @@ const Home = props => (
             <p className="home__hero-text">Hello</p>
 
             <p className="home__hero-text">
-                I'm David Gilbertson. This is my site. A haphazard mix of weekend projects I've
+                I'm David Gilbertson, and this is my site. A haphazard mix of weekend projects I've
                 worked on over the years, with varying degrees of polish.
             </p>
 
             <p className="home__hero-text">
-                You'll find <Link href="/fireball">Fireball</Link>, designed to help you create 'performance breakpoints' so you can
-                tailor your user's experience to their device's performance just like you would for their screen size.
-                This here is <Link href="/isolog">isolog</Link>, who loves sending node.js console logs to the browser. And
-                for no real reason behold, <Link href="/all-the-primes">a list of all the prime numbers</Link>.
+                <Link href="/know-it-all">Know it all</Link> is a list of <em>almost</em> everything from the
+                various web specs (CSS, ECMAScript, DOM APIs, CSS, CSSOM, HTML, SVG, and NodeJS for
+                good measure). <Link href="/malla">Malla</Link> is more of a complete product; a visual way to
+                store and serve all of the text required for your site.
+            </p>
+
+            <p className="home__hero-text">
+                Then there's <Link href="/fireball">Fireball</Link>, designed to help you create 'performance breakpoints' so you can
+                tailor your user's experience to their device's
+                performance. <Link href="/isolog">Isolog</Link> is a mostly pointless little tool that sends NodeJS console
+                logs to the browser. And
+                for no real reason, here is <Link href="/all-the-primes">a list of all the prime numbers</Link>.
             </p>
 
             <p className="home__hero-text">
