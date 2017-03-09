@@ -21,9 +21,8 @@ const Home = props => (
 
             <p className="home__hero-text">
                 <Link href="/know-it-all">Know it all</Link> is a list of <em>almost</em> everything from the
-                various web specs (CSS, ECMAScript, DOM APIs, CSS, CSSOM, HTML, SVG, and NodeJS for
-                good measure). <Link href="/malla">Malla</Link> is more of a complete product; a visual way to
-                store and serve all of the text required for your site.
+                various web specs (ECMAScript, HTML, CSS, and more). <Link href="/malla">Malla</Link> is more of a
+                complete product; a visual way to store and serve all of the text required for your site.
             </p>
 
             <p className="home__hero-text">
